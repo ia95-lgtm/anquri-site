@@ -3,128 +3,231 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HEATSINK — ANQURI</title>
-<meta name="description" content="HEATSINK is a fast first-person roguelite with one gauge and no health bar. Firing heats your core; the only heat sink is the air moving over your body.">
+<title>HEATSINK — a shooter with one gauge and no health bar — ANQURI</title>
+<meta name="description" content="HEATSINK is a fast first-person roguelite with one gauge and no health bar. Firing heats your core; the only heat sink in the game is the air moving over your body. Demo out now.">
+<link rel="canonical" href="https://anquri.net/heatsink.html">
+
+<meta property="og:site_name" content="ANQURI">
 <meta property="og:title" content="HEATSINK">
-<meta property="og:description" content="One gauge. No health bar, no ammo, no timer.">
+<meta property="og:description" content="One gauge. No health bar, no ammo, no timer. Demo out now.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://anquri.net/heatsink.html">
+<meta property="og:image" content="https://anquri.net/img/og-heatsink.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The HEATSINK logo over a glowing arena floor.">
+<meta name="twitter:card" content="summary_large_image">
+
 <meta name="theme-color" content="#0A0806">
-<link rel="icon" href="img/anquri-seal.webp">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="img/anquri-seal.webp" type="image/webp" sizes="512x512">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap">
 <link rel="stylesheet" href="style.css">
+<link rel="preload" as="image" href="img/heatsink-keyart.webp" fetchpriority="high">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"VideoGame","name":"HEATSINK",
+ "url":"https://anquri.net/heatsink.html",
+ "image":"https://anquri.net/img/og-heatsink.jpg",
+ "description":"A fast first-person roguelite with one gauge and no health bar. Firing heats your core; the only heat sink in the game is the air moving over your body.",
+ "genre":["Shooter","Roguelite"],
+ "gamePlatform":["PC","Windows","Linux"],
+ "operatingSystem":"Windows, Linux",
+ "author":{"@type":"Organization","name":"ANQURI","url":"https://anquri.net/"},
+ "publisher":{"@type":"Organization","name":"ANQURI","url":"https://anquri.net/"},
+ "inLanguage":["en","fr","de","es","it","pt","ru"]}
+</script>
 </head>
 <body>
-<div class="page">
-  <!-- Ici le rail est gradué : ce jeu *mesure* sa température, et chaque
-       section porte celle du corps noir où elle se trouve. -->
-  <div class="rail" aria-hidden="true"></div>
+<a class="skip" href="#main">Skip to content</a>
 
-  <a class="brand" href="index.html">
-    <img src="img/anquri-seal.webp" alt="">
-    <div>
-      <div class="name">ANQURI</div>
-      <div class="role">← back to the studio</div>
-    </div>
-  </a>
-
-  <div class="hero">
-    <img class="art" src="img/heatsink-keyart.webp" width="1232" height="706"
-         alt="Une salle noire où le sol rougeoie sous des blocs incandescents.">
-    <div class="mark">
-      <img src="img/heatsink-wordmark.webp" width="900" height="502" alt="HEATSINK">
-      <div class="kicker">Demo out now · Coming to Steam</div>
-    </div>
+<!-- ═══ la jauge ════════════════════════════════════════════════════════════
+     Sur la page du jeu, la jauge du site EST la jauge du jeu : elle monte de
+     300 K (l'ambiante) à 3200 K, et les repères tombent sur les températures
+     qui titrent les sections. Le site se lit comme une montée en température.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="gauge" aria-hidden="true">
+  <span class="label">Core temp</span>
+  <div class="track">
+    <div class="ticks"><i style="top:25%"></i><i style="top:50%"></i><i style="top:75%"></i></div>
+    <div class="fill"></div>
   </div>
+  <span class="read">300 K</span>
+</div>
 
-  <section>
-    <p class="tick"><b>900 K</b> <span>the game</span></p>
-    <h1>One gauge.<br>No health bar, no ammo, no timer.</h1>
-    <p class="lede" style="margin-top:22px">Fast shooters all need an engine that
-    forbids waiting. This one uses thermodynamics. Your core heats up when you
-    fire, and the only heat sink in the game is <em>the air moving over your
-    body</em>.</p>
-    <p class="muted">The consequence needs no tutorial: take cover to shoot in
-    peace, and you melt in eight seconds.</p>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="index.html" aria-label="ANQURI — back to the studio">
+      <img src="img/anquri-seal.webp" width="512" height="512" alt="">
+      <span>
+        <span class="name">ANQURI</span>
+        <span class="role">← Back to the studio</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="On this page">
+      <a href="#rules">The rules</a>
+      <a href="#box" class="hide-s">What's in it</a>
+      <a href="#press">Press</a>
+      <a class="cta" href="#play">Play the demo</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══ le héros ═══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="img/heatsink-keyart.webp" width="1232" height="706" alt=""
+         fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-in">
+    <img class="wordmark rise" src="img/heatsink-wordmark.webp" width="900" height="502"
+         alt="HEATSINK" fetchpriority="high">
+    <p class="tick rise" style="--d:1"><b>Demo out now</b> <span>Coming to Steam</span></p>
+    <h1 class="rise" style="--d:2">One gauge.<br>No health bar,<br>no ammo, no timer.</h1>
+
+    <dl class="facts rise" style="--d:3">
+      <div><dt>Genre</dt><dd>FPS roguelite</dd></div>
+      <div><dt>Platform</dt><dd>Windows · Linux</dd></div>
+      <div><dt>Engine</dt><dd>Godot 4.7</dd></div>
+      <div><dt>Audio files</dt><dd class="hot">Zero</dd></div>
+    </dl>
+  </div>
+  <span class="scroll-hint" aria-hidden="true">Scroll</span>
+</section>
+
+<main id="main">
+<div class="page">
+
+  <!-- ═══ la règle ══════════════════════════════════════════════════════════ -->
+  <section id="rule">
+    <p class="tick rise"><b>900 K</b> <span>The game</span></p>
+    <div class="split">
+      <div class="stack rise">
+        <h2>Fast shooters need<br>an engine that<br>forbids&nbsp;waiting.</h2>
+      </div>
+      <div class="stack rise" style="--d:1">
+        <p class="lede">This one uses thermodynamics. Your core heats up when you
+        fire, and the only heat sink in the game is <em>the air moving over your
+        body</em>.</p>
+        <p class="muted">The consequence needs no tutorial: take cover to shoot in
+        peace, and you melt in eight seconds. There is no other rule to learn,
+        and everything below is a consequence of this one.</p>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <p class="tick"><b>1400 K</b> <span>three rules, and the whole game is in them</span></p>
+  <!-- ═══ les trois conséquences ════════════════════════════════════════════ -->
+  <section id="rules">
+    <p class="tick rise"><b>1400 K</b> <span>The consequences</span></p>
+    <h2 class="rise" style="--d:1;margin-bottom:clamp(30px,4vw,52px)">Three rules, and the<br>whole game is in them.</h2>
     <div class="rules">
-      <article class="rule">
-        <img src="img/heatsink-redzone.webp" width="900" height="506"
-             alt="Le joueur tire en zone rouge, la salle entière virant à l'orange.">
+
+      <article class="rule rise">
+        <span class="art">
+          <img src="img/heatsink-redzone.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: the player fires deep in the red zone, the whole arena washed orange, core temperature at 93 %.">
+        </span>
         <h3>The red zone pays</h3>
         <p>Damage scales with your own temperature. At 92 % you hit nearly twice
         as hard — so the economy of the game pushes you to the edge of an
         explosion and keeps you there.</p>
       </article>
-      <article class="rule">
-        <img src="img/heatsink-boss.webp" width="900" height="506"
-             alt="Un boss blindé, son corps passant du rouge sombre au blanc.">
+
+      <article class="rule rise" style="--d:1">
+        <span class="art">
+          <img src="img/heatsink-boss.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: an armoured boss glowing white against a molten floor, its body colour reading as its health.">
+        </span>
         <h3>Colour is health</h3>
         <p>Nothing here has a texture. An enemy's colour <em>is</em> its health:
         dark red when intact, white hot a moment before it dies. You never read a
         health bar. You read the room.</p>
       </article>
-      <article class="rule">
-        <img src="img/heatsink-volee.webp" width="900" height="506"
-             alt="Un parcours de plateformes suspendues au-dessus du vide.">
+
+      <article class="rule rise" style="--d:2">
+        <span class="art">
+          <img src="img/heatsink-volee.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: a movement course of floating platforms rising above a dark red plain.">
+        </span>
         <h3>The ground is where you burn</h3>
         <p>Standing on solid ground dissipates nothing at all, and the faster you
         fly the harder you cool. Every weapon's recoil is a thruster. Shooting
         <em>is</em> moving.</p>
       </article>
+
     </div>
   </section>
 
-  <section>
-    <p class="tick"><b>2000 K</b> <span>what is in the box</span></p>
-    <div class="spec">
-      <span><b>3</b> modes</span>
-      <span><b>6</b> weapons</span>
-      <span><b>22</b> enemy species</span>
-      <span><b>5</b> bosses</span>
-      <span><b>12</b> movement courses</span>
-      <span><b>7</b> languages</span>
-      <span class="hot"><b>0</b> audio files</span>
+  <!-- ═══ ce qu'il y a dans la boîte ════════════════════════════════════════ -->
+  <section id="box">
+    <p class="tick rise"><b>2000 K</b> <span>What is in the box</span></p>
+    <div class="stats rise">
+      <div><b>3</b><span>Modes</span></div>
+      <div><b>6</b><span>Weapons</span></div>
+      <div><b>22</b><span>Enemy species</span></div>
+      <div><b>5</b><span>Bosses</span></div>
+      <div><b>12</b><span>Movement courses</span></div>
+      <div><b>7</b><span>Languages</span></div>
+      <div class="flame"><b>0</b><span>Audio files</span></div>
     </div>
-    <p class="muted">That last number is not a typo. Every sound effect and all
-    six music tracks are synthesised while the game runs — there is not one audio
-    file in the build, and not one texture either.</p>
+    <p class="muted rise" style="--d:1;margin-top:clamp(22px,2.6vw,30px)">
+    That last number is not a typo. Every sound effect and all six music tracks
+    are synthesised while the game runs — there is not one audio file in the
+    build, and not one texture either.</p>
   </section>
 
-  <section>
-    <p class="tick"><b>2800 K</b> <span>play it</span></p>
-    <h2>Get the demo</h2>
-    <p class="lede" style="margin-top:20px">The demo takes the campaign as far as
-    its second boss, and gives you two of the twelve movement courses.</p>
-    <div class="doors">
-      <!-- ↓ ADRESSE ITCH.IO : à remplacer par la vraie une fois la page créée. -->
-      <a class="door primary" href="https://anquri.itch.io/heatsink">Play the demo<small>itch.io · free</small></a>
-      <a class="door" href="https://store.steampowered.com/app/5222030/">Wishlist on Steam<small>App 5222030</small></a>
+  <!-- ═══ y jouer ═══════════════════════════════════════════════════════════ -->
+  <section id="play">
+    <p class="tick rise"><b>2800 K</b> <span>Play it</span></p>
+    <div class="split">
+      <div class="stack rise">
+        <h2>Get the demo.</h2>
+        <p class="lede">The demo takes the campaign as far as its second boss, and
+        gives you two of the twelve movement courses.</p>
+      </div>
+      <div class="rise" style="--d:1">
+        <div class="doors" style="margin-top:0">
+          <a class="door primary" href="https://anquri.itch.io/heatsink" rel="noopener">
+            Play the demo<small>itch.io · free</small></a>
+          <a class="door" href="https://store.steampowered.com/app/5222030/" rel="noopener">
+            Wishlist on Steam<small>App 5222030</small></a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section>
-    <p class="tick"><b>3200 K</b> <span>the studio</span></p>
-    <h2>Press &amp; contact</h2>
-    <p class="muted" style="margin-top:20px">If you write about games and want a
-    key, a build, or answers, the address below reaches the person who wrote the
-    game.</p>
-    <dl class="lines">
-      <div><dt>Email</dt><dd><a href="mailto:contact@anquri.net">contact@anquri.net</a></dd></div>
-      <div><dt>Steam</dt><dd><a href="https://store.steampowered.com/app/5222030/">store.steampowered.com/app/5222030</a></dd></div>
-      <div><dt>Engine</dt><dd class="muted">Godot 4.7 · Windows and Linux</dd></div>
-    </dl>
+  <!-- ═══ presse ════════════════════════════════════════════════════════════ -->
+  <section id="press">
+    <p class="tick rise"><b>3200 K</b> <span>Press &amp; contact</span></p>
+    <div class="split">
+      <div class="stack rise">
+        <h2>Ask the person<br>who wrote it.</h2>
+        <p class="muted">If you write about games and want a key, a build, or
+        answers, the address below reaches the person who wrote the game.</p>
+      </div>
+      <dl class="lines rise" style="--d:1">
+        <div><dt>Email</dt><dd><a href="mailto:contact@anquri.net">contact@anquri.net</a></dd></div>
+        <div><dt>Steam</dt><dd><a href="https://store.steampowered.com/app/5222030/" rel="noopener">store.steampowered.com/app/5222030</a></dd></div>
+        <div><dt>itch.io</dt><dd><a href="https://anquri.itch.io/heatsink" rel="noopener">anquri.itch.io/heatsink</a></dd></div>
+        <div><dt>Engine</dt><dd class="muted">Godot 4.7 · Windows and Linux</dd></div>
+        <div><dt>Studio</dt><dd><a href="index.html">ANQURI · Belgium</a></dd></div>
+      </dl>
+    </div>
   </section>
 
   <footer>
     <span><a href="index.html">© 2026 ANQURI</a></span>
-    <span>anquri.net</span>
+    <span>Built in Belgium</span>
+    <span class="sep"><a href="#main">Back to top ↑</a></span>
   </footer>
+
 </div>
+</main>
+
+<script src="site.js" defer></script>
 </body>
 </html>
