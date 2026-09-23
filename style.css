@@ -1,7 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    ANQURI — feuille de style unique.
 
-   Une seule idée porte tout le site : la chaleur. C'est le nom du studio
+   Une seule idée porte tout le site : la chaleur. (SURVOLT, le deuxième jeu,
+   garde la même mise en page mais passe sous tension : voir la section 17.) C'est le nom du studio
    (le phénix), c'est la règle de HEATSINK (une jauge, pas de barre de vie),
    et c'est la seule couleur vive qu'on s'autorise. Tout le reste est du noir
    chaud, du bronze et du blanc cassé.
@@ -14,6 +15,7 @@
      5. jauge         6. titraille   7. héros             8. catalogue
      9. règles       10. chiffres   11. portes           12. contact
     13. pied de page 14. révélations 15. adaptatif        16. impression
+    17. SURVOLT, le même site sous tension               18. état du serveur en ligne
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ── 1. jetons ─────────────────────────────────────────────────────────── */
@@ -25,9 +27,9 @@
   --slag-2:#1C1610;
 
   /* filets : en alpha, pour qu'ils tiennent sur n'importe quelle surface */
-  --line:rgba(217,164,65,.16);
-  --line-2:rgba(217,164,65,.30);
-  --line-3:rgba(217,164,65,.52);
+  --line:rgba(var(--brass-rgb),.16);
+  --line-2:rgba(var(--brass-rgb),.30);
+  --line-3:rgba(var(--brass-rgb),.52);
 
   /* encres */
   --ash:#9E9285;          /* secondaire, gris chaud */
@@ -40,6 +42,21 @@
   --ember:#FF5A1F;
   --ember-dim:#D96B33;    /* braise assourdie, 5,8:1 : sous-titres des portes */
   --white-hot:#FFF4DE;
+
+  /* les mêmes couleurs en composantes, pour les lueurs en transparence :
+     une variante de page (voir « 17. SURVOLT ») n'a qu'à redéfinir ce bloc */
+  --ember-rgb:255,90,31;
+  --brass-rgb:217,164,65;
+  --grid-rgb:255,110,40;
+  --void-rgb:6,4,3;
+  --on-accent:#150A04;          /* texte posé sur la couleur vive */
+  --on-accent-rgb:21,10,4;
+  --flame-bg:#1C0A03;
+  --gauge-fill:linear-gradient(to top,#4A1206 0%,#B23A10 26%,#FF5A1F 56%,#FFA43C 78%,var(--white-hot) 100%);
+
+  /* état d'un service en ligne : les seules couleurs « feu tricolore » du site */
+  --ok:#46F29A;
+  --bad:#FF5468;
 
   /* mesures */
   --measure:64ch;
@@ -80,7 +97,7 @@ a{color:var(--brass);text-decoration:none;text-underline-offset:4px;
   text-decoration-thickness:1px;transition:color .18s var(--ease)}
 a:hover{color:var(--gold)}
 :focus-visible{outline:2px solid var(--ember);outline-offset:4px;border-radius:2px}
-::selection{background:var(--ember);color:#150A04}
+::selection{background:var(--ember);color:var(--on-accent)}
 strong,b{font-weight:600}
 hr{border:0;border-top:1px solid var(--line);margin:0}
 
@@ -88,9 +105,9 @@ hr{border:0;border-top:1px solid var(--line);margin:0}
 .sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
   clip-path:inset(50%);white-space:nowrap;border:0}
 .skip{position:fixed;top:-100px;left:16px;z-index:200;background:var(--ember);
-  color:#150A04;padding:12px 18px;font-family:"JetBrains Mono",ui-monospace,monospace;
+  color:var(--on-accent);padding:12px 18px;font-family:"JetBrains Mono",ui-monospace,monospace;
   font-size:12px;letter-spacing:.14em;text-transform:uppercase;transition:top .2s var(--ease)}
-.skip:focus{top:16px;color:#150A04}
+.skip:focus{top:16px;color:var(--on-accent)}
 
 /* ── 3. trame de fond ──────────────────────────────────────────────────────
    Deux couches fixes, sous tout le reste et jamais cliquables :
@@ -107,8 +124,8 @@ body::after{
   content:"";position:fixed;left:0;right:0;bottom:0;height:46vh;z-index:0;
   pointer-events:none;
   background:
-    radial-gradient(120% 100% at 50% 118%,rgba(255,90,31,.20) 0%,rgba(255,90,31,.06) 42%,transparent 70%),
-    repeating-linear-gradient(to right,rgba(255,110,40,.10) 0 1px,transparent 1px 88px);
+    radial-gradient(120% 100% at 50% 118%,rgba(var(--ember-rgb),.20) 0%,rgba(var(--ember-rgb),.06) 42%,transparent 70%),
+    repeating-linear-gradient(to right,rgba(var(--grid-rgb),.10) 0 1px,transparent 1px 88px);
   -webkit-mask-image:linear-gradient(to bottom,transparent,#000 62%);
   mask-image:linear-gradient(to bottom,transparent,#000 62%);
 }
@@ -136,9 +153,9 @@ body::after{
 }
 .brand{display:flex;align-items:center;gap:14px;color:inherit;flex:none}
 .brand img{width:40px;height:40px;flex:none;
-  filter:drop-shadow(0 0 14px rgba(217,164,65,.28));
+  filter:drop-shadow(0 0 14px rgba(var(--brass-rgb),.28));
   transition:filter .3s var(--ease),transform .3s var(--ease)}
-.brand:hover img{filter:drop-shadow(0 0 20px rgba(255,90,31,.5));transform:rotate(-4deg)}
+.brand:hover img{filter:drop-shadow(0 0 20px rgba(var(--ember-rgb),.5));transform:rotate(-4deg)}
 .brand > span{display:block}
 .brand .name{display:block;font-family:"Anton",Impact,"Arial Narrow Bold",sans-serif;
   font-size:19px;letter-spacing:.26em;color:var(--gold);line-height:1;
@@ -157,7 +174,7 @@ body::after{
 .nav a:hover::after{right:0}
 .nav a.cta{color:var(--ember);border:1px solid var(--ember);padding:9px 16px}
 .nav a.cta::after{display:none}
-.nav a.cta:hover{background:var(--ember);color:#150A04}
+.nav a.cta:hover{background:var(--ember);color:var(--on-accent)}
 
 /* ── 5. la jauge ───────────────────────────────────────────────────────────
    Le rail à gauche n'est pas un ornement : c'est la jauge du jeu. Elle se
@@ -179,8 +196,8 @@ body::after{
   background:rgba(255,255,255,.07);overflow:hidden}
 .gauge .fill{position:absolute;left:0;right:0;bottom:0;
   height:calc(var(--heat,0) * 100%);
-  background:linear-gradient(to top,#4A1206 0%,#B23A10 26%,#FF5A1F 56%,#FFA43C 78%,var(--white-hot) 100%);
-  box-shadow:0 0 12px rgba(255,90,31,.55);
+  background:var(--gauge-fill);
+  box-shadow:0 0 12px rgba(var(--ember-rgb),.55);
   transition:height .12s linear}
 .gauge .ticks{position:absolute;inset:0}
 .gauge .ticks i{position:absolute;left:0;width:100%;height:1px;background:rgba(255,255,255,.22)}
@@ -220,7 +237,7 @@ p:last-child{margin-bottom:0}
 
 /* un mot qui chauffe : réservé aux 3 ou 4 mots les plus importants du site */
 .hot{color:var(--ember)}
-.glow{text-shadow:0 0 28px rgba(255,90,31,.55)}
+.glow{text-shadow:0 0 28px rgba(var(--ember-rgb),.55)}
 
 /* ── 7. le héros ───────────────────────────────────────────────────────────
    Plein cadre, image en fond, texte posé dessus. Le voile est un dégradé en
@@ -234,8 +251,8 @@ p:last-child{margin-bottom:0}
   opacity:.9;transform:scale(1.06);will-change:transform}
 .hero-bg::after{content:"";position:absolute;inset:0;
   background:
-    linear-gradient(to bottom,rgba(6,4,3,.86) 0%,rgba(6,4,3,.28) 26%,rgba(6,4,3,.62) 62%,var(--forge) 99%),
-    radial-gradient(90% 70% at 50% 100%,rgba(255,90,31,.26),transparent 62%)}
+    linear-gradient(to bottom,rgba(var(--void-rgb),.86) 0%,rgba(var(--void-rgb),.28) 26%,rgba(var(--void-rgb),.62) 62%,var(--forge) 99%),
+    radial-gradient(90% 70% at 50% 100%,rgba(var(--ember-rgb),.26),transparent 62%)}
 .hero-in{position:relative;z-index:1;width:100%;max-width:var(--page);
   margin-inline:auto;padding:0 var(--gutter) clamp(48px,7vw,96px)}
 .hero .wordmark{width:min(640px,74%);margin-bottom:clamp(20px,3vw,34px);
@@ -282,12 +299,12 @@ p:last-child{margin-bottom:0}
   border:1px solid var(--line);isolation:isolate}
 .art img{transition:transform .8s var(--ease),opacity .5s var(--ease);opacity:.9}
 .art::after{content:"";position:absolute;inset:0;pointer-events:none;
-  box-shadow:inset 0 0 0 1px rgba(255,90,31,0);transition:box-shadow .4s var(--ease)}
+  box-shadow:inset 0 0 0 1px rgba(var(--ember-rgb),0);transition:box-shadow .4s var(--ease)}
 .art::before{content:"";position:absolute;inset:auto 0 0 0;height:52%;z-index:1;
   pointer-events:none;opacity:0;transition:opacity .4s var(--ease);
-  background:linear-gradient(to top,rgba(255,90,31,.32),transparent)}
+  background:linear-gradient(to top,rgba(var(--ember-rgb),.32),transparent)}
 .art:hover img,.art:focus-visible img{transform:scale(1.045);opacity:1}
-.art:hover::after,.art:focus-visible::after{box-shadow:inset 0 0 0 1px rgba(255,90,31,.7)}
+.art:hover::after,.art:focus-visible::after{box-shadow:inset 0 0 0 1px rgba(var(--ember-rgb),.7)}
 .art:hover::before,.art:focus-visible::before{opacity:1}
 
 .game .title{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
@@ -306,12 +323,12 @@ p:last-child{margin-bottom:0}
   display:inline-flex;align-items:center;gap:8px}
 .state::before{content:"";width:5px;height:5px;background:currentColor;flex:none;
   border-radius:50%}
-.state.out{border-color:rgba(255,90,31,.55);color:var(--ember);
-  box-shadow:0 0 22px -6px rgba(255,90,31,.6)}
+.state.out{border-color:rgba(var(--ember-rgb),.55);color:var(--ember);
+  box-shadow:0 0 22px -6px rgba(var(--ember-rgb),.6)}
 .state.out::before{animation:pulse 2.4s var(--ease) infinite}
-.state.soon{border-color:rgba(217,164,65,.5);color:var(--brass)}
-@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,90,31,.6)}
-  60%{opacity:.5;box-shadow:0 0 0 6px rgba(255,90,31,0)}}
+.state.soon{border-color:rgba(var(--brass-rgb),.5);color:var(--brass)}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(var(--ember-rgb),.6)}
+  60%{opacity:.5;box-shadow:0 0 0 6px rgba(var(--ember-rgb),0)}}
 
 /* le lien « lire la suite », avec sa flèche qui avance */
 .more{margin-top:clamp(20px,2.6vw,30px);display:inline-flex;align-items:center;gap:12px;
@@ -330,7 +347,7 @@ p:last-child{margin-bottom:0}
 /* Le numero est une plaque posee sur l'image, pas un prefixe du titre : colle
    au titre, il s'alignait sur la derniere ligne des titres a deux lignes. */
 .rule::before{content:counter(r,decimal-leading-zero);position:absolute;z-index:2;
-  top:0;left:0;padding:8px 12px;background:var(--ember);color:#150A04;
+  top:0;left:0;padding:8px 12px;background:var(--ember);color:var(--on-accent);
   font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;
   font-weight:700;letter-spacing:.14em}
 /* min-height sur deux lignes : sans elle, « THE GROUND IS WHERE YOU BURN »
@@ -353,8 +370,8 @@ p:last-child{margin-bottom:0}
   color:var(--ink);font-variant-numeric:tabular-nums}
 .stats span{display:block;margin-top:10px;font-family:"JetBrains Mono",ui-monospace,monospace;
   font-size:var(--t-mono);letter-spacing:.17em;text-transform:uppercase;color:var(--ash-2)}
-.stats .flame{background:linear-gradient(160deg,#1C0A03,#0A0806 62%)}
-.stats .flame b{color:var(--ember);text-shadow:0 0 34px rgba(255,90,31,.55)}
+.stats .flame{background:linear-gradient(160deg,var(--flame-bg),var(--forge) 62%)}
+.stats .flame b{color:var(--ember);text-shadow:0 0 34px rgba(var(--ember-rgb),.55)}
 .stats .flame span{color:var(--ember-dim)}
 
 /* la variante compacte, dans une rangée du catalogue */
@@ -379,9 +396,9 @@ p:last-child{margin-bottom:0}
 .door.primary small{color:var(--ember-dim)}
 .door.primary::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ember);
   transform:translateY(101%);transition:transform .3s var(--ease)}
-.door.primary:hover{color:#150A04;background:transparent;border-color:var(--ember)}
+.door.primary:hover{color:var(--on-accent);background:transparent;border-color:var(--ember)}
 .door.primary:hover::before{transform:translateY(0)}
-.door.primary:hover small{color:rgba(21,10,4,.72)}
+.door.primary:hover small{color:rgba(var(--on-accent-rgb),.72)}
 
 /* ── 12. contact ───────────────────────────────────────────────────────── */
 .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
@@ -455,6 +472,86 @@ footer .sep{margin-left:auto}
   .nav a:not(.cta){display:none}
 }
 
+/* ── 17. SURVOLT, le même site sous tension ──────────────────────────────
+   La page de SURVOLT (et sa rangée dans le catalogue) reprend exactement la
+   mise en page du studio ; seuls les jetons changent. Les couleurs sont
+   relevées sur le jeu : cyan de la charge ×2, or de la charge ×3, rose de
+   l'ombre du logo, sur un noir bleu nuit au lieu du noir braise.
+   La jauge devient la charge du ballon : blanche, cyan, or, puis la zone et
+   l'Overdrive qui doublent encore.
+   ──────────────────────────────────────────────────────────────────────── */
+.t-volt{
+  --void:#03040B;
+  --forge:#060814;
+  --slag:#0C1022;
+  --slag-2:#131A34;
+
+  --line:rgba(77,230,255,.14);
+  --line-2:rgba(77,230,255,.28);
+  --line-3:rgba(77,230,255,.5);
+
+  --ash:#9AA3C2;
+  --ash-2:#8089A9;
+  --ink:#EEF3FF;
+
+  --brass:#FFCC40;
+  --gold:#FFE08A;
+  --ember:#4DE6FF;
+  --ember-dim:#58BFD9;
+  --white-hot:#F2FDFF;
+
+  --ember-rgb:77,230,255;
+  --brass-rgb:255,204,64;
+  --grid-rgb:255,89,166;
+  --void-rgb:3,4,11;
+  --on-accent:#03121A;
+  --on-accent-rgb:3,18,26;
+  --flame-bg:#061A26;
+  --gauge-fill:linear-gradient(to top,#F4F7FF 0%,#F4F7FF 19%,#4DE6FF 21%,#4DE6FF 39%,
+    #FFCC40 41%,#FFCC40 59%,#FFE08A 61%,#FFE08A 79%,#FF59A6 81%,#FF8CC4 100%);
+}
+body.t-volt{background:var(--forge)}
+/* le logo de SURVOLT est une image claire : un peu moins large que celui de HEATSINK */
+.t-volt .hero .wordmark{width:min(600px,78%)}
+.t-volt .hero-bg img{object-position:center 42%}
+/* le mot qui chauffe devient le mot qui charge : une pointe de rose dans la lueur */
+.t-volt .glow{text-shadow:0 0 28px rgba(77,230,255,.55),0 0 60px rgba(255,89,166,.25)}
+
+/* ── 18. état du serveur en ligne ──────────────────────────────────────────
+   Un panneau posé sur la page du jeu (et une ligne dans le catalogue) qui lit
+   https://lobby.anquri.net/api/stats depuis le navigateur. Tant que la
+   réponse n'est pas arrivée, les chiffres restent en tirets : la mise en page
+   ne bouge pas quand ils se remplissent.
+   ──────────────────────────────────────────────────────────────────────── */
+.live{border:1px solid var(--line-2);background:linear-gradient(170deg,var(--slag),var(--forge) 70%)}
+.live-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;
+  padding:16px clamp(16px,2vw,24px);border-bottom:1px solid var(--line);
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:var(--t-mono);
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ash)}
+.live-head .where{color:var(--ash-2);margin-left:auto;letter-spacing:.12em;text-transform:none}
+.live-state{display:inline-flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ash-2);flex:none;display:inline-block}
+[data-state="up"] .dot{background:var(--ok);box-shadow:0 0 0 0 rgba(70,242,154,.6);animation:beat 2.4s var(--ease) infinite}
+[data-state="down"] .dot{background:var(--bad)}
+[data-state="up"] .live-state{color:var(--ok)}
+[data-state="down"] .live-state{color:var(--bad)}
+@keyframes beat{0%,100%{box-shadow:0 0 0 0 rgba(70,242,154,.55)}60%{box-shadow:0 0 0 7px rgba(70,242,154,0)}}
+.live .stats{border:0;background:var(--line);grid-template-columns:repeat(2,minmax(0,1fr))}
+.live .stats div{background:var(--forge)}
+.live .stats b{font-size:clamp(30px,3.6vw,46px)}
+.live-foot{padding:12px clamp(16px,2vw,24px);border-top:1px solid var(--line);
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ash-2)}
+
+/* la version d'une ligne, dans le catalogue et dans la liste de contact */
+.live-mini{display:inline-flex;align-items:center;gap:10px;margin:14px 0 0;max-width:none;
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ash)}
+.live-mini[data-state="up"] b{color:var(--ok);font-weight:700}
+.live-mini[data-state="down"] b{color:var(--bad);font-weight:700}
+.lines .live-mini{margin:0}
+.game .live-mini{display:flex;flex-wrap:wrap}
+
 /* ── 16. confort et impression ─────────────────────────────────────────── */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -462,6 +559,7 @@ footer .sep{margin-left:auto}
     transition-duration:.001ms!important}
   .rise{opacity:1;transform:none}
   .hero-bg img{transform:none}
+  [data-state] .dot{animation:none}
 }
 @media print{
   body{background:#fff;color:#000}

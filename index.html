@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ANQURI — independent game studio</title>
-<meta name="description" content="ANQURI is a one-person game studio in Belgium. Games built around a single rule you can feel in the first ten seconds. HEATSINK demo out now.">
+<meta name="description" content="ANQURI is a one-person game studio in Belgium. Games built around a single rule you can feel in the first ten seconds. HEATSINK demo out now; SURVOLT, a 3v3 online arena sport, in development.">
 <link rel="canonical" href="https://anquri.net/">
 
 <meta property="og:site_name" content="ANQURI">
@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap">
 <link rel="stylesheet" href="style.css">
 <link rel="preload" as="image" href="img/heatsink-keyart.webp" fetchpriority="high">
+<link rel="preconnect" href="https://lobby.anquri.net">
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"ANQURI",
@@ -66,7 +67,8 @@
     <nav class="nav" aria-label="Main">
       <a href="#games">Games</a>
       <a href="#studio" class="hide-s">Studio</a>
-      <a href="#contact">Press</a>
+      <a href="#contact" class="hide-s">Press</a>
+      <a href="survolt.html">SURVOLT</a>
       <a class="cta" href="heatsink.html">HEATSINK</a>
     </nav>
   </div>
@@ -89,6 +91,7 @@
       <div><dt>Studio</dt><dd>One person</dd></div>
       <div><dt>Engine</dt><dd>Godot 4</dd></div>
       <div><dt>Shipping</dt><dd>HEATSINK</dd></div>
+      <div><dt>In development</dt><dd>SURVOLT</dd></div>
     </dl>
   </div>
   <span class="scroll-hint" aria-hidden="true">Scroll</span>
@@ -144,6 +147,38 @@
         </div>
       </article>
 
+      <!-- SURVOLT : la rangée prend les couleurs du jeu (classe t-volt, voir
+           style.css § 17) et affiche l'état de son serveur en direct (site.js § 4) -->
+      <article class="game t-volt">
+        <a class="art rise" href="survolt.html" tabindex="-1" aria-hidden="true">
+          <img src="img/survolt-keyart.webp" width="1232" height="706" alt=""
+               loading="lazy" decoding="async">
+        </a>
+        <div class="rise" style="--d:1">
+          <div class="title">
+            <h2>SURVOLT</h2>
+          </div>
+          <div class="states">
+            <span class="state">In development</span>
+            <span class="state soon">Online playtests</span>
+          </div>
+          <p class="hook">A three-a-side arena sport with one ball and two moving
+          targets. The ball is worth more every time it changes hands — <em>pass
+          it before you shoot it</em>.</p>
+
+          <div class="stats inline">
+            <div><b>3v3</b><span>Online</span></div>
+            <div><b>×3</b><span>Charge</span></div>
+            <div><b>36</b><span>Best shot</span></div>
+            <div class="flame"><b>0</b><span>Ports to open</span></div>
+          </div>
+
+          <p class="live-mini" data-lobby="https://lobby.anquri.net" data-state="wait"><span class="dot"></span><b class="live-state"><span>Checking server…</span></b> · <span data-k="games">–</span> games · <span data-k="players">–</span> players online</p>
+
+          <a class="more" href="survolt.html">Read more<span class="sr"> about SURVOLT</span></a>
+        </div>
+      </article>
+
       <!-- ── MODÈLE POUR LE JEU SUIVANT — décommenter et remplir ─────────────
       <article class="game">
         <a class="art rise" href="NOM.html" tabindex="-1" aria-hidden="true">
@@ -181,9 +216,12 @@
         <p class="muted">No design document survives contact with a rule that
         applies every frame. The heat in HEATSINK is not a mechanic bolted onto a
         shooter — it <em>is</em> the shooter, and everything else in the game
-        exists because that one gauge demanded it. The next game will be built
-        the same way, around a different rule.</p>
-        <p class="muted">Everything ships on Godot 4, for Windows and Linux.</p>
+        exists because that one gauge demanded it. SURVOLT is built the same way,
+        around a different rule: a ball that is worth more every time it
+        changes hands.</p>
+        <p class="muted">Everything is made with Godot 4. The studio also runs its
+        own game server, so that SURVOLT players can find each other without
+        touching their router.</p>
       </div>
     </div>
   </section>
@@ -205,7 +243,11 @@
         <div><dt>Email</dt><dd><a href="mailto:contact@anquri.net">contact@anquri.net</a></dd></div>
         <div><dt>Steam</dt><dd><a href="https://store.steampowered.com/app/5222030/" rel="noopener">HEATSINK · app 5222030</a></dd></div>
         <div><dt>itch.io</dt><dd><a href="https://anquri.itch.io/heatsink" rel="noopener">anquri.itch.io/heatsink</a></dd></div>
-        <div><dt>Engine</dt><dd class="muted">Godot 4 · Windows and Linux</dd></div>
+        <div><dt>SURVOLT</dt><dd><a href="survolt.html">In development · online playtests</a></dd></div>
+        <div><dt>Game server</dt><dd>
+          <span class="live-mini" data-lobby="https://lobby.anquri.net" data-state="wait"><span class="dot"></span><b class="live-state"><span>Checking…</span></b> · <span data-k="games">–</span> games · <span data-k="players">–</span> players</span>
+        </dd></div>
+        <div><dt>Engine</dt><dd class="muted">Godot 4</dd></div>
         <div><dt>Based in</dt><dd class="muted">Belgium</dd></div>
       </dl>
     </div>

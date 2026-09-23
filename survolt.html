@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SURVOLT — a 3v3 sport where the pass is worth more than the shot — ANQURI</title>
+<meta name="description" content="SURVOLT is a 3-on-3 arena sport. One ball, two moving targets, and a ball that is worth more every time it changes hands. Online multiplayer, in development.">
+<link rel="canonical" href="https://anquri.net/survolt.html">
+
+<meta property="og:site_name" content="ANQURI">
+<meta property="og:title" content="SURVOLT">
+<meta property="og:description" content="Three against three, one ball, two targets. Pass it before you shoot it.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://anquri.net/survolt.html">
+<meta property="og:image" content="https://anquri.net/img/og-survolt.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The SURVOLT logo over a caged arena floating in space.">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="theme-color" content="#060814">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="img/anquri-seal.webp" type="image/webp" sizes="512x512">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="preload" as="image" href="img/survolt-keyart.webp" fetchpriority="high">
+<link rel="preconnect" href="https://lobby.anquri.net">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"VideoGame","name":"SURVOLT",
+ "url":"https://anquri.net/survolt.html",
+ "image":"https://anquri.net/img/og-survolt.jpg",
+ "description":"A 3-on-3 arena sport: one ball, two moving targets, and a ball that is worth more every time it changes hands.",
+ "genre":["Sports","Multiplayer"],
+ "gamePlatform":["PC","Windows"],
+ "operatingSystem":"Windows",
+ "playMode":["MultiPlayer","SinglePlayer"],
+ "numberOfPlayers":{"@type":"QuantitativeValue","minValue":1,"maxValue":6},
+ "author":{"@type":"Organization","name":"ANQURI","url":"https://anquri.net/"},
+ "publisher":{"@type":"Organization","name":"ANQURI","url":"https://anquri.net/"}}
+</script>
+</head>
+<body class="t-volt">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ═══ la jauge ════════════════════════════════════════════════════════════
+     Sur la page de SURVOLT, la jauge du site est la CHARGE du ballon : blanche
+     (×1), cyan (×2), or (×3), puis la zone or (×6) et l'Overdrive (×12). Les
+     repères tombent sur les multiplicateurs qui titrent les sections : la page
+     se lit comme une possession qui monte en charge.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="gauge" data-mode="charge" aria-hidden="true">
+  <span class="label">Ball charge</span>
+  <div class="track">
+    <div class="ticks"><i style="top:20%"></i><i style="top:40%"></i><i style="top:60%"></i><i style="top:80%"></i></div>
+    <div class="fill"></div>
+  </div>
+  <span class="read">×1</span>
+</div>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="index.html" aria-label="ANQURI — back to the studio">
+      <img src="img/anquri-seal.webp" width="512" height="512" alt="">
+      <span>
+        <span class="name">ANQURI</span>
+        <span class="role">← Back to the studio</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="On this page">
+      <a href="#rules">The rules</a>
+      <a href="#online" class="hide-s">Online</a>
+      <a href="#press">Press</a>
+      <a class="cta" href="#status">Server status</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══ le héros ═══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="img/survolt-keyart.webp" width="1232" height="706" alt=""
+         fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-in">
+    <img class="wordmark rise" src="img/survolt-wordmark.webp" width="900" height="238"
+         alt="SURVOLT" fetchpriority="high">
+    <p class="tick rise" style="--d:1"><b>In development</b> <span>Online playtests</span></p>
+    <h1 class="rise" style="--d:2">Pass it<br>before you<br><span class="hot glow">shoot it</span>.</h1>
+
+    <dl class="facts rise" style="--d:3">
+      <div><dt>Genre</dt><dd>Arena sport · 3v3</dd></div>
+      <div><dt>Platform</dt><dd>Windows</dd></div>
+      <div><dt>Engine</dt><dd>Godot 4.4</dd></div>
+      <div><dt>Online</dt><dd class="hot">6 players</dd></div>
+    </dl>
+  </div>
+  <span class="scroll-hint" aria-hidden="true">Scroll</span>
+</section>
+
+<main id="main">
+<div class="page">
+
+  <!-- ═══ la règle ══════════════════════════════════════════════════════════ -->
+  <section id="rule">
+    <p class="tick rise"><b>×1</b> <span>The game</span></p>
+    <div class="split">
+      <div class="stack rise">
+        <h2>A ball that is<br>worth more every<br>time it changes&nbsp;hands.</h2>
+      </div>
+      <div class="stack rise" style="--d:1">
+        <p class="lede">Three against three, one ball, two targets on the walls.
+        Every shot scores something. What matters is <em>how much</em> — and
+        the ball is worth more the more of your team has touched it.</p>
+        <p class="muted">It starts white. One completed pass turns it cyan and
+        doubles it. When all three of you have touched it, it burns gold and
+        triples it. Hold it too long and it melts back down a step. That is the
+        whole rule: the shot is only the end of an argument the passes started.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ les trois conséquences ════════════════════════════════════════════ -->
+  <section id="rules">
+    <p class="tick rise"><b>×2</b> <span>The consequences</span></p>
+    <h2 class="rise" style="--d:1;margin-bottom:clamp(30px,4vw,52px)">Three rules, and the<br>whole match is in them.</h2>
+    <div class="rules">
+
+      <article class="rule rise">
+        <span class="art">
+          <img src="img/survolt-charge.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: a player holds the ball in the middle of the arena, the ball charge reads GOLD ×3.">
+        </span>
+        <h3>The charge is the score</h3>
+        <p>White, cyan, gold: ×1, ×2, ×3. The screen shows you one thing — the
+        colour of the ball — and every decision in a possession is a bet on it.
+        Shoot now, or make one more pass?</p>
+      </article>
+
+      <article class="rule rise" style="--d:1">
+        <span class="art">
+          <img src="img/survolt-cible.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: a round target of glowing rings bolted to the hexagonal cage wall.">
+        </span>
+        <h3>A target, not a goal</h3>
+        <p>The targets are dartboards bolted to the end walls, and they move. The
+        outer ring scores one, the bullseye three — times the charge. The ball
+        bounces off the cage: bank shots count.</p>
+      </article>
+
+      <article class="rule rise" style="--d:2">
+        <span class="art">
+          <img src="img/survolt-zone.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: a golden circle lit on the arena floor near the wall, players running toward it.">
+        </span>
+        <h3>The gold zone</h3>
+        <p>Now and then a patch of the arena lights up. Score from it, or bounce
+        the ball off it, and the shot counts double. In the last two minutes
+        everything doubles again: <em>Overdrive</em>.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══ ce qu'il y a dans la boîte ════════════════════════════════════════ -->
+  <section id="box">
+    <p class="tick rise"><b>×3</b> <span>What is in the box</span></p>
+    <div class="stats rise">
+      <div><b>3v3</b><span>Players a side</span></div>
+      <div><b>3</b><span>Charge levels</span></div>
+      <div><b>2</b><span>Moving targets</span></div>
+      <div><b>36</b><span>Points, best shot</span></div>
+      <div><b>6</b><span>Players online</span></div>
+      <div class="flame"><b>0</b><span>Ports to open</span></div>
+    </div>
+    <p class="muted rise" style="--d:1;margin-top:clamp(22px,2.6vw,30px)">
+    Thirty-six is a bullseye with a gold ball, from the gold zone, during
+    Overdrive. And the zero is the point of the online mode: nobody touches
+    their router. The studio's server introduces the players to each other,
+    and when a network is too strict to let them talk directly, it relays the
+    match itself.</p>
+  </section>
+
+  <!-- ═══ en ligne ══════════════════════════════════════════════════════════ -->
+  <section id="online">
+    <p class="tick rise"><b>×6</b> <span>Online</span></p>
+    <div class="split">
+      <div class="stack rise">
+        <h2>Find a match,<br>or bring your<br>friends.</h2>
+        <p class="lede">Public games in a list sorted by real ping. Private games
+        behind a six-letter code. An optional password. Quick play, if you just
+        want to be on the pitch.</p>
+        <p class="muted">Empty seats are played by the AI, so one against one is
+        still a full three-a-side match. Everything works with a gamepad.</p>
+      </div>
+
+      <!-- l'état du serveur, lu en direct (voir site.js, point 4) -->
+      <div class="live rise" id="status" style="--d:1" data-lobby="https://lobby.anquri.net" data-state="wait" aria-live="polite">
+        <div class="live-head">
+          <span class="live-state"><span class="dot"></span><span>Checking…</span></span>
+          <span>Game server</span>
+          <span class="where">lobby.anquri.net</span>
+        </div>
+        <div class="stats">
+          <div><b data-k="games">–</b><span>Games right now</span></div>
+          <div><b data-k="players">–</b><span>Players connected</span></div>
+          <div><b data-k="inMatch">–</b><span>Matches being played</span></div>
+          <div><b data-k="inLobby">–</b><span>Lobbies waiting</span></div>
+        </div>
+        <div class="live-foot">
+          <span class="live-when">Waiting for the server</span> · <span data-k="latency">–</span> from your browser
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ presse ════════════════════════════════════════════════════════════ -->
+  <section id="press">
+    <p class="tick rise"><b>×12</b> <span>Overdrive · press &amp; contact</span></p>
+    <div class="split">
+      <div class="stack rise">
+        <h2>Still being<br>built. Come and<br>play it.</h2>
+        <p class="muted">SURVOLT has no store page yet. It is tested online, in
+        the open, one playtest at a time. If you want a build — to play it, or to
+        write about it — the address below reaches the person who writes it.</p>
+        <div class="doors">
+          <a class="door primary" href="mailto:contact@anquri.net?subject=SURVOLT%20playtest">Ask for a playtest build<small>contact@anquri.net</small></a>
+          <a class="door" href="index.html#games">Other games<small>ANQURI</small></a>
+        </div>
+      </div>
+      <dl class="lines rise" style="--d:1">
+        <div><dt>Email</dt><dd><a href="mailto:contact@anquri.net">contact@anquri.net</a></dd></div>
+        <div><dt>Game server</dt><dd>
+          <span class="live-mini" data-lobby="https://lobby.anquri.net" data-state="wait"><span class="dot"></span><b class="live-state"><span>Checking…</span></b> · <span data-k="games">–</span> games · <span data-k="players">–</span> players</span>
+        </dd></div>
+        <div><dt>Status</dt><dd><span class="state">In development</span></dd></div>
+        <div><dt>Engine</dt><dd class="muted">Godot 4.4 · Windows</dd></div>
+        <div><dt>Studio</dt><dd><a href="index.html">ANQURI · Belgium</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <footer>
+    <span><a href="index.html">© 2026 ANQURI</a></span>
+    <span>Built in Belgium</span>
+    <span class="sep"><a href="#main">Back to top ↑</a></span>
+  </footer>
+
+</div>
+</main>
+
+<script src="site.js" defer></script>
+</body>
+</html>
