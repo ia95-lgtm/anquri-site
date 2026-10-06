@@ -1,77 +1,83 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    ANQURI — feuille de style unique.
 
-   Une seule idée porte tout le site : la chaleur. (SURVOLT, le deuxième jeu,
-   garde la même mise en page mais passe sous tension : voir la section 17.) C'est le nom du studio
-   (le phénix), c'est la règle de HEATSINK (une jauge, pas de barre de vie),
-   et c'est la seule couleur vive qu'on s'autorise. Tout le reste est du noir
-   chaud, du bronze et du blanc cassé.
+   Direction : NOCTURNE CINEMATIC DARK.
+   Un noir obsidienne non réfléchissant, du verre dépoli posé dessus, et trois
+   lumières seulement : la braise (#FF5E36) pour tout ce qui s'actionne, le
+   cyan (#00F2FE) pour la technique et la télémétrie, le violet (#7928CA) pour
+   l'air qui entoure. Jamais d'ombre portée : la hiérarchie se fait par la
+   lumière et la translucidité, pas par l'axe Z.
 
-   Les couleurs sont RELEVÉES sur le sceau du studio, pas choisies à côté.
-   Une couleur se change ici et nulle part ailleurs.
+   Les couleurs se changent ici (section 1) et nulle part ailleurs. SURVOLT
+   reprend la même mise en page en redéfinissant ce seul bloc (section 17).
 
    Plan du fichier
-     1. jetons        2. base        3. trame de fond     4. en-tête
+     1. jetons        2. base        3. atmosphère        4. en-tête
      5. jauge         6. titraille   7. héros             8. catalogue
-     9. règles       10. chiffres   11. portes           12. contact
-    13. pied de page 14. révélations 15. adaptatif        16. impression
-    17. SURVOLT, le même site sous tension               18. état du serveur en ligne
+     9. règles       10. chiffres   11. boutons          12. contact
+    13. pied de page 14. révélations 15. adaptatif       16. confort
+    17. SURVOLT, le même site sous tension               18. serveur en ligne
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ── 1. jetons ─────────────────────────────────────────────────────────── */
 :root{
-  /* noirs chauds : le fond n'est jamais gris, il tire toujours sur la braise */
-  --void:#060403;
-  --forge:#0A0806;
-  --slag:#14100B;
-  --slag-2:#1C1610;
+  /* le vide et ses trois étages de verre */
+  --void:#060608;                 /* le plus profond : barre du haut */
+  --forge:#0A0A0C;                /* le sol de la page */
+  --slag:#111116;                 /* surface 1 — tuiles de verre */
+  --slag-2:#181820;               /* surface 2 — panneaux flottants */
+  --glass:rgba(17,17,22,.70);
+  --glass-2:rgba(24,24,32,.85);
 
-  /* filets : en alpha, pour qu'ils tiennent sur n'importe quelle surface */
-  --line:rgba(var(--brass-rgb),.16);
-  --line-2:rgba(var(--brass-rgb),.30);
-  --line-3:rgba(var(--brass-rgb),.52);
+  /* filets : toujours en alpha, pour tenir sur n'importe quelle surface */
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.15);
+  --line-3:rgba(255,255,255,.26);
+  /* le filet directionnel des conteneurs de verre : clair en haut à gauche */
+  --edge:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.02));
 
   /* encres */
-  --ash:#9E9285;          /* secondaire, gris chaud */
-  --ash-2:#8A8075;        /* tertiaire — 5,2:1 sur le fond, lisible en 10 px */
-  --ink:#F6F1E8;          /* principal, blanc chaud */
+  --ink:#F3F4F6;                  /* principal */
+  --ash:#9CA3AF;                  /* secondaire — acier sourd */
+  --ash-2:#7E8793;                /* tertiaire, 4,8:1 : micro-étiquettes */
 
-  /* métal et feu */
-  --brass:#D9A441;
-  --gold:#F1D794;
-  --ember:#FF5A1F;
-  --ember-dim:#D96B33;    /* braise assourdie, 5,8:1 : sous-titres des portes */
-  --white-hot:#FFF4DE;
+  /* les trois lumières */
+  --ember:#FF5E36;                /* primaire — tout ce qui s'actionne */
+  --ember-dim:#E04822;
+  --brass:#00F2FE;                /* secondaire — technique, liens */
+  --gold:#8FFBFF;                 /* le cyan allumé, au survol */
+  --violet:#B574FF;               /* tertiaire — lueurs d'ambiance */
+  --white-hot:#FFFFFF;
 
-  /* les mêmes couleurs en composantes, pour les lueurs en transparence :
-     une variante de page (voir « 17. SURVOLT ») n'a qu'à redéfinir ce bloc */
-  --ember-rgb:255,90,31;
-  --brass-rgb:217,164,65;
-  --grid-rgb:255,110,40;
-  --void-rgb:6,4,3;
-  --on-accent:#150A04;          /* texte posé sur la couleur vive */
-  --on-accent-rgb:21,10,4;
-  --flame-bg:#1C0A03;
-  --gauge-fill:linear-gradient(to top,#4A1206 0%,#B23A10 26%,#FF5A1F 56%,#FFA43C 78%,var(--white-hot) 100%);
+  /* les mêmes en composantes, pour les lueurs : une variante de page
+     (voir « 17. SURVOLT ») n'a qu'à redéfinir ce bloc */
+  --ember-rgb:255,94,54;
+  --brass-rgb:0,242,254;
+  --violet-rgb:121,40,202;
+  --void-rgb:10,10,12;
+  --on-accent:#0A0A0C;            /* texte posé sur la couleur vive */
+  --on-accent-rgb:10,10,12;
+  --flame-bg:#1B0A05;
+  --gauge-fill:linear-gradient(to top,#3A1206 0%,#B23A10 26%,#FF5E36 56%,#FFA24C 78%,var(--white-hot) 100%);
 
-  /* état d'un service en ligne : les seules couleurs « feu tricolore » du site */
-  --ok:#46F29A;
+  /* état d'un service en ligne : les seules couleurs « feu tricolore » */
+  --ok:#3DF2A0;
   --bad:#FF5468;
 
   /* mesures */
-  --measure:64ch;
-  --gutter:clamp(20px,4.2vw,56px);
-  --page:1180px;
-  --rail:clamp(0px,3.6vw,74px);   /* place réservée à la jauge, à gauche */
+  --measure:66ch;
+  --gutter:clamp(20px,4vw,64px);
+  --page:1440px;
+  --r:4px;                        /* rayon standard : bouton, puce, champ */
+  --r-lg:8px;                     /* rayon des cadres média et des panneaux */
 
   /* échelle typographique fluide, une seule source */
-  --t-mono:clamp(10px,.68vw,11.5px);
-  --t-body:clamp(16.5px,1.08vw,18px);
-  --t-lede:clamp(19px,1.62vw,24px);
-  --t-h3:clamp(15px,1.06vw,17px);
-  --t-h2:clamp(30px,4.4vw,52px);
-  --t-h1:clamp(38px,6.6vw,86px);
-  --t-huge:clamp(46px,9vw,124px);
+  --t-label:clamp(10px,.62vw,12px);
+  --t-body:clamp(15px,1vw,16px);
+  --t-lede:clamp(17px,1.3vw,19px);
+  --t-h3:clamp(18px,1.4vw,20px);
+  --t-h2:clamp(30px,3.6vw,48px);
+  --t-h1:clamp(40px,5.6vw,72px);
 
   --ease:cubic-bezier(.22,.61,.36,1);
   color-scheme:dark;
@@ -84,10 +90,10 @@ body{
   margin:0;
   background:var(--forge);
   color:var(--ink);
-  font-family:"Spectral",Georgia,"Times New Roman",serif;
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
   font-size:var(--t-body);
-  line-height:1.66;
-  font-variant-ligatures:common-ligatures;
+  line-height:1.6;
+  letter-spacing:-.005em;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   overflow-x:hidden;
@@ -96,54 +102,71 @@ img,svg{max-width:100%;display:block;height:auto}
 a{color:var(--brass);text-decoration:none;text-underline-offset:4px;
   text-decoration-thickness:1px;transition:color .18s var(--ease)}
 a:hover{color:var(--gold)}
-:focus-visible{outline:2px solid var(--ember);outline-offset:4px;border-radius:2px}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:var(--r)}
 ::selection{background:var(--ember);color:var(--on-accent)}
 strong,b{font-weight:600}
 hr{border:0;border-top:1px solid var(--line);margin:0}
 
-.mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+/* la fonte des étiquettes : géométrique, capitales, approche large */
+.mono,.tick,.state,.more,.door,.facts dt,.stats span,.lines dt,footer,
+.gauge .label,.gauge .read,.scroll-hint,.strip,.live-head,.live-foot,.live-mini{
+  font-family:"Space Grotesk",ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-feature-settings:"tnum" 1;
+}
 .sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
   clip-path:inset(50%);white-space:nowrap;border:0}
 .skip{position:fixed;top:-100px;left:16px;z-index:200;background:var(--ember);
-  color:var(--on-accent);padding:12px 18px;font-family:"JetBrains Mono",ui-monospace,monospace;
-  font-size:12px;letter-spacing:.14em;text-transform:uppercase;transition:top .2s var(--ease)}
+  color:var(--on-accent);padding:12px 18px;border-radius:var(--r);
+  font-family:"Space Grotesk",ui-monospace,monospace;font-weight:600;
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;transition:top .2s var(--ease)}
 .skip:focus{top:16px;color:var(--on-accent)}
 
-/* ── 3. trame de fond ──────────────────────────────────────────────────────
+/* ── 3. atmosphère ─────────────────────────────────────────────────────────
    Deux couches fixes, sous tout le reste et jamais cliquables :
-   · le grain  — une turbulence SVG à 3 %, qui casse les aplats et empêche le
-                 dégradé du héros de faire des bandes sur un écran 8 bits ;
-   · la grille — le sol du jeu, en perspective, à peine visible.
+   · le grain — une turbulence SVG à 3 %, qui empêche les dégradés de faire
+     des bandes sur un écran 8 bits ;
+   · les lueurs — une braise au bas de la page et un violet en haut à droite,
+     très diffus : c'est tout ce qui éclaire le vide.
    ──────────────────────────────────────────────────────────────────────── */
 body::before{
-  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
   mix-blend-mode:overlay;
 }
 body::after{
-  content:"";position:fixed;left:0;right:0;bottom:0;height:46vh;z-index:0;
-  pointer-events:none;
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(120% 100% at 50% 118%,rgba(var(--ember-rgb),.20) 0%,rgba(var(--ember-rgb),.06) 42%,transparent 70%),
-    repeating-linear-gradient(to right,rgba(var(--grid-rgb),.10) 0 1px,transparent 1px 88px);
-  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 62%);
-  mask-image:linear-gradient(to bottom,transparent,#000 62%);
+    radial-gradient(60% 46% at 50% 112%,rgba(var(--ember-rgb),.15) 0%,transparent 70%),
+    radial-gradient(44% 38% at 92% 2%,rgba(var(--violet-rgb),.12) 0%,transparent 75%);
 }
 
 /* ── 4. l'en-tête ──────────────────────────────────────────────────────────
-   Barre fine et collante. Elle est transparente en haut de page et prend un
-   fond dès qu'on descend (classe .scrolled posée par le script) : on garde
-   le héros plein cadre sans jamais perdre la navigation.
+   Un bandeau d'état fin, puis la barre de navigation. Elle est transparente
+   en haut de page et devient du verre dès qu'on descend (classe .scrolled
+   posée par le script) : le héros reste plein cadre, la navigation reste là.
    ──────────────────────────────────────────────────────────────────────── */
+.strip{
+  position:relative;z-index:61;background:var(--void);
+  border-bottom:1px solid var(--line);
+  font-size:var(--t-label);font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ash);
+}
+.strip-in{max-width:var(--page);margin-inline:auto;padding:9px var(--gutter);
+  display:flex;align-items:center;gap:10px 24px;flex-wrap:wrap}
+.strip b{color:var(--ember);font-weight:600;letter-spacing:.1em}
+.strip .right{margin-left:auto;color:var(--ash-2)}
+.strip a{color:var(--ash)}
+.strip a:hover{color:var(--brass)}
+
 .top{
   position:sticky;top:0;z-index:60;
   border-bottom:1px solid transparent;
   transition:background .3s var(--ease),border-color .3s var(--ease),backdrop-filter .3s var(--ease);
 }
 .top.scrolled{
-  background:color-mix(in srgb,var(--void) 86%,transparent);
-  backdrop-filter:blur(14px) saturate(120%);
-  -webkit-backdrop-filter:blur(14px) saturate(120%);
+  background:var(--glass);
+  backdrop-filter:blur(20px) saturate(130%);
+  -webkit-backdrop-filter:blur(20px) saturate(130%);
   border-bottom-color:var(--line);
 }
 .top-in{
@@ -152,131 +175,133 @@ body::after{
   display:flex;align-items:center;gap:clamp(16px,3vw,40px);
 }
 .brand{display:flex;align-items:center;gap:14px;color:inherit;flex:none}
-.brand img{width:40px;height:40px;flex:none;
-  filter:drop-shadow(0 0 14px rgba(var(--brass-rgb),.28));
-  transition:filter .3s var(--ease),transform .3s var(--ease)}
-.brand:hover img{filter:drop-shadow(0 0 20px rgba(var(--ember-rgb),.5));transform:rotate(-4deg)}
+.brand img{width:36px;height:36px;flex:none;
+  filter:drop-shadow(0 0 14px rgba(var(--ember-rgb),.28));
+  transition:filter .3s var(--ease)}
+.brand:hover img{filter:drop-shadow(0 0 20px rgba(var(--ember-rgb),.55))}
 .brand > span{display:block}
-.brand .name{display:block;font-family:"Anton",Impact,"Arial Narrow Bold",sans-serif;
-  font-size:19px;letter-spacing:.26em;color:var(--gold);line-height:1;
+.brand .name{display:block;font-family:"Syne",sans-serif;font-weight:800;
+  font-size:18px;letter-spacing:.2em;color:var(--ink);line-height:1;
   transition:color .18s var(--ease)}
 .brand:hover .name{color:var(--white-hot)}
-.brand .role{display:block;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9.5px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--ash-2);margin-top:5px}
+.brand .role{display:block;font-family:"Space Grotesk",ui-monospace,monospace;
+  font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ash-2);margin-top:6px}
 
-.nav{margin-left:auto;display:flex;align-items:center;gap:clamp(14px,2.4vw,30px);
-  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:var(--t-mono);
-  letter-spacing:.17em;text-transform:uppercase}
+.nav{margin-left:auto;display:flex;align-items:center;gap:clamp(14px,2vw,28px);
+  font-family:"Space Grotesk",ui-monospace,monospace;font-size:13px;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase}
 .nav a{color:var(--ash);position:relative;padding-block:6px}
 .nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;
-  background:var(--ember);transition:right .3s var(--ease)}
+  background:var(--brass);transition:right .3s var(--ease)}
 .nav a:hover{color:var(--ink)}
 .nav a:hover::after{right:0}
-.nav a.cta{color:var(--ember);border:1px solid var(--ember);padding:9px 16px}
+.nav a.cta{
+  color:var(--on-accent);font-weight:600;border-radius:var(--r);padding:10px 18px;
+  background:linear-gradient(180deg,var(--ember),var(--ember-dim));
+  transition:box-shadow .22s var(--ease),filter .22s var(--ease)}
 .nav a.cta::after{display:none}
-.nav a.cta:hover{background:var(--ember);color:var(--on-accent)}
+.nav a.cta:hover{filter:brightness(1.08);box-shadow:0 0 24px rgba(var(--ember-rgb),.45)}
 
 /* ── 5. la jauge ───────────────────────────────────────────────────────────
-   Le rail à gauche n'est pas un ornement : c'est la jauge du jeu. Elle se
-   remplit avec le défilement (le script pose --heat de 0 à 1), affiche une
-   température qui monte, et porte les repères des sections. C'est la seule
-   animation du site, et elle dit quelque chose.
+   Le rail de gauche n'est pas un ornement : c'est la jauge du jeu. Elle se
+   remplit avec le défilement (le script pose --heat de 0 à 1) et affiche une
+   température qui monte. C'est la seule animation continue du site.
    ──────────────────────────────────────────────────────────────────────── */
 .gauge{
-  position:fixed;left:clamp(10px,1.5vw,26px);top:50%;transform:translateY(-50%);
+  position:fixed;left:clamp(10px,1.4vw,26px);top:50%;transform:translateY(-50%);
   z-index:40;pointer-events:none;
   display:flex;flex-direction:column;align-items:center;gap:12px;
   opacity:0;transition:opacity .5s var(--ease);
 }
 .gauge.on{opacity:1}
-.gauge .label{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:8.5px;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--ash-2);
-  writing-mode:vertical-rl;text-orientation:mixed}
-.gauge .track{position:relative;width:3px;height:min(40vh,300px);
+.gauge .label{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ash-2);writing-mode:vertical-rl;text-orientation:mixed}
+.gauge .track{position:relative;width:3px;height:min(40vh,300px);border-radius:999px;
   background:rgba(255,255,255,.07);overflow:hidden}
 .gauge .fill{position:absolute;left:0;right:0;bottom:0;
   height:calc(var(--heat,0) * 100%);
   background:var(--gauge-fill);
-  box-shadow:0 0 12px rgba(var(--ember-rgb),.55);
+  box-shadow:0 0 14px rgba(var(--ember-rgb),.55);
   transition:height .12s linear}
 .gauge .ticks{position:absolute;inset:0}
 .gauge .ticks i{position:absolute;left:0;width:100%;height:1px;background:rgba(255,255,255,.22)}
-.gauge .read{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;
-  letter-spacing:.08em;color:var(--brass);font-variant-numeric:tabular-nums;
-  min-width:5ch;text-align:center}
+.gauge .read{font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--brass);
+  font-variant-numeric:tabular-nums;min-width:5ch;text-align:center}
 
 /* ── 6. la titraille ───────────────────────────────────────────────────── */
 .page{max-width:var(--page);margin-inline:auto;padding-inline:var(--gutter);
   position:relative;z-index:2}
 .page.wide{max-width:none;padding-inline:0}
 
-section{padding-block:clamp(64px,9vw,132px);position:relative}
+section{padding-block:clamp(64px,8vw,128px);position:relative}
 section + section{border-top:1px solid var(--line)}
 
 /* le bandeau de section : un numéro, un mot, un filet qui va jusqu'au bord */
-.tick{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:var(--t-mono);
-  letter-spacing:.2em;color:var(--ash-2);text-transform:uppercase;
-  display:flex;align-items:center;gap:16px;margin:0 0 clamp(26px,3.6vw,44px)}
+.tick{font-size:var(--t-label);font-weight:600;letter-spacing:.12em;
+  color:var(--ash-2);text-transform:uppercase;
+  display:flex;align-items:center;gap:16px;margin:0 0 clamp(26px,3.2vw,44px)}
 .tick b{color:var(--ember);font-weight:700;font-variant-numeric:tabular-nums;
-  letter-spacing:.1em;white-space:nowrap;flex:none}
+  letter-spacing:.08em;white-space:nowrap;flex:none}
 .tick span{color:var(--ash)}
 .tick::after{content:"";flex:1;height:1px;background:linear-gradient(to right,var(--line-2),transparent)}
 
-h1,h2,h3,.h{font-family:"Anton",Impact,"Haettenschweiler","Arial Narrow Bold",sans-serif;
-  font-weight:400;letter-spacing:.012em;text-wrap:balance;margin:0;line-height:.96;
-  text-transform:uppercase}
-h1{font-size:var(--t-h1)}
-h2{font-size:var(--t-h2)}
-h3{font-size:var(--t-h3);letter-spacing:.13em;color:var(--gold);line-height:1.3}
-p{margin:0 0 1.15em;max-width:var(--measure)}
+h1,h2,h3,.h{font-family:"Syne",Impact,sans-serif;font-weight:800;
+  text-wrap:balance;margin:0;text-transform:uppercase}
+h1{font-size:var(--t-h1);line-height:1.08;letter-spacing:-.03em}
+h2{font-size:var(--t-h2);line-height:1.12;letter-spacing:-.02em;font-weight:700}
+h3{font-size:var(--t-h3);line-height:1.3;letter-spacing:0;font-weight:600;
+  color:var(--ink);text-transform:none}
+p{margin:0 0 1.1em;max-width:var(--measure)}
 p:last-child{margin-bottom:0}
-.lede{font-size:var(--t-lede);line-height:1.52;color:var(--ink);max-width:56ch}
-.lede em,p em{color:var(--gold);font-style:italic}
+.lede{font-size:var(--t-lede);line-height:1.56;color:var(--ink);max-width:58ch;
+  letter-spacing:-.01em}
+.lede em,p em{color:var(--brass);font-style:italic}
 .muted{color:var(--ash)}
-.stack > * + *{margin-top:clamp(18px,2.2vw,28px)}
+.stack > * + *{margin-top:clamp(18px,2vw,28px)}
 
 /* un mot qui chauffe : réservé aux 3 ou 4 mots les plus importants du site */
 .hot{color:var(--ember)}
-.glow{text-shadow:0 0 28px rgba(var(--ember-rgb),.55)}
+.glow{text-shadow:0 0 36px rgba(var(--ember-rgb),.5)}
 
 /* ── 7. le héros ───────────────────────────────────────────────────────────
    Plein cadre, image en fond, texte posé dessus. Le voile est un dégradé en
-   trois arrêts (et non deux) : sans l'arrêt du milieu, le texte du bas se
-   détache mal sur une image déjà sombre au centre.
+   trois arrêts : sans celui du milieu, le texte du bas se détache mal sur une
+   image déjà sombre au centre. Une lueur de braise monte du sol.
    ──────────────────────────────────────────────────────────────────────── */
-.hero{position:relative;min-height:clamp(560px,92svh,980px);display:flex;
+.hero{position:relative;min-height:clamp(520px,78svh,880px);display:flex;
   align-items:flex-end;overflow:hidden;isolation:isolate}
 .hero-bg{position:absolute;inset:0;z-index:-2}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 58%;
-  opacity:.9;transform:scale(1.06);will-change:transform}
+  opacity:.88;transform:scale(1.06);will-change:transform}
 .hero-bg::after{content:"";position:absolute;inset:0;
   background:
-    linear-gradient(to bottom,rgba(var(--void-rgb),.86) 0%,rgba(var(--void-rgb),.28) 26%,rgba(var(--void-rgb),.62) 62%,var(--forge) 99%),
-    radial-gradient(90% 70% at 50% 100%,rgba(var(--ember-rgb),.26),transparent 62%)}
+    linear-gradient(to bottom,rgba(var(--void-rgb),.88) 0%,rgba(var(--void-rgb),.30) 26%,rgba(var(--void-rgb),.66) 62%,var(--forge) 99%),
+    radial-gradient(80% 60% at 50% 104%,rgba(var(--ember-rgb),.22),transparent 64%),
+    radial-gradient(50% 44% at 86% 8%,rgba(var(--violet-rgb),.16),transparent 72%)}
 .hero-in{position:relative;z-index:1;width:100%;max-width:var(--page);
-  margin-inline:auto;padding:0 var(--gutter) clamp(48px,7vw,96px)}
-.hero .wordmark{width:min(640px,74%);margin-bottom:clamp(20px,3vw,34px);
+  margin-inline:auto;padding:0 var(--gutter) clamp(40px,4.4vw,72px)}
+.hero .wordmark{width:min(620px,72%);margin-bottom:clamp(20px,2.6vw,32px);
   filter:drop-shadow(0 18px 50px rgba(0,0,0,.7))}
 .hero h1{max-width:18ch}
-.hero .lede{margin-top:clamp(18px,2.4vw,28px)}
+.hero .lede{margin-top:clamp(18px,2.2vw,28px)}
 
-/* la ligne d'état, sous le héros : trois faits, en mono, séparés par des filets */
-.facts{display:flex;flex-wrap:wrap;gap:0;margin-top:clamp(26px,3.4vw,40px);
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.facts div{padding:16px clamp(16px,2.4vw,30px) 16px 0;margin-right:clamp(16px,2.4vw,30px);
-  border-right:1px solid var(--line)}
-.facts div:last-child{border-right:0;margin-right:0;padding-right:0}
-.facts dt{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:var(--t-mono);
-  letter-spacing:.18em;text-transform:uppercase;color:var(--ash-2)}
-.facts dd{margin:6px 0 0;font-family:"Anton",Impact,sans-serif;font-size:clamp(17px,1.7vw,22px);
-  letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+/* la ligne d'état, sous le héros : quatre faits sur une rangée de verre */
+.facts{display:flex;flex-wrap:wrap;gap:0;margin-top:clamp(26px,3.2vw,40px);
+  border:1px solid var(--line);border-radius:var(--r-lg);background:var(--glass);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow:hidden}
+.facts div{padding:16px clamp(16px,2vw,28px);border-right:1px solid var(--line);flex:1 1 auto}
+.facts div:last-child{border-right:0}
+.facts dt{font-size:var(--t-label);font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ash-2)}
+.facts dd{margin:8px 0 0;font-family:"Syne",sans-serif;font-weight:700;
+  font-size:clamp(16px,1.4vw,20px);letter-spacing:-.01em;color:var(--ink)}
 .facts dd.hot{color:var(--ember)}   /* sinon .facts dd l'emporte sur .hot */
 
 /* le repère de défilement */
-.scroll-hint{position:absolute;right:var(--gutter);bottom:clamp(48px,7vw,96px);
-  z-index:2;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9.5px;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--ash-2);
-  writing-mode:vertical-rl;display:flex;align-items:center;gap:14px}
+.scroll-hint{position:absolute;right:var(--gutter);bottom:clamp(40px,4.4vw,72px);
+  z-index:2;font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ash-2);writing-mode:vertical-rl;display:flex;align-items:center;gap:14px}
 .scroll-hint::after{content:"";width:1px;height:56px;
   background:linear-gradient(to bottom,var(--line-3),transparent);
   animation:drip 2.6s var(--ease) infinite}
@@ -290,132 +315,145 @@ p:last-child{margin-bottom:0}
    au milieu d'une grille de trois se lit comme deux cases vides. Une rangée
    est juste, qu'il y en ait une ou huit.
    ──────────────────────────────────────────────────────────────────────── */
-.games{display:grid;gap:clamp(56px,8vw,104px)}
+.games{display:grid;gap:clamp(48px,6vw,88px)}
 .game{display:grid;grid-template-columns:minmax(0,1.14fr) minmax(0,1fr);
-  gap:clamp(26px,4vw,64px);align-items:center}
+  gap:clamp(26px,3.4vw,56px);align-items:center}
 .game:nth-child(even) .art{order:2}
 
+/* le cadre média : du verre, un filet directionnel, un voile qui monte du bas.
+   Au survol la bordure s'allume et une lueur d'ambiance se pose derrière —
+   jamais de saut vers le haut : la profondeur se fait par la lumière. */
 .art{position:relative;display:block;overflow:hidden;background:#000;
-  border:1px solid var(--line);isolation:isolate}
-.art img{transition:transform .8s var(--ease),opacity .5s var(--ease);opacity:.9}
-.art::after{content:"";position:absolute;inset:0;pointer-events:none;
-  box-shadow:inset 0 0 0 1px rgba(var(--ember-rgb),0);transition:box-shadow .4s var(--ease)}
-.art::before{content:"";position:absolute;inset:auto 0 0 0;height:52%;z-index:1;
+  border:1px solid var(--line);border-radius:var(--r-lg);isolation:isolate;
+  transition:border-color .35s var(--ease),box-shadow .35s var(--ease)}
+.art img{transition:transform .8s var(--ease),opacity .5s var(--ease);opacity:.92}
+.art::before{content:"";position:absolute;inset:auto 0 0 0;height:58%;z-index:1;
+  pointer-events:none;
+  background:linear-gradient(to top,rgba(var(--void-rgb),.55),transparent 62%)}
+.art::after{content:"";position:absolute;inset:auto 0 0 0;height:52%;z-index:1;
   pointer-events:none;opacity:0;transition:opacity .4s var(--ease);
-  background:linear-gradient(to top,rgba(var(--ember-rgb),.32),transparent)}
-.art:hover img,.art:focus-visible img{transform:scale(1.045);opacity:1}
-.art:hover::after,.art:focus-visible::after{box-shadow:inset 0 0 0 1px rgba(var(--ember-rgb),.7)}
-.art:hover::before,.art:focus-visible::before{opacity:1}
+  background:linear-gradient(to top,rgba(var(--ember-rgb),.28),transparent)}
+.art:hover img,.art:focus-visible img{transform:scale(1.04);opacity:1}
+.art:hover,.art:focus-visible{border-color:rgba(var(--ember-rgb),.40);
+  box-shadow:0 0 35px -5px rgba(var(--ember-rgb),.25)}
+.art:hover::after,.art:focus-visible::after{opacity:1}
 
 .game .title{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
 /* Les pastilles d'état ont leur propre rangée : collées au titre elles
    passaient à la ligne l'une sans l'autre selon la largeur du nom du jeu. */
-.states{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-.game h2{font-size:clamp(30px,4.6vw,54px)}
-.game .hook{font-size:clamp(17px,1.35vw,19.5px);margin:clamp(14px,1.8vw,20px) 0 0;
-  color:var(--ink);max-width:46ch}
+.states{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.game h2{font-size:clamp(30px,4vw,52px)}
+.game .hook{font-size:clamp(16px,1.15vw,18px);margin:clamp(14px,1.6vw,20px) 0 0;
+  color:var(--ash);max-width:48ch}
+.game .hook em{color:var(--ink);font-style:normal;font-weight:500}
 
 /* l'état d'un jeu se lit à la couleur autant qu'au mot :
-   sorti, ça brûle ; annoncé, c'est du laiton ; en chantier, c'est froid. */
-.state{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9.5px;
-  letter-spacing:.2em;text-transform:uppercase;padding:6px 11px;
-  border:1px solid var(--line-2);color:var(--ash);white-space:nowrap;
-  display:inline-flex;align-items:center;gap:8px}
+   sorti, ça brûle ; annoncé, c'est du cyan ; en chantier, c'est éteint. */
+.state{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  height:26px;padding:0 10px;border-radius:var(--r);
+  border:1px solid var(--line-2);background:rgba(255,255,255,.03);
+  color:var(--ash);white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
 .state::before{content:"";width:5px;height:5px;background:currentColor;flex:none;
   border-radius:50%}
-.state.out{border-color:rgba(var(--ember-rgb),.55);color:var(--ember);
-  box-shadow:0 0 22px -6px rgba(var(--ember-rgb),.6)}
+.state.out{border-color:rgba(var(--ember-rgb),.45);color:var(--ember);
+  background:rgba(var(--ember-rgb),.07);
+  box-shadow:0 0 22px -6px rgba(var(--ember-rgb),.55)}
 .state.out::before{animation:pulse 2.4s var(--ease) infinite}
-.state.soon{border-color:rgba(var(--brass-rgb),.5);color:var(--brass)}
+.state.soon{border-color:rgba(var(--brass-rgb),.40);color:var(--brass);
+  background:rgba(var(--brass-rgb),.06)}
 @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(var(--ember-rgb),.6)}
   60%{opacity:.5;box-shadow:0 0 0 6px rgba(var(--ember-rgb),0)}}
 
 /* le lien « lire la suite », avec sa flèche qui avance */
-.more{margin-top:clamp(20px,2.6vw,30px);display:inline-flex;align-items:center;gap:12px;
-  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+.more{margin-top:clamp(20px,2.4vw,30px);display:inline-flex;align-items:center;gap:12px;
+  font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
 .more::after{content:"";width:34px;height:1px;background:currentColor;
   transition:width .3s var(--ease)}
-.more:hover{color:var(--ember)}
+.more:hover{color:var(--brass)}
 .more:hover::after{width:54px}
 
 /* ── 9. les règles ─────────────────────────────────────────────────────── */
-.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3vw,40px);
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,2.6vw,36px);
   counter-reset:r}
 .rule{counter-increment:r;position:relative}
-.rule .art{margin-bottom:20px}
-/* Le numero est une plaque posee sur l'image, pas un prefixe du titre : colle
-   au titre, il s'alignait sur la derniere ligne des titres a deux lignes. */
+.rule .art{margin-bottom:18px}
+.rule .art::before{display:none}
+/* Le numéro est une plaque posée sur l'image, pas un préfixe du titre : collé
+   au titre, il s'alignait sur la dernière ligne des titres à deux lignes. */
 .rule::before{content:counter(r,decimal-leading-zero);position:absolute;z-index:2;
-  top:0;left:0;padding:8px 12px;background:var(--ember);color:var(--on-accent);
-  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;
-  font-weight:700;letter-spacing:.14em}
+  top:12px;left:12px;padding:5px 9px;border-radius:var(--r);
+  background:var(--ember);color:var(--on-accent);
+  font-family:"Space Grotesk",ui-monospace,monospace;font-size:10px;
+  font-weight:700;letter-spacing:.1em}
 /* min-height sur deux lignes : sans elle, « THE GROUND IS WHERE YOU BURN »
    pousse son paragraphe plus bas que ceux de ses voisins. */
-.rule h3{display:block;margin:0 0 12px;min-height:2.6em}
-.rule p{font-size:16px;line-height:1.6;color:var(--ash);max-width:38ch;margin:0}
+.rule h3{display:block;margin:0 0 10px;min-height:2.6em}
+.rule p{font-size:15px;line-height:1.6;color:var(--ash);max-width:40ch;margin:0}
 
 /* ── 10. les chiffres ──────────────────────────────────────────────────────
-   Les chiffres sont l'argument de vente de ce jeu : « 0 fichier audio » est
-   plus convaincant qu'un paragraphe. Ils sont donc traités en grand, alignés
-   sur une grille, et le zéro qui compte est en braise.
+   Les chiffres sont l'argument de ce jeu : « 0 fichier audio » convainc mieux
+   qu'un paragraphe. Des tuiles de verre jointives, et le zéro qui compte en
+   braise.
    ──────────────────────────────────────────────────────────────────────── */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
-  gap:1px;background:var(--line);border:1px solid var(--line)}
-.stats div{background:var(--forge);padding:clamp(20px,2.4vw,30px) clamp(14px,1.6vw,22px);
+  gap:1px;background:var(--line);border:1px solid var(--line);
+  border-radius:var(--r-lg);overflow:hidden}
+.stats div{background:var(--slag);padding:clamp(20px,2.2vw,28px) clamp(14px,1.4vw,20px);
   transition:background .3s var(--ease)}
-.stats div:hover{background:var(--slag)}
-.stats b{display:block;font-family:"Anton",Impact,sans-serif;
-  font-size:clamp(34px,4.4vw,56px);line-height:.9;letter-spacing:.01em;
+.stats div:hover{background:var(--slag-2)}
+.stats b{display:block;font-family:"Syne",sans-serif;font-weight:800;
+  font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-.03em;
   color:var(--ink);font-variant-numeric:tabular-nums}
-.stats span{display:block;margin-top:10px;font-family:"JetBrains Mono",ui-monospace,monospace;
-  font-size:var(--t-mono);letter-spacing:.17em;text-transform:uppercase;color:var(--ash-2)}
-.stats .flame{background:linear-gradient(160deg,var(--flame-bg),var(--forge) 62%)}
-.stats .flame b{color:var(--ember);text-shadow:0 0 34px rgba(var(--ember-rgb),.55)}
+.stats span{display:block;margin-top:10px;font-size:var(--t-label);font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ash-2)}
+.stats .flame{background:linear-gradient(160deg,var(--flame-bg),var(--slag) 64%)}
+.stats .flame b{color:var(--ember);text-shadow:0 0 34px rgba(var(--ember-rgb),.5)}
 .stats .flame span{color:var(--ember-dim)}
 
 /* la variante compacte, dans une rangée du catalogue */
 .stats.inline{grid-template-columns:repeat(auto-fit,minmax(88px,1fr));
-  margin-top:clamp(20px,2.4vw,28px)}
-.stats.inline b{font-size:clamp(24px,2.4vw,32px)}
+  margin-top:clamp(20px,2.2vw,28px)}
+.stats.inline b{font-size:clamp(24px,2.2vw,30px)}
 .stats.inline div{padding:14px 12px}
 
-/* ── 11. les portes ────────────────────────────────────────────────────── */
-.doors{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(28px,3.4vw,40px)}
-.door{position:relative;overflow:hidden;
-  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;
-  letter-spacing:.17em;text-transform:uppercase;
-  padding:17px 30px;border:1px solid var(--line-2);color:var(--ink);background:var(--slag);
-  transition:border-color .22s var(--ease),color .22s var(--ease),background .22s var(--ease),
-             transform .22s var(--ease)}
-.door small{display:block;font-size:9.5px;letter-spacing:.16em;color:var(--ash-2);
-  margin-top:6px;transition:color .22s var(--ease)}
-.door:hover{border-color:var(--brass);color:var(--gold);background:var(--slag-2);transform:translateY(-2px)}
+/* ── 11. les boutons ───────────────────────────────────────────────────────
+   Deux seulement. L'action principale est pleine braise, texte noir dessus ;
+   l'action secondaire est du verre dont le filet s'allume en cyan.
+   ──────────────────────────────────────────────────────────────────────── */
+.doors{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(28px,3vw,40px)}
+.door{position:relative;border-radius:var(--r);
+  font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  padding:15px 26px;border:1px solid var(--line-2);color:var(--ink);
+  background:rgba(255,255,255,.04);
+  transition:border-color .22s var(--ease),color .22s var(--ease),
+             background .22s var(--ease),box-shadow .22s var(--ease),filter .22s var(--ease)}
+.door small{display:block;font-size:10px;font-weight:500;letter-spacing:.08em;
+  color:var(--ash-2);margin-top:6px;transition:color .22s var(--ease)}
+.door:hover{border-color:var(--brass);color:var(--brass);
+  box-shadow:0 0 28px -8px rgba(var(--brass-rgb),.45)}
 .door:hover small{color:var(--brass)}
-.door.primary{border-color:var(--ember);color:var(--ember);background:transparent}
-.door.primary small{color:var(--ember-dim)}
-.door.primary::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ember);
-  transform:translateY(101%);transition:transform .3s var(--ease)}
-.door.primary:hover{color:var(--on-accent);background:transparent;border-color:var(--ember)}
-.door.primary:hover::before{transform:translateY(0)}
-.door.primary:hover small{color:rgba(var(--on-accent-rgb),.72)}
+.door.primary{border-color:transparent;color:var(--on-accent);
+  background:linear-gradient(180deg,var(--ember),var(--ember-dim))}
+.door.primary small{color:rgba(var(--on-accent-rgb),.70)}
+.door.primary:hover{color:var(--on-accent);border-color:transparent;
+  filter:brightness(1.08);box-shadow:0 0 24px rgba(var(--ember-rgb),.45)}
+.door.primary:hover small{color:rgba(var(--on-accent-rgb),.78)}
 
 /* ── 12. contact ───────────────────────────────────────────────────────── */
 .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
-  gap:clamp(28px,5vw,80px);align-items:start}
+  gap:clamp(28px,4vw,72px);align-items:start}
 .lines{display:grid;gap:0;margin:0;padding:0;border-top:1px solid var(--line)}
 .lines > div{display:flex;flex-wrap:wrap;gap:4px 24px;align-items:baseline;
-  padding-block:16px;border-bottom:1px solid var(--line)}
-.lines dt{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:var(--t-mono);
-  letter-spacing:.19em;text-transform:uppercase;color:var(--ash-2);min-width:9em;flex:none}
+  padding-block:15px;border-bottom:1px solid var(--line)}
+.lines dt{font-size:var(--t-label);font-weight:500;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ash-2);min-width:9em;flex:none}
 .lines dd{margin:0;word-break:break-word}
 
 /* ── 13. pied de page ──────────────────────────────────────────────────── */
 footer{border-top:1px solid var(--line);
-  padding-block:clamp(30px,4vw,44px) clamp(40px,6vw,64px);
-  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:var(--t-mono);
-  letter-spacing:.17em;text-transform:uppercase;color:var(--ash-2);
-  display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center}
+  padding-block:clamp(30px,3.6vw,44px) clamp(40px,5vw,64px);
+  font-size:var(--t-label);font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ash-2);display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center}
 footer a{color:var(--ash-2)}
 footer a:hover{color:var(--brass)}
 footer .sep{margin-left:auto}
@@ -425,8 +463,8 @@ footer .sep{margin-left:auto}
    apparaissant. Le décalage entre voisins vient d'une variable --d, pour ne
    pas écrire une règle par enfant.
    ──────────────────────────────────────────────────────────────────────── */
-.rise{opacity:0;transform:translateY(18px);
-  transition:opacity .75s var(--ease),transform .75s var(--ease);
+.rise{opacity:0;transform:translateY(16px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease);
   transition-delay:calc(var(--d,0) * 90ms)}
 .rise.in{opacity:1;transform:none}
 
@@ -443,30 +481,31 @@ footer .sep{margin-left:auto}
   .scroll-hint{display:none}
 }
 @media (max-width:620px){
-  :root{--t-h1:clamp(34px,10vw,46px)}
-  .hero{min-height:72svh}
+  :root{--t-h1:clamp(34px,9vw,44px)}
+  .hero{min-height:74svh}
   .hero .wordmark{width:86%}
-  /* Deux colonnes, mais le dernier fait passe toute la largeur quand il est
-     seul sur sa rangee : une case vide a cote de lui se lit comme un oubli. */
+  /* Deux colonnes, mais le dernier fait prend toute la largeur quand il est
+     seul sur sa rangée : une case vide à côté se lit comme un oubli. */
   .facts{display:grid;grid-template-columns:1fr 1fr}
-  .facts div{border-right:0;margin-right:0;padding-right:0;
-    border-bottom:1px solid var(--line)}
+  .facts div{border-right:0;border-bottom:1px solid var(--line)}
+  .facts div:nth-child(even){border-right:0}
   .facts div:last-child:nth-child(odd){grid-column:1 / -1}
   .facts div:last-child{border-bottom:0}
   .doors .door{flex:1 1 100%;text-align:center}
   .lines dt{min-width:100%}
+  .strip .right{display:none}
 }
 
-/* En dessous de 560 px la barre du haut deborde : le nom du studio et quatre
-   liens ne tiennent pas. On garde ce qui sert — la marque et l'appel a
+/* En dessous de 560 px la barre du haut déborde : le nom du studio et quatre
+   liens ne tiennent pas. On garde ce qui sert — la marque et l'appel à
    l'action — et on resserre le reste. */
 @media (max-width:560px){
   .top-in{padding:10px 18px;gap:12px}
-  .brand img{width:32px;height:32px}
-  .brand .name{font-size:15px;letter-spacing:.17em}
-  .nav{gap:14px}
+  .brand img{width:30px;height:30px}
+  .brand .name{font-size:15px;letter-spacing:.14em}
+  .nav{gap:14px;font-size:12px}
   .nav .hide-s,.nav a:not(.cta):not(:first-of-type){display:none}
-  .nav a.cta{padding:8px 12px;letter-spacing:.12em}
+  .nav a.cta{padding:9px 14px;letter-spacing:.06em}
 }
 @media (max-width:400px){
   .nav a:not(.cta){display:none}
@@ -474,39 +513,36 @@ footer .sep{margin-left:auto}
 
 /* ── 17. SURVOLT, le même site sous tension ──────────────────────────────
    La page de SURVOLT (et sa rangée dans le catalogue) reprend exactement la
-   mise en page du studio ; seuls les jetons changent. Les couleurs sont
-   relevées sur le jeu : cyan de la charge ×2, or de la charge ×3, rose de
-   l'ombre du logo, sur un noir bleu nuit au lieu du noir braise.
-   La jauge devient la charge du ballon : blanche, cyan, or, puis la zone et
-   l'Overdrive qui doublent encore.
+   mise en page du studio ; seuls les jetons changent. La braise cède la place
+   au cyan de la charge, le cyan secondaire à l'or de la charge ×3, et le noir
+   obsidienne tire sur le bleu nuit.
    ──────────────────────────────────────────────────────────────────────── */
 .t-volt{
-  --void:#03040B;
-  --forge:#060814;
-  --slag:#0C1022;
-  --slag-2:#131A34;
+  --void:#04050C;
+  --forge:#070910;
+  --slag:#0E1222;
+  --slag-2:#141A2E;
+  --glass:rgba(14,18,34,.70);
+  --glass-2:rgba(20,26,46,.85);
 
-  --line:rgba(77,230,255,.14);
-  --line-2:rgba(77,230,255,.28);
-  --line-3:rgba(77,230,255,.5);
-
-  --ash:#9AA3C2;
-  --ash-2:#8089A9;
   --ink:#EEF3FF;
+  --ash:#9AA3C2;
+  --ash-2:#7F88A6;
 
-  --brass:#FFCC40;
+  --ember:#4DE6FF;          /* la charge : c'est elle qui s'actionne ici */
+  --ember-dim:#2FBEDD;
+  --brass:#FFCC40;          /* l'or de la charge ×3 : la couleur technique */
   --gold:#FFE08A;
-  --ember:#4DE6FF;
-  --ember-dim:#58BFD9;
+  --violet:#FF59A6;         /* l'ombre rose du logo : la lueur d'ambiance */
   --white-hot:#F2FDFF;
 
   --ember-rgb:77,230,255;
   --brass-rgb:255,204,64;
-  --grid-rgb:255,89,166;
-  --void-rgb:3,4,11;
+  --violet-rgb:255,89,166;
+  --void-rgb:4,5,12;
   --on-accent:#03121A;
   --on-accent-rgb:3,18,26;
-  --flame-bg:#061A26;
+  --flame-bg:#06202C;
   --gauge-fill:linear-gradient(to top,#F4F7FF 0%,#F4F7FF 19%,#4DE6FF 21%,#4DE6FF 39%,
     #FFCC40 41%,#FFCC40 59%,#FFE08A 61%,#FFE08A 79%,#FF59A6 81%,#FF8CC4 100%);
 }
@@ -515,7 +551,7 @@ body.t-volt{background:var(--forge)}
 .t-volt .hero .wordmark{width:min(600px,78%)}
 .t-volt .hero-bg img{object-position:center 42%}
 /* le mot qui chauffe devient le mot qui charge : une pointe de rose dans la lueur */
-.t-volt .glow{text-shadow:0 0 28px rgba(77,230,255,.55),0 0 60px rgba(255,89,166,.25)}
+.t-volt .glow{text-shadow:0 0 30px rgba(77,230,255,.55),0 0 64px rgba(255,89,166,.25)}
 
 /* ── 18. état du serveur en ligne ──────────────────────────────────────────
    Un panneau posé sur la page du jeu (et une ligne dans le catalogue) qui lit
@@ -523,30 +559,29 @@ body.t-volt{background:var(--forge)}
    réponse n'est pas arrivée, les chiffres restent en tirets : la mise en page
    ne bouge pas quand ils se remplissent.
    ──────────────────────────────────────────────────────────────────────── */
-.live{border:1px solid var(--line-2);background:linear-gradient(170deg,var(--slag),var(--forge) 70%)}
+.live{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
+  background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
 .live-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;
   padding:16px clamp(16px,2vw,24px);border-bottom:1px solid var(--line);
-  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:var(--t-mono);
-  letter-spacing:.18em;text-transform:uppercase;color:var(--ash)}
-.live-head .where{color:var(--ash-2);margin-left:auto;letter-spacing:.12em;text-transform:none}
+  font-size:var(--t-label);font-weight:500;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ash)}
+.live-head .where{color:var(--ash-2);margin-left:auto;letter-spacing:.06em;text-transform:none}
 .live-state{display:inline-flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--ash-2);flex:none;display:inline-block}
-[data-state="up"] .dot{background:var(--ok);box-shadow:0 0 0 0 rgba(70,242,154,.6);animation:beat 2.4s var(--ease) infinite}
+[data-state="up"] .dot{background:var(--ok);box-shadow:0 0 0 0 rgba(61,242,160,.6);animation:beat 2.4s var(--ease) infinite}
 [data-state="down"] .dot{background:var(--bad)}
 [data-state="up"] .live-state{color:var(--ok)}
 [data-state="down"] .live-state{color:var(--bad)}
-@keyframes beat{0%,100%{box-shadow:0 0 0 0 rgba(70,242,154,.55)}60%{box-shadow:0 0 0 7px rgba(70,242,154,0)}}
-.live .stats{border:0;background:var(--line);grid-template-columns:repeat(2,minmax(0,1fr))}
-.live .stats div{background:var(--forge)}
-.live .stats b{font-size:clamp(30px,3.6vw,46px)}
+@keyframes beat{0%,100%{box-shadow:0 0 0 0 rgba(61,242,160,.55)}60%{box-shadow:0 0 0 7px rgba(61,242,160,0)}}
+.live .stats{border:0;border-radius:0;background:var(--line);grid-template-columns:repeat(2,minmax(0,1fr))}
+.live .stats div{background:transparent}
+.live .stats b{font-size:clamp(28px,3.2vw,42px)}
 .live-foot{padding:12px clamp(16px,2vw,24px);border-top:1px solid var(--line);
-  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--ash-2)}
+  font-size:10px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--ash-2)}
 
 /* la version d'une ligne, dans le catalogue et dans la liste de contact */
 .live-mini{display:inline-flex;align-items:center;gap:10px;margin:14px 0 0;max-width:none;
-  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--ash)}
+  font-size:11px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--ash)}
 .live-mini[data-state="up"] b{color:var(--ok);font-weight:700}
 .live-mini[data-state="down"] b{color:var(--bad);font-weight:700}
 .lines .live-mini{margin:0}
@@ -563,7 +598,7 @@ body.t-volt{background:var(--forge)}
 }
 @media print{
   body{background:#fff;color:#000}
-  body::before,body::after,.gauge,.scroll-hint,.top{display:none}
+  body::before,body::after,.gauge,.scroll-hint,.top,.strip{display:none}
   .art img,.hero-bg{filter:grayscale(1)}
   a{color:#000;text-decoration:underline}
 }
