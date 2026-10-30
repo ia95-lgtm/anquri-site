@@ -17,6 +17,8 @@
      9. règles       10. chiffres   11. boutons          12. contact
     13. pied de page 14. révélations 15. adaptatif       16. confort
     17. SURVOLT, le même site sous tension               18. serveur en ligne
+    19. SAINT-MARC, le même site après l'extinction des feux
+    20. LUDUS MASTER, le même site à la lueur des torches
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ── 1. jetons ─────────────────────────────────────────────────────────── */
@@ -586,6 +588,104 @@ body.t-volt{background:var(--forge)}
 .live-mini[data-state="down"] b{color:var(--bad);font-weight:700}
 .lines .live-mini{margin:0}
 .game .live-mini{display:flex;flex-wrap:wrap}
+
+/* ── 19. SAINT-MARC, le même site après l'extinction des feux ────────────
+   La page de SAINT-MARC (et sa rangée dans le catalogue) reprend la mise en
+   page du studio ; seuls les jetons changent. Le noir tire sur le vert d'un
+   couloir d'hôpital la nuit, la braise devient le rouge du sang (tout ce qui
+   s'actionne), le cyan devient le blanc d'un néon (la technique, les liens).
+   La jauge est un pouls : elle se remplit du calme (64) à la panique (172).
+   ──────────────────────────────────────────────────────────────────────── */
+.t-marc{
+  --void:#040606;
+  --forge:#070909;
+  --slag:#0F1413;
+  --slag-2:#151C1B;
+  --glass:rgba(15,20,19,.72);
+  --glass-2:rgba(21,28,27,.86);
+
+  --ink:#ECF1EF;
+  --ash:#9BA7A4;
+  --ash-2:#7F8C89;
+
+  --ember:#E5484D;          /* le sang : c'est lui qui s'actionne ici */
+  --ember-dim:#C2363B;
+  --brass:#CDEFE6;          /* le blanc d'un néon : la couleur technique */
+  --gold:#FFFFFF;
+  --violet:#3F7A6C;         /* le vert malade des murs : la lueur d'ambiance */
+  --white-hot:#FFF4F2;
+
+  --ember-rgb:229,72,77;
+  --brass-rgb:205,239,230;
+  --violet-rgb:63,122,108;
+  --void-rgb:4,6,6;
+  --on-accent:#140405;
+  --on-accent-rgb:20,4,5;
+  --flame-bg:#1E0708;
+  --gauge-fill:linear-gradient(to top,#20302D 0%,#3F7A6C 30%,#9A3236 62%,#E5484D 86%,#FFF4F2 100%);
+}
+body.t-marc{background:var(--forge)}
+.t-marc .hero .wordmark{width:min(620px,82%)}
+.t-marc .hero-bg img{object-position:center 50%}
+/* le mot qui chauffe devient le mot qui saigne, sous un halo de néon */
+.t-marc .glow{text-shadow:0 0 28px rgba(229,72,77,.5),0 0 70px rgba(205,239,230,.12)}
+/* la voix intérieure : ce que le personnage se dit, cité tel quel */
+.voice{margin:0;padding:0;list-style:none;display:grid;gap:clamp(14px,1.8vw,22px)}
+.voice li{margin:0;padding:0 0 0 18px;border-left:2px solid rgba(var(--ember-rgb),.55);
+  font-family:"Space Grotesk",system-ui,sans-serif;font-size:var(--t-lede);line-height:1.45;color:var(--ink)}
+.voice li small{display:block;margin-top:6px;font-family:inherit;font-size:var(--t-label);
+  letter-spacing:.11em;text-transform:uppercase;color:var(--ash-2)}
+
+/* ── 20. LUDUS MASTER, le même site à la lueur des torches ──────────────
+   La page de LUDUS MASTER (et sa rangée dans le catalogue) reprend la mise en
+   page du studio ; seuls les jetons changent. Le noir tire sur la pierre
+   d'un couloir de ludus, la braise devient l'or des torches et du bronze
+   (tout ce qui s'actionne), le cyan devient l'os du sable (la technique, les
+   liens), et la lueur d'ambiance est le sang séché sur les murs. La jauge est
+   la faveur de la foule : elle monte du silence (0 %) à la clameur (100 %).
+   ──────────────────────────────────────────────────────────────────────── */
+.t-ludus{
+  --void:#070504;
+  --forge:#0C0907;
+  --slag:#16110D;
+  --slag-2:#1E1712;
+  --glass:rgba(22,17,13,.72);
+  --glass-2:rgba(30,23,18,.86);
+
+  --ink:#F2EADB;
+  --ash:#AA9D88;
+  --ash-2:#8C806C;
+
+  --ember:#E0A44A;          /* l'or des torches : c'est lui qui s'actionne ici */
+  --ember-dim:#BF8530;
+  --brass:#EAD9B6;          /* l'os du sable : la couleur technique */
+  --gold:#FFF1D2;
+  --violet:#8E2A1C;         /* le sang séché des murs : la lueur d'ambiance */
+  --white-hot:#FFF6E6;
+
+  --ember-rgb:224,164,74;
+  --brass-rgb:234,217,182;
+  --violet-rgb:142,42,28;
+  --void-rgb:7,5,4;
+  --on-accent:#1A1006;
+  --on-accent-rgb:26,16,6;
+  --flame-bg:#241306;
+  --gauge-fill:linear-gradient(to top,#2A1A10 0%,#6B2418 28%,#B5401F 52%,#E0A44A 80%,#FFF1D2 100%);
+}
+body.t-ludus{background:var(--forge)}
+.t-ludus .hero .wordmark{width:min(640px,84%)}
+.t-ludus .hero-bg img{object-position:center 40%}
+/* le mot qui chauffe devient le mot qui saigne, sous la lueur d'une torche */
+.t-ludus .glow{text-shadow:0 0 28px rgba(224,164,74,.5),0 0 70px rgba(142,42,28,.35)}
+/* les combos : une ligne par école, la préparation puis ce qu'elle ouvre */
+.combos{margin:0;padding:0;list-style:none;display:grid;gap:clamp(10px,1.4vw,14px)}
+.combos li{display:grid;grid-template-columns:minmax(110px,.8fr) 2fr;gap:6px 18px;
+  padding:14px 0;border-top:1px solid var(--line);align-items:baseline}
+.combos li b{font-family:"Space Grotesk",system-ui,sans-serif;font-size:var(--t-label);
+  letter-spacing:.11em;text-transform:uppercase;color:var(--ash-2);font-weight:600}
+.combos li span{color:var(--ink)}
+.combos li em{color:var(--ember);font-style:normal;font-weight:600}
+@media (max-width:640px){.combos li{grid-template-columns:1fr}}
 
 /* ── 16. confort et impression ─────────────────────────────────────────── */
 @media (prefers-reduced-motion:reduce){

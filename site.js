@@ -4,7 +4,8 @@
    Quatre choses, pas une de plus :
      1. l'en-tête prend un fond dès qu'on quitte le haut de page ;
      2. la jauge suit le défilement : une température sur le site du studio et
-        sur HEATSINK, la charge du ballon sur la page de SURVOLT ;
+        sur HEATSINK, la charge du ballon sur la page de SURVOLT, le pouls sur
+        SAINT-MARC, la faveur de la foule sur LUDUS MASTER ;
      3. les blocs montent en apparaissant ;
      4. l'état du serveur de SURVOLT (lobby.anquri.net) : en ligne ou non,
         parties en cours, joueurs connectés.
@@ -24,6 +25,10 @@
   var read = jauge && jauge.querySelector('.read');
   /* data-mode="charge" sur la jauge : on lit un multiplicateur, pas des kelvins */
   var charge = jauge && jauge.getAttribute('data-mode') === 'charge';
+  /* data-mode="pouls" (page de SAINT-MARC) : un rythme cardiaque, 64 → 172 bpm */
+  var pouls = jauge && jauge.getAttribute('data-mode') === 'pouls';
+  /* data-mode="foule" (page de LUDUS MASTER) : la faveur de la foule, 0 → 100 % */
+  var foule = jauge && jauge.getAttribute('data-mode') === 'foule';
   var PALIERS = ['×1', '×2', '×3', '×6', '×12'];
 
   /* ── 1 + 2 : une seule lecture du scroll, une seule écriture par image ── */
@@ -41,7 +46,15 @@
       jauge.style.setProperty('--heat', p.toFixed(4));
       jauge.classList.toggle('on', y > 120);
       if (read) {
-        if (charge) {
+        if (foule) {
+          /* le silence en haut de page, la clameur en bas : les mêmes paliers
+             que les titres de section de la page du jeu */
+          read.textContent = Math.round(p * 100) + ' %';
+        } else if (pouls) {
+          /* 64 bpm au calme, 172 en bas de page : les mêmes valeurs que les
+             titres de section de la page du jeu */
+          read.textContent = Math.round(64 + p * 108) + ' bpm';
+        } else if (charge) {
           /* blanche ×1, cyan ×2, or ×3, or dans la zone ×6, zone + Overdrive ×12 :
              les mêmes paliers que les titres de section de la page du jeu */
           read.textContent = PALIERS[Math.min(4, Math.floor(p * 5))];

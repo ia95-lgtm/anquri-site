@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LUDUS MASTER — run a gladiator school, then go after the man who ruined you — ANQURI</title>
+<meta name="description" content="LUDUS MASTER is a gladiator-school management roguelite. Buy men, train them, send them to die in front of the crowd, and fight real-time arena battles. Every wound is permanent. In development.">
+<link rel="canonical" href="https://anquri.net/ludus-master.html">
+
+<meta property="og:site_name" content="ANQURI">
+<meta property="og:title" content="LUDUS MASTER">
+<meta property="og:description" content="You don't play the gladiator. You play the man who owns him.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://anquri.net/ludus-master.html">
+<meta property="og:image" content="https://anquri.net/img/og-ludus.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The LVDVS MASTER logo over a wounded gladiator resting in a torch-lit corridor under the arena.">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="theme-color" content="#0C0907">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="img/anquri-seal.webp" type="image/webp" sizes="512x512">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@700;800&display=swap">
+<link rel="stylesheet" href="style.css?v=5">
+<link rel="preload" as="image" href="img/ludus-keyart.webp" fetchpriority="high">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"VideoGame","name":"LUDUS MASTER",
+ "url":"https://anquri.net/ludus-master.html",
+ "image":"https://anquri.net/img/og-ludus.jpg",
+ "description":"A gladiator-school management roguelite with real-time arena combat. Buy men, train them, send them to die in front of the crowd, and every wound is permanent.",
+ "genre":["Strategy","Simulation","Roguelite","Action"],
+ "gamePlatform":["PC","Windows"],
+ "operatingSystem":"Windows",
+ "playMode":["SinglePlayer"],
+ "inLanguage":["en","fr","de","nl","ru","ja","es"],
+ "author":{"@type":"Organization","name":"ANQURI","url":"https://anquri.net/"},
+ "publisher":{"@type":"Organization","name":"ANQURI","url":"https://anquri.net/"}}
+</script>
+</head>
+<body class="t-ludus">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ═══ la jauge ════════════════════════════════════════════════════════════
+     Sur la page de LUDUS MASTER, la jauge du site est la FAVEUR DE LA FOULE :
+     le silence en haut de page, la clameur en bas. Les repères tombent sur les
+     paliers qui titrent les sections (0, 25, 50, 75, 100 %).
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="gauge" data-mode="foule" aria-hidden="true">
+  <span class="label">Crowd favour</span>
+  <div class="track">
+    <div class="ticks"><i style="top:25%"></i><i style="top:50%"></i><i style="top:75%"></i></div>
+    <div class="fill"></div>
+  </div>
+  <span class="read">0 %</span>
+</div>
+
+<div class="strip"><div class="strip-in"><b>In development</b> <span>Gladiator management · roguelite · real-time arena</span> <span class="right">ANQURI · Godot 4.7</span></div></div>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="index.html" aria-label="ANQURI — back to the studio">
+      <img src="img/anquri-seal.webp" width="512" height="512" alt="">
+      <span>
+        <span class="name">ANQURI</span>
+        <span class="role">← Back to the studio</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="On this page">
+      <a href="#ludus">The ludus</a>
+      <a href="#arena" class="hide-s">The arena</a>
+      <a href="#trial" class="hide-s">The trial</a>
+      <a href="#press">Press</a>
+      <a class="cta" href="#press">Ask for a build</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══ le héros ═══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="img/ludus-keyart.webp" width="1232" height="706" alt=""
+         fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-in">
+    <img class="wordmark rise" src="img/ludus-wordmark.webp" width="900" height="120"
+         alt="LUDUS MASTER" fetchpriority="high">
+    <p class="tick rise" style="--d:1"><b>In development</b> <span>Capua, 71 BC</span></p>
+    <h1 class="rise" style="--d:2">Buy them.<br>Train them.<br>Watch them <span class="hot glow">bleed</span>.</h1>
+
+    <dl class="facts rise" style="--d:3">
+      <div><dt>Genre</dt><dd>Ludus management · roguelite</dd></div>
+      <div><dt>Platform</dt><dd>Windows</dd></div>
+      <div><dt>Engine</dt><dd>Godot 4.7</dd></div>
+      <div><dt>Death</dt><dd class="hot">Permanent</dd></div>
+    </dl>
+  </div>
+  <span class="scroll-hint" aria-hidden="true">Scroll</span>
+</section>
+
+<main id="main">
+<div class="page">
+
+  <!-- ═══ la règle ══════════════════════════════════════════════════════════ -->
+  <section id="rule">
+    <p class="tick rise"><b>0 %</b> <span>The game</span></p>
+    <div class="split">
+      <div class="stack rise">
+        <h2>You don't play<br>the gladiator. You<br>play the man who&nbsp;owns&nbsp;him.</h2>
+      </div>
+      <div class="stack rise" style="--d:1">
+        <p class="lede">Capua, 71 BC. A legate rigged a contract, buried you in
+        debt and put your best man in an arena he should never have entered.
+        You have some sand, a few slaves and <em>three seasons</em> to rebuild.</p>
+        <p class="muted">Buy men at the market, break them, forge them, and send
+        them to die in front of the crowd. Every victory becomes coin,
+        reputation and favour; every defeat costs a man — and the men you
+        lose, you lose for good. At the end of the third season, if one of
+        your champions is still standing, you go after the legate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ la gestion ════════════════════════════════════════════════════════ -->
+  <section id="ludus">
+    <p class="tick rise"><b>25 %</b> <span>The ludus</span></p>
+    <h2 class="rise" style="--d:1;margin-bottom:clamp(30px,4vw,52px)">Every week, the purse<br>decides who fights.</h2>
+    <div class="rules">
+
+      <article class="rule rise">
+        <span class="art">
+          <img src="img/ludus-marche.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: the slave market, two men for sale with their five statistics and their price.">
+        </span>
+        <h3>The market</h3>
+        <p>Men are cheap, good men are not. Each one comes with five statistics,
+        a school and a temper — and a man who dies in the arena does not come
+        back, however much you paid for him.</p>
+      </article>
+
+      <article class="rule rise" style="--d:1">
+        <span class="art">
+          <img src="img/ludus-forge.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: the forge, a list of weapons with their damage, reach, wind-up and price.">
+        </span>
+        <h3>The forge</h3>
+        <p>A trident or a steel cuirass — this season or the next. Weapons change
+        how a man fights: the net and the trident hold the distance, the scythe
+        sweeps everyone in its arc, the twin blades never stop.</p>
+      </article>
+
+      <article class="rule rise" style="--d:2">
+        <span class="art">
+          <img src="img/ludus-colisee.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: the colosseum board, four bouts with their risk, odds and purse.">
+        </span>
+        <h3>The colosseum</h3>
+        <p>A new card of bouts every week: a safe duel, a man against a beast,
+        one against two. Pick one, set your wager, and cheat from the stands —
+        the other master is doing the same.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══ le combat ═════════════════════════════════════════════════════════ -->
+  <section id="arena">
+    <p class="tick rise"><b>50 %</b> <span>The arena</span></p>
+    <div class="split" style="margin-bottom:clamp(30px,4vw,52px)">
+      <div class="stack rise">
+        <h2>Then you go<br>down to the sand<br>yourself.</h2>
+      </div>
+      <div class="stack rise" style="--d:1">
+        <p class="lede">The fights are played in real time, with the controls of a
+        MOBA: right-click to move, the basic attack locks onto your target,
+        and four skills go where your cursor points.</p>
+        <p class="muted">Four schools — retiarius, secutor, thraex, murmillo —
+        each with four skills that <em>set each other up</em>. One skill puts the
+        target in a state; another one exploits it, hits harder, and gives back
+        part of the first skill's cooldown. The order of your keys is the whole
+        game.</p>
+        <ul class="combos">
+          <li><b>Retiarius</b><span>The net snares — the long thrust becomes <em>the Harpoon</em>.</span></li>
+          <li><b>Secutor</b><span>The shield charge stuns — the short thrust becomes <em>the Nail</em>.</span></li>
+          <li><b>Thraex</b><span>The cut makes him bleed — the scythe <em>reopens the wound</em>, all at once.</span></li>
+          <li><b>Murmillo</b><span>A feint or a clean parry exposes him — the heavy blow becomes <em>the Crush</em>.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rules">
+
+      <article class="rule rise">
+        <span class="art">
+          <img src="img/ludus-harpon.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: a combo name, THE HARPOON, written above a bleeding boss in the middle of a red ground marking.">
+        </span>
+        <h3>Combos have names</h3>
+        <p>When a combo lands, the world stops for a beat and its name is written
+        over the target. That is how you learn the order of your keys: by
+        seeing it pay.</p>
+      </article>
+
+      <article class="rule rise" style="--d:1">
+        <span class="art">
+          <img src="img/ludus-zones.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: two red circles drawn on the floor by a boss, the player's gladiators caught between them.">
+        </span>
+        <h3>Read the floor</h3>
+        <p>Bosses draw their attacks on the sand before they fall: circles that
+        roll after you, volleys of pila that stay planted, rings you must step
+        out of. Nothing hits you without warning — but a lot of it hits hard.</p>
+      </article>
+
+      <article class="rule rise" style="--d:2">
+        <span class="art">
+          <img src="img/ludus-rage.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: a boss roars in a burst of fire, a shockwave throwing the gladiators around him back.">
+        </span>
+        <h3>Bosses don't wait</h3>
+        <p>A boss in the middle of a skill cannot be stunned. It chains its moves,
+        punishes you for keeping your distance, and every phase opens with a
+        roar that throws everyone around it back.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══ le procès ═════════════════════════════════════════════════════════ -->
+  <section id="trial">
+    <p class="tick rise"><b>75 %</b> <span>The trial of the sand</span></p>
+    <div class="split">
+      <div class="stack rise">
+        <span class="art">
+          <img src="img/ludus-sentence.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: on his knees in his own villa, the legate begs a gladiator raising a war scythe.">
+        </span>
+      </div>
+      <div class="stack rise" style="--d:1">
+        <h2>His own house,<br>room by room.</h2>
+        <p class="lede">The last fight is not in the arena. It is in the legate's
+        villa, at night — his kennels, his great hall, his palaestra — with his
+        guard, his standard-bearer and his champion standing between you and
+        him.</p>
+        <p class="muted">He runs when it turns bad. Cut him off before he reaches
+        the door, and the crowd gets the only ending it came for.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ce qu'il y a dans la boîte ════════════════════════════════════════ -->
+  <section id="box">
+    <p class="tick rise"><b>100 %</b> <span>What is in the box</span></p>
+    <div class="stats rise">
+      <div><b>3</b><span>Seasons</span></div>
+      <div><b>4</b><span>Schools</span></div>
+      <div><b>16</b><span>Skills</span></div>
+      <div><b>3</b><span>Bosses</span></div>
+      <div><b>7</b><span>Languages</span></div>
+      <div class="flame"><b>0</b><span>Second chances</span></div>
+    </div>
+    <p class="muted rise" style="--d:1;margin-top:clamp(22px,2.6vw,30px)">
+    The zero is the point. A man who loses an arm keeps fighting without it, or
+    never fights again. A man who dies stays dead. The crowd paid to see
+    exactly that, and so did you.</p>
+  </section>
+
+  <!-- ═══ presse ════════════════════════════════════════════════════════════ -->
+  <section id="press">
+    <p class="tick rise"><b>Pollice verso</b> <span>Press &amp; contact</span></p>
+    <div class="split">
+      <div class="stack rise">
+        <h2>Still being<br>built. Come and<br>watch it bleed.</h2>
+        <p class="muted">LUDUS MASTER has no store page yet. If you want a build —
+        to play it, or to write about it — the address below reaches the person
+        who writes it.</p>
+        <div class="doors">
+          <a class="door primary" href="mailto:contact@anquri.net?subject=LUDUS%20MASTER%20build">Ask for a build<small>contact@anquri.net</small></a>
+          <a class="door" href="index.html#games">Other games<small>ANQURI</small></a>
+        </div>
+      </div>
+      <dl class="lines rise" style="--d:1">
+        <div><dt>Email</dt><dd><a href="mailto:contact@anquri.net">contact@anquri.net</a></dd></div>
+        <div><dt>Status</dt><dd><span class="state">In development</span></dd></div>
+        <div><dt>Genre</dt><dd class="muted">Gladiator management · roguelite · real-time arena</dd></div>
+        <div><dt>Languages</dt><dd class="muted">English · French · German · Dutch · Russian · Japanese · Spanish</dd></div>
+        <div><dt>Engine</dt><dd class="muted">Godot 4.7 · Windows</dd></div>
+        <div><dt>Studio</dt><dd><a href="index.html">ANQURI · Belgium</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <footer>
+    <span><a href="index.html">© 2026 ANQURI</a></span>
+    <span>Built in Belgium</span>
+    <span class="sep"><a href="#main">Back to top ↑</a></span>
+  </footer>
+
+</div>
+</main>
+
+<script src="site.js?v=5" defer></script>
+</body>
+</html>

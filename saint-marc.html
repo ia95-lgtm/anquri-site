@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAINT-MARC — a survival horror game where she can't bear her own face — ANQURI</title>
+<meta name="description" content="SAINT-MARC is a first-person survival horror game set in an abandoned hospital. No weapon: a flashlight, places to hide, mirrors she cannot face, and lights she will not step into. In development.">
+<link rel="canonical" href="https://anquri.net/saint-marc.html">
+
+<meta property="og:site_name" content="ANQURI">
+<meta property="og:title" content="SAINT-MARC">
+<meta property="og:description" content="You wake up on an operating table. She is still doing her rounds — and she cannot bear to see her own face.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://anquri.net/saint-marc.html">
+<meta property="og:image" content="https://anquri.net/img/og-saint-marc.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The SAINT-MARC logo over a lit operating theatre; a nurse waits in the dark doorway.">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="theme-color" content="#070909">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="img/anquri-seal.webp" type="image/webp" sizes="512x512">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@700;800&display=swap">
+<link rel="stylesheet" href="style.css?v=4">
+<link rel="preload" as="image" href="img/saint-marc-keyart.webp" fetchpriority="high">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"VideoGame","name":"SAINT-MARC",
+ "alternateName":"Hôpital Saint-Marc",
+ "url":"https://anquri.net/saint-marc.html",
+ "image":"https://anquri.net/img/og-saint-marc.jpg",
+ "description":"A first-person survival horror game set in an abandoned hospital. No weapon: a flashlight, places to hide, mirrors she cannot face, and lights she will not step into.",
+ "genre":["Survival horror","Horror"],
+ "gamePlatform":["PC","Windows"],
+ "operatingSystem":"Windows",
+ "playMode":"SinglePlayer",
+ "author":{"@type":"Organization","name":"ANQURI","url":"https://anquri.net/"},
+ "publisher":{"@type":"Organization","name":"ANQURI","url":"https://anquri.net/"}}
+</script>
+</head>
+<body class="t-marc">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ═══ la jauge ════════════════════════════════════════════════════════════
+     Sur la page de SAINT-MARC, la jauge du site est un POULS : 64 bpm au calme,
+     172 en bas de page (site.js, data-mode="pouls"). Les repères tombent sur
+     les valeurs qui titrent les sections : la page se lit comme une nuit dont
+     le cœur s'accélère.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="gauge" data-mode="pouls" aria-hidden="true">
+  <span class="label">Heart rate</span>
+  <div class="track">
+    <div class="ticks"><i style="top:25%"></i><i style="top:50%"></i><i style="top:75%"></i></div>
+    <div class="fill"></div>
+  </div>
+  <span class="read">64 bpm</span>
+</div>
+
+<div class="strip"><div class="strip-in"><b>In development</b> <span>First-person survival horror · six chapters</span> <span class="right">ANQURI · Godot 4</span></div></div>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="index.html" aria-label="ANQURI — back to the studio">
+      <img src="img/anquri-seal.webp" width="512" height="512" alt="">
+      <span>
+        <span class="name">ANQURI</span>
+        <span class="role">← Back to the studio</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="On this page">
+      <a href="#rules">The rules</a>
+      <a href="#voice" class="hide-s">The voice</a>
+      <a href="#press">Press</a>
+      <a class="cta" href="mailto:contact@anquri.net?subject=SAINT-MARC%20playtest">Ask for a build</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══ le héros ═══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="img/saint-marc-keyart.webp" width="1232" height="706" alt=""
+         fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-in">
+    <img class="wordmark rise" src="img/saint-marc-wordmark.webp" width="900" height="238"
+         alt="SAINT-MARC — Hôpital" fetchpriority="high">
+    <p class="tick rise" style="--d:1"><b>In development</b> <span>Survival horror</span></p>
+    <h1 class="rise" style="--d:2">She can't bear<br>to see her<br><span class="hot glow">own face</span>.</h1>
+
+    <dl class="facts rise" style="--d:3">
+      <div><dt>Genre</dt><dd>Survival horror · 1st person</dd></div>
+      <div><dt>Platform</dt><dd>Windows</dd></div>
+      <div><dt>Engine</dt><dd>Godot 4.7</dd></div>
+      <div><dt>Weapons</dt><dd class="hot">None</dd></div>
+    </dl>
+  </div>
+  <span class="scroll-hint" aria-hidden="true">Scroll</span>
+</section>
+
+<main id="main">
+<div class="page">
+
+  <!-- ═══ le jeu ════════════════════════════════════════════════════════════ -->
+  <section id="wake">
+    <p class="tick rise"><b>64 bpm</b> <span>The game</span></p>
+    <div class="split">
+      <div class="stack rise">
+        <h2>You wake up<br>on an operating<br>table.</h2>
+      </div>
+      <div class="stack rise" style="--d:1">
+        <p class="lede">SAINT-MARC is a first-person survival horror game set in an
+        abandoned hospital. You come to strapped to a table in an operating
+        theatre, with no name and no memory, next to instruments that were
+        <em>never meant to heal anyone</em>.</p>
+        <p class="muted">There is no weapon. You have a flashlight that gives you
+        away, the dark, beds to slide under, lockers to shut yourself in, and the
+        notes the staff left behind. Each chapter is another part of the
+        hospital, and in each one something still walks the corridors — someone
+        who used to work there, or to be treated there. Every note you read tells
+        you a little more about who they were. And about who you were.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ les trois règles du premier chapitre ══════════════════════════════ -->
+  <section id="rules">
+    <p class="tick rise"><b>91 bpm</b> <span>The rules</span></p>
+    <h2 class="rise" style="--d:1;margin-bottom:clamp(30px,4vw,52px)">Three rules, and the<br>whole night is in them.</h2>
+    <div class="rules">
+
+      <article class="rule rise">
+        <span class="art">
+          <img src="img/saint-marc-miroir.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: in a hospital corridor, a nurse in a stained uniform recoils from an uncovered wall mirror.">
+        </span>
+        <h3>She hates her face</h3>
+        <p>The night nurse can't stand her own reflection: guilt has twisted her
+        face. The ward's mirrors are covered with sheets. Tear one off and
+        she recoils, turns away, goes the long way round. Lure her back to the
+        same mirror and she smashes it.</p>
+      </article>
+
+      <article class="rule rise" style="--d:1">
+        <span class="art">
+          <img src="img/saint-marc-refuge.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: an operating theatre under hard white light; in the dark doorway, the nurse waits without coming in.">
+        </span>
+        <h3>Light is a place</h3>
+        <p>When the power comes back, a few rooms light up, white and merciless.
+        She won't step under that light — she waits at the door, out of sight of
+        herself. A lit room is safe. Until she decides it isn't.</p>
+      </article>
+
+      <article class="rule rise" style="--d:2">
+        <span class="art">
+          <img src="img/saint-marc-flacon.webp" width="900" height="506" loading="lazy" decoding="async"
+               alt="In-game: a bedside table in a patient's room, a medicine bottle under the flashlight beam.">
+        </span>
+        <h3>Puzzles you hold</h3>
+        <p>Few codes. Things are found, turned over, examined, put back where they
+        belong — a bracelet with something engraved on the back, a treatment that
+        has to go in the right order. Every mistake makes a noise. She hears it.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══ ce qu'il y a dans la boîte ════════════════════════════════════════ -->
+  <section id="box">
+    <p class="tick rise"><b>118 bpm</b> <span>What is in the box</span></p>
+    <div class="stats rise">
+      <div><b>6</b><span>Chapters</span></div>
+      <div><b>3 h</b><span>Straight through</span></div>
+      <div><b>13</b><span>Hiding places, chapter 1</span></div>
+      <div><b>8</b><span>Mirrors, chapter 1</span></div>
+      <div><b>2</b><span>Epilogues</span></div>
+      <div class="flame"><b>0</b><span>Weapons</span></div>
+    </div>
+    <p class="muted rise" style="--d:1;margin-top:clamp(22px,2.6vw,30px)">
+    Every chapter has its own threat and its own rule: one hears you, one sees
+    far but never leaves its ground, one you only glimpse behind you. Screaming
+    is a sound like any other — and they come to it. The two epilogues are not a
+    choice made at the end: they depend on what you took the time to read along
+    the way.</p>
+  </section>
+
+  <!-- ═══ la voix ═══════════════════════════════════════════════════════════ -->
+  <section id="voice">
+    <p class="tick rise"><b>145 bpm</b> <span>The voice</span></p>
+    <div class="split">
+      <div class="stack rise">
+        <h2>Nobody tells<br>you what to do.<br>You tell yourself.</h2>
+        <p class="lede">No tutorial panels, no objective markers. The character
+        talks under his breath: he notices that a bed is high enough to hide
+        under, that a locker opens, that a room has changed while he was away.</p>
+        <p class="muted">The voice doubts. It never explains. It never says the
+        truth before you have worked it out.</p>
+      </div>
+      <ul class="voice rise" style="--d:1">
+        <li>“Cold. A light, above me. Where…?”<small>Waking up</small></li>
+        <li>“The operating room, lit. The table has been remade — a sheet pulled tight, tucked in at the corners. While I was outside.”<small>Coming back</small></li>
+        <li>“Darkness. …Someone, in the doorway. She doesn't move. She's waiting for the light to come back, so she won't see herself.”<small>The safe room</small></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ presse ════════════════════════════════════════════════════════════ -->
+  <section id="press">
+    <p class="tick rise"><b>172 bpm</b> <span>Press &amp; contact</span></p>
+    <div class="split">
+      <div class="stack rise">
+        <h2>Still being<br>built. Come and<br>be afraid.</h2>
+        <p class="muted">SAINT-MARC has no store page and no release date yet. If
+        you want a build — to play it, or to write about it — the address below
+        reaches the person who writes it.</p>
+        <div class="doors">
+          <a class="door primary" href="mailto:contact@anquri.net?subject=SAINT-MARC%20playtest">Ask for a playtest build<small>contact@anquri.net</small></a>
+          <a class="door" href="index.html#games">Other games<small>ANQURI</small></a>
+        </div>
+      </div>
+      <dl class="lines rise" style="--d:1">
+        <div><dt>Email</dt><dd><a href="mailto:contact@anquri.net">contact@anquri.net</a></dd></div>
+        <div><dt>Status</dt><dd><span class="state">In development</span></dd></div>
+        <div><dt>Engine</dt><dd class="muted">Godot 4.7 · Windows</dd></div>
+        <div><dt>Language</dt><dd class="muted">French</dd></div>
+        <div><dt>Content</dt><dd class="muted">Blood, medical violence, psychological horror</dd></div>
+        <div><dt>Studio</dt><dd><a href="index.html">ANQURI · Belgium</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <footer>
+    <span><a href="index.html">© 2026 ANQURI</a></span>
+    <span>Built in Belgium</span>
+    <span class="sep"><a href="#main">Back to top ↑</a></span>
+  </footer>
+
+</div>
+</main>
+
+<script src="site.js?v=4" defer></script>
+</body>
+</html>
