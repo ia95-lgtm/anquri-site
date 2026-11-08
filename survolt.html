@@ -3,305 +3,156 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SURVOLT — a 3v3 sport where the pass is worth more than the shot — ANQURI</title>
-<meta name="description" content="SURVOLT is a 3-on-3 arena sport. One ball, two moving targets, and a ball that is worth more every time it changes hands. Online multiplayer, in development.">
+<title>SURVOLT — 3v3 online arena sport by ANQURI</title>
+<meta name="description" content="SURVOLT: A three-a-side arena sport with one ball and two moving targets. The ball is worth more every time it changes hands — pass it before you shoot it.">
 <link rel="canonical" href="https://anquri.net/survolt.html">
-
 <meta property="og:site_name" content="ANQURI">
-<meta property="og:title" content="SURVOLT">
-<meta property="og:description" content="Three against three, one ball, two targets. Pass it before you shoot it.">
+<meta property="og:title" content="SURVOLT — 3v3 online arena sport by ANQURI">
+<meta property="og:description" content="SURVOLT: A three-a-side arena sport with one ball and two moving targets. The ball is worth more every time it changes hands — pass it before you shoot it.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://anquri.net/survolt.html">
 <meta property="og:image" content="https://anquri.net/img/og-survolt.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The SURVOLT logo over a caged arena floating in space.">
+<meta property="og:image:alt" content="SURVOLT key art">
 <meta name="twitter:card" content="summary_large_image">
-
-<meta name="theme-color" content="#070910">
+<meta name="theme-color" content="#0B0907">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="img/anquri-seal.webp" type="image/webp" sizes="512x512">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=4">
-<link rel="preload" as="image" href="img/survolt-keyart.webp" fetchpriority="high">
-<link rel="preconnect" href="https://lobby.anquri.net">
-
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"VideoGame","name":"SURVOLT",
- "url":"https://anquri.net/survolt.html",
- "image":"https://anquri.net/img/og-survolt.jpg",
- "description":"A 3-on-3 arena sport: one ball, two moving targets, and a ball that is worth more every time it changes hands.",
- "genre":["Sports","Multiplayer"],
- "gamePlatform":["PC","Windows"],
- "operatingSystem":"Windows",
- "playMode":["MultiPlayer","SinglePlayer"],
- "numberOfPlayers":{"@type":"QuantitativeValue","minValue":1,"maxValue":6},
- "author":{"@type":"Organization","name":"ANQURI","url":"https://anquri.net/"},
- "publisher":{"@type":"Organization","name":"ANQURI","url":"https://anquri.net/"}}
-</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&family=Cinzel:wght@700&display=swap">
+<link rel="stylesheet" href="style.css?v=7">
+<link rel="preload" as="image" href="img/survolt-keyart.webp">
 </head>
 <body class="t-volt">
 <a class="skip" href="#main">Skip to content</a>
-
-<!-- ═══ la jauge ════════════════════════════════════════════════════════════
-     Sur la page de SURVOLT, la jauge du site est la CHARGE du ballon : blanche
-     (×1), cyan (×2), or (×3), puis la zone or (×6) et l'Overdrive (×12). Les
-     repères tombent sur les multiplicateurs qui titrent les sections : la page
-     se lit comme une possession qui monte en charge.
-     ═══════════════════════════════════════════════════════════════════════ -->
-<div class="gauge" data-mode="charge" aria-hidden="true">
-  <span class="label">Ball charge</span>
-  <div class="track">
-    <div class="ticks"><i style="top:20%"></i><i style="top:40%"></i><i style="top:60%"></i><i style="top:80%"></i></div>
-    <div class="fill"></div>
-  </div>
-  <span class="read">×1</span>
-</div>
-
-<div class="strip"><div class="strip-in"><b>In development</b> <span>Online playtests · 3v3 arena sport</span> <span class="right">ANQURI · Godot 4.7</span></div></div>
-
-<header class="top">
-  <div class="top-in">
-    <a class="brand" href="index.html" aria-label="ANQURI — back to the studio">
-      <img src="img/anquri-seal.webp" width="512" height="512" alt="">
-      <span>
-        <span class="name">ANQURI</span>
-        <span class="role">← Back to the studio</span>
-      </span>
-    </a>
-    <nav class="nav" aria-label="On this page">
-      <a href="#rules">The rules</a>
-      <a href="#moves" class="hide-s">The moves</a>
-      <a href="#online" class="hide-s">Online</a>
-      <a href="#press">Press</a>
-      <a class="cta" href="#status">Server status</a>
+<header class="head">
+  <div class="head-in">
+    <a class="logo" href="index.html" aria-label="ANQURI — home"><img src="img/anquri-seal.webp" alt="" width="512" height="512"><b>ANQURI</b></a>
+    <nav class="menu" aria-label="Main">
+      <div class="has-mega"><button type="button" aria-expanded="false" aria-controls="mega-games">Games <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="mega" id="mega-games"><div class="mega-in"><a class="mega-card" href="heatsink.html"><img class="bg" src="img/heatsink-keyart.webp" alt="" loading="lazy" width="1232" height="706">
+<span class="cap"><b>HEATSINK</b><span>Out now</span></span></a><a class="mega-card" href="survolt.html"><img class="bg" src="img/survolt-keyart.webp" alt="" loading="lazy" width="1232" height="706">
+<span class="cap"><b>SURVOLT</b><span>In development</span></span></a><a class="mega-card" href="saint-marc.html"><img class="bg" src="img/saint-marc-keyart.webp" alt="" loading="lazy" width="1232" height="706">
+<span class="cap"><b>SAINT-MARC</b><span>In development</span></span></a><a class="mega-card" href="ludus-master.html"><img class="bg" src="img/ludus-keyart.webp" alt="" loading="lazy" width="1232" height="706">
+<span class="cap"><b>LUDUS MASTER</b><span>In development</span></span></a></div></div></div>
+      <a href="index.html#news">News</a>
+      <a href="index.html#studio">Studio</a>
+      <a href="index.html#press">Press</a>
     </nav>
+    <div class="head-right"><div class="socials"><a href="https://www.youtube.com/@anquristudio" rel="noopener" aria-label="ANQURI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a><a href="https://www.tiktok.com/@anquristudio" rel="noopener" aria-label="ANQURI on TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.1a6.3 6.3 0 1 0 5.4 6.3V8.6a8 8 0 0 0 4.7 1.5V6.7a4.7 4.7 0 0 1-4.7-4.7z"/></svg></a><a href="https://store.steampowered.com/app/5222030/" rel="noopener" aria-label="HEATSINK on Steam"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0a12 12 0 0 0-12 11l6.4 2.7a3.4 3.4 0 0 1 2-.6l2.9-4.2v-.1a4.5 4.5 0 1 1 4.5 4.5h-.1l-4.1 3v.1a3.4 3.4 0 0 1-6.7.7L.4 15.3A12 12 0 1 0 12 0zM7.5 18.2l-1.5-.6a2.5 2.5 0 1 0 1.4-3.4l1.5.6a1.9 1.9 0 1 1-1.4 3.4zm8.3-6.3a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-5.3a2.3 2.3 0 1 1 0 4.6 2.3 2.3 0 0 1 0-4.6z"/></svg></a></div><a class="btn primary" href="https://store.steampowered.com/app/5222030/" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0a12 12 0 0 0-12 11l6.4 2.7a3.4 3.4 0 0 1 2-.6l2.9-4.2v-.1a4.5 4.5 0 1 1 4.5 4.5h-.1l-4.1 3v.1a3.4 3.4 0 0 1-6.7.7L.4 15.3A12 12 0 1 0 12 0zM7.5 18.2l-1.5-.6a2.5 2.5 0 1 0 1.4-3.4l1.5.6a1.9 1.9 0 1 1-1.4 3.4zm8.3-6.3a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-5.3a2.3 2.3 0 1 1 0 4.6 2.3 2.3 0 0 1 0-4.6z"/></svg>HEATSINK on Steam</a></div>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
   </div>
 </header>
-
-<!-- ═══ le héros ═══════════════════════════════════════════════════════════ -->
-<section class="hero">
-  <div class="hero-bg">
-    <img src="img/survolt-keyart.webp" width="1232" height="706" alt=""
-         fetchpriority="high" decoding="async">
+<nav class="drawer" id="drawer" aria-label="Mobile">
+  <a href="index.html#games">Games</a><div class="sub"><a href="heatsink.html">HEATSINK</a><a href="survolt.html">SURVOLT</a><a href="saint-marc.html">SAINT-MARC</a><a href="ludus-master.html">LUDUS MASTER</a></div>
+  <a href="index.html#news">News</a><a href="index.html#studio">Studio</a><a href="index.html#press">Press</a>
+  <a class="btn primary" href="https://store.steampowered.com/app/5222030/" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0a12 12 0 0 0-12 11l6.4 2.7a3.4 3.4 0 0 1 2-.6l2.9-4.2v-.1a4.5 4.5 0 1 1 4.5 4.5h-.1l-4.1 3v.1a3.4 3.4 0 0 1-6.7.7L.4 15.3A12 12 0 1 0 12 0zM7.5 18.2l-1.5-.6a2.5 2.5 0 1 0 1.4-3.4l1.5.6a1.9 1.9 0 1 1-1.4 3.4zm8.3-6.3a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-5.3a2.3 2.3 0 1 1 0 4.6 2.3 2.3 0 0 1 0-4.6z"/></svg>HEATSINK on Steam</a>
+  <div class="socials"><a href="https://www.youtube.com/@anquristudio" rel="noopener" aria-label="ANQURI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a><a href="https://www.tiktok.com/@anquristudio" rel="noopener" aria-label="ANQURI on TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.1a6.3 6.3 0 1 0 5.4 6.3V8.6a8 8 0 0 0 4.7 1.5V6.7a4.7 4.7 0 0 1-4.7-4.7z"/></svg></a><a href="https://store.steampowered.com/app/5222030/" rel="noopener" aria-label="HEATSINK on Steam"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0a12 12 0 0 0-12 11l6.4 2.7a3.4 3.4 0 0 1 2-.6l2.9-4.2v-.1a4.5 4.5 0 1 1 4.5 4.5h-.1l-4.1 3v.1a3.4 3.4 0 0 1-6.7.7L.4 15.3A12 12 0 1 0 12 0zM7.5 18.2l-1.5-.6a2.5 2.5 0 1 0 1.4-3.4l1.5.6a1.9 1.9 0 1 1-1.4 3.4zm8.3-6.3a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-5.3a2.3 2.3 0 1 1 0 4.6 2.3 2.3 0 0 1 0-4.6z"/></svg></a></div>
+</nav>
+<main id="main">
+<section class="ghero">
+  <img class="bg" src="img/survolt-keyart.webp" alt="" width="1232" height="706">
+  <div class="ghin">
+    <img class="wm rise" src="img/survolt-wordmark.webp" alt="SURVOLT">
+    <div class="rise" style="--d:1;display:flex;flex-wrap:wrap;gap:8px"><span class="chip dev">In development</span><span class="chip ">Online playtests</span></div>
+    <h1 class="rise" style="--d:2">Pass it before you shoot it.</h1>
+    <p class="lede rise" style="--d:3">Three against three, one ball, two targets on the walls. The ball is worth more the more of your team has touched it — the shot is only the end of an argument the passes started.</p>
+    <div class="actions rise" style="--d:4"><a class="btn primary" href="mailto:communityanquri@gmail.com?subject=SURVOLT%20playtest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg>Ask for a playtest build</a><a class="btn ghost" href="#online">Server status</a></div>
+    <dl class="gfacts rise" style="--d:5"><div><dt>Genre</dt><dd>Arena sport · 3v3</dd></div><div><dt>Platform</dt><dd>Windows</dd></div><div><dt>Engine</dt><dd>Godot 4.7</dd></div><div><dt>Online</dt><dd>6 players</dd></div></dl>
   </div>
-  <div class="hero-in">
-    <img class="wordmark rise" src="img/survolt-wordmark.webp" width="900" height="238"
-         alt="SURVOLT" fetchpriority="high">
-    <p class="tick rise" style="--d:1"><b>In development</b> <span>Online playtests</span></p>
-    <h1 class="rise" style="--d:2">Pass it<br>before you<br><span class="hot glow">shoot it</span>.</h1>
+</section>
+<nav class="subnav" aria-label="SURVOLT sections"><div class="wrap"><a href="#overview">Overview</a><a href="#features">Features</a><a href="#moves">The moves</a><a href="#online">Online</a><a href="#media">Media</a><a href="#press">Press</a><a class="btn primary" href="mailto:communityanquri@gmail.com?subject=SURVOLT%20playtest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg>Ask for a playtest build</a></div></nav>
 
-    <dl class="facts rise" style="--d:3">
-      <div><dt>Genre</dt><dd>Arena sport · 3v3</dd></div>
-      <div><dt>Platform</dt><dd>Windows</dd></div>
-      <div><dt>Engine</dt><dd>Godot 4.7</dd></div>
-      <div><dt>Online</dt><dd class="hot">6 players</dd></div>
-    </dl>
+<section class="sec" id="overview">
+  <div class="wrap story">
+    <div class="rise"><span class="label">The game</span><h2 style="margin-top:16px">A ball that is worth more <em>every time it changes hands</em>.</h2></div>
+    <div class="rise" style="--d:1"><p>It starts white. One completed pass turns it cyan and doubles it. When all three of you have touched it, it burns gold and triples it. Hold it too long and it melts back down a step.</p><p>Every shot scores something. What matters is how much.</p></div>
   </div>
-  <span class="scroll-hint" aria-hidden="true">Scroll</span>
 </section>
 
-<main id="main">
-<div class="page">
-
-  <!-- ═══ la règle ══════════════════════════════════════════════════════════ -->
-  <section id="rule">
-    <p class="tick rise"><b>×1</b> <span>The game</span></p>
-    <div class="split">
-      <div class="stack rise">
-        <h2>A ball that is<br>worth more every<br>time it changes&nbsp;hands.</h2>
-      </div>
-      <div class="stack rise" style="--d:1">
-        <p class="lede">Three against three, one ball, two targets on the walls.
-        Every shot scores something. What matters is <em>how much</em> — and
-        the ball is worth more the more of your team has touched it.</p>
-        <p class="muted">It starts white. One completed pass turns it cyan and
-        doubles it. When all three of you have touched it, it burns gold and
-        triples it. Hold it too long and it melts back down a step. That is the
-        whole rule: the shot is only the end of an argument the passes started.</p>
-      </div>
+<section class="sec" id="features" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rise"><div><span class="label">The rules</span><h2>Three rules. The whole game is in them.</h2></div></div>
+    <div class="rules"><article class="rule rise" style="--d:0"><div class="ph"><img src="img/survolt-charge.webp" alt="" loading="lazy"><span class="n">01</span></div><div class="tx"><h3>The charge is the score</h3><p>White, cyan, gold: ×1, ×2, ×3. The screen shows you one thing — the colour of the ball — and every decision in a possession is a bet on it.</p></div></article><article class="rule rise" style="--d:1"><div class="ph"><img src="img/survolt-cible.webp" alt="" loading="lazy"><span class="n">02</span></div><div class="tx"><h3>A target, not a goal</h3><p>The targets are dartboards bolted to the end walls, and they move. The outer ring scores one, the bullseye three — times the charge. Bank shots count.</p></div></article><article class="rule rise" style="--d:2"><div class="ph"><img src="img/survolt-zone.webp" alt="" loading="lazy"><span class="n">03</span></div><div class="tx"><h3>The gold zone</h3><p>Now and then a patch of the arena lights up. Score from it, or bounce the ball off it, and the shot counts double. In the last minute everything doubles again: Overdrive.</p></div></article></div>
+  </div>
+</section>
+<section class="sec band" id="moves">
+  <div class="wrap">
+    <div class="sec-head rise"><div><span class="label">The moves</span><h2>Dodge it, hit it, then light it up.</h2></div><p>Every athlete is built in the game&#x27;s own editor — body, hair, outfit — and takes to the pitch in the SURVOLT suit, in the team&#x27;s colour.</p></div>
+    <div class="list rise"><div><b>The 360</b><p>A tackle is coming and you have the ball? Spin. Time it right and the tackle hits nothing — and the dodge charges your aura.</p></div><div><b>Shoulder or slide</b><p>Defenders take the ball back with a shoulder charge or a sliding tackle, and cut passes out of the air with a jump or a dive.</p></div><div><b>The aura</b><p>Passes, interceptions, tackles, screens and dodges fill a gauge. Full, it lights your aura for eight seconds: faster runs, heavier shots, volleys that find the target.</p></div></div>
+  </div>
+</section>
+<section class="sec" aria-label="What is in the box">
+  <div class="wrap"><div class="sec-head rise"><div><span class="label">What's in the box</span><h2>By the numbers</h2></div></div></div>
+  <div class="numbers rise"><div><b>3v3</b><span>Players a side</span></div><div><b>3</b><span>Charge levels</span></div><div><b>2</b><span>Moving targets</span></div><div><b>36</b><span>Points, best shot</span></div><div><b>6</b><span>Players online</span></div><div><b>0</b><span>Ports to open</span></div></div>
+  <div class="wrap"><p class="note rise">Thirty-six is a bullseye with a gold ball, from the gold zone, during Overdrive. And the zero is the point of the online mode: nobody touches their router — the studio&#x27;s server introduces the players, and relays the match when a network is too strict.</p></div>
+</section>
+<section class="sec band" id="online">
+  <div class="wrap">
+    <div class="sec-head rise"><div><span class="label">Online</span><h2>Find a match, or bring your friends.</h2></div>
+      <p>Public games sorted by real ping, private games behind a six-letter code, quick play if you just want to be on the pitch. Empty seats are played by the AI, and everything works with a gamepad.</p></div>
+    <div class="rise" data-lobby="https://lobby.anquri.net" data-state="wait">
+      <span class="live"><span class="dot"></span><b class="live-state">Checking the server…</b> · lobby.anquri.net</span>
+      <div class="server"><div><b data-k="games">–</b><span>Games right now</span></div><div><b data-k="players">–</b><span>Players connected</span></div>
+        <div><b data-k="inMatch">–</b><span>In a match</span></div><div><b data-k="inLobby">–</b><span>In a lobby</span></div></div>
     </div>
-  </section>
+  </div>
+</section>
+<section class="sec" id="media">
+  <div class="wrap">
+    <div class="sec-head rise"><div><span class="label">Media</span><h2>Screenshots</h2></div></div>
+    <div class="gallery rise"><button type="button" data-full="img/survolt-keyart.webp"><img src="img/survolt-keyart.webp" alt="SURVOLT screenshot 1" loading="lazy"></button><button type="button" data-full="img/survolt-charge.webp"><img src="img/survolt-charge.webp" alt="SURVOLT screenshot 2" loading="lazy"></button><button type="button" data-full="img/survolt-cible.webp"><img src="img/survolt-cible.webp" alt="SURVOLT screenshot 3" loading="lazy"></button><button type="button" data-full="img/survolt-zone.webp"><img src="img/survolt-zone.webp" alt="SURVOLT screenshot 4" loading="lazy"></button><button type="button" data-full="img/survolt-360.webp"><img src="img/survolt-360.webp" alt="SURVOLT screenshot 5" loading="lazy"></button><button type="button" data-full="img/survolt-tacle.webp"><img src="img/survolt-tacle.webp" alt="SURVOLT screenshot 6" loading="lazy"></button><button type="button" data-full="img/survolt-athlete.webp"><img src="img/survolt-athlete.webp" alt="SURVOLT screenshot 7" loading="lazy"></button></div>
+  </div>
+</section>
+<div class="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot"><button type="button" aria-label="Close">×</button><img src="" alt=""></div>
 
-  <!-- ═══ les trois conséquences ════════════════════════════════════════════ -->
-  <section id="rules">
-    <p class="tick rise"><b>×2</b> <span>The consequences</span></p>
-    <h2 class="rise" style="--d:1;margin-bottom:clamp(30px,4vw,52px)">Three rules, and the<br>whole match is in them.</h2>
-    <div class="rules">
-
-      <article class="rule rise">
-        <span class="art">
-          <img src="img/survolt-charge.webp" width="900" height="506" loading="lazy" decoding="async"
-               alt="In-game: a player holds the ball in the middle of the arena, the ball charge reads GOLD ×3.">
-        </span>
-        <h3>The charge is the score</h3>
-        <p>White, cyan, gold: ×1, ×2, ×3. The screen shows you one thing — the
-        colour of the ball — and every decision in a possession is a bet on it.
-        Shoot now, or make one more pass?</p>
-      </article>
-
-      <article class="rule rise" style="--d:1">
-        <span class="art">
-          <img src="img/survolt-cible.webp" width="900" height="506" loading="lazy" decoding="async"
-               alt="In-game: a round target of glowing rings bolted to the hexagonal cage wall.">
-        </span>
-        <h3>A target, not a goal</h3>
-        <p>The targets are dartboards bolted to the end walls, and they move. The
-        outer ring scores one, the bullseye three — times the charge. The ball
-        bounces off the cage: bank shots count.</p>
-      </article>
-
-      <article class="rule rise" style="--d:2">
-        <span class="art">
-          <img src="img/survolt-zone.webp" width="900" height="506" loading="lazy" decoding="async"
-               alt="In-game: a golden circle lit on the arena floor near the wall, players running toward it.">
-        </span>
-        <h3>The gold zone</h3>
-        <p>Now and then a patch of the arena lights up. Score from it, or bounce
-        the ball off it, and the shot counts double. In the last minute
-        everything doubles again: <em>Overdrive</em>.</p>
-      </article>
-
+<section class="sec" id="press" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band rise"><img class="bg" src="img/survolt-keyart.webp" alt="" loading="lazy">
+      <div><span class="label">Press &amp; contact</span><h2>Still being built. Come and play it.</h2><p>SURVOLT has no store page yet. It is tested online, in the open, one playtest at a time. Want a build — to play it, or to write about it?</p>
+        <div class="actions"><a class="btn primary" href="mailto:communityanquri@gmail.com?subject=SURVOLT%20playtest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg>Ask for a playtest build</a><a class="btn ghost" href="mailto:communityanquri@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg>communityanquri@gmail.com</a></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══ les gestes ════════════════════════════════════════════════════════ -->
-  <section id="moves">
-    <p class="tick rise"><b>×3</b> <span>The moves</span></p>
-    <h2 class="rise" style="--d:1;margin-bottom:clamp(30px,4vw,52px)">Dodge it, hit it,<br>then light it up.</h2>
-    <div class="rules">
-
-      <article class="rule rise">
-        <span class="art">
-          <img src="img/survolt-360.webp" width="900" height="506" loading="lazy" decoding="async"
-               alt="In-engine render: an athlete in the blue SURVOLT suit mid-spin, ball tucked against his chest.">
-        </span>
-        <h3>The 360</h3>
-        <p>A tackle is coming and you have the ball? Spin. Low, ball against the
-        chest, one full turn with your back to the defender. Time it right and
-        the tackle hits nothing — and the dodge charges your aura.</p>
-      </article>
-
-      <article class="rule rise" style="--d:1">
-        <span class="art">
-          <img src="img/survolt-tacle.webp" width="900" height="506" loading="lazy" decoding="async"
-               alt="In-engine render: an athlete driving his shoulder forward in a standing tackle.">
-        </span>
-        <h3>Shoulder or slide</h3>
-        <p>Defenders take the ball back with a shoulder charge or a sliding tackle,
-        and cut passes out of the air with a jump or a dive. Attackers set screens,
-        like in basketball, and the ball can be volleyed straight off the foot.</p>
-      </article>
-
-      <article class="rule rise" style="--d:2">
-        <span class="art">
-          <img src="img/survolt-athlete.webp" width="900" height="506" loading="lazy" decoding="async"
-               alt="In-engine render: an athlete celebrating, both fists raised.">
-        </span>
-        <h3>The aura</h3>
-        <p>Passes, interceptions, tackles, screens and dodges fill a gauge. Full,
-        it lights your aura for eight seconds: faster runs, passes twice as hard
-        to read, heavier shots, and volleys that find the target on their own.</p>
-      </article>
-
-    </div>
-    <p class="muted rise" style="--d:1;margin-top:clamp(22px,2.6vw,30px)">
-    Every athlete is built in the game's own editor — body, hair, outfit — and
-    takes to the pitch in the SURVOLT suit, in the team's colour, with its
-    light and shadow painted on by hand.</p>
-  </section>
-
-  <!-- ═══ ce qu'il y a dans la boîte ════════════════════════════════════════ -->
-  <section id="box">
-    <p class="tick rise"><b>36</b> <span>What is in the box</span></p>
-    <div class="stats rise">
-      <div><b>3v3</b><span>Players a side</span></div>
-      <div><b>3</b><span>Charge levels</span></div>
-      <div><b>2</b><span>Moving targets</span></div>
-      <div><b>36</b><span>Points, best shot</span></div>
-      <div><b>6</b><span>Players online</span></div>
-      <div class="flame"><b>0</b><span>Ports to open</span></div>
-    </div>
-    <p class="muted rise" style="--d:1;margin-top:clamp(22px,2.6vw,30px)">
-    Thirty-six is a bullseye with a gold ball, from the gold zone, during
-    Overdrive. And the zero is the point of the online mode: nobody touches
-    their router. The studio's server introduces the players to each other,
-    and when a network is too strict to let them talk directly, it relays the
-    match itself.</p>
-  </section>
-
-  <!-- ═══ en ligne ══════════════════════════════════════════════════════════ -->
-  <section id="online">
-    <p class="tick rise"><b>×6</b> <span>Online</span></p>
-    <div class="split">
-      <div class="stack rise">
-        <h2>Find a match,<br>or bring your<br>friends.</h2>
-        <p class="lede">Public games in a list sorted by real ping. Private games
-        behind a six-letter code. An optional password. Quick play, if you just
-        want to be on the pitch.</p>
-        <p class="muted">Empty seats are played by the AI, so one against one is
-        still a full three-a-side match. Everything works with a gamepad.</p>
-      </div>
-
-      <!-- l'état du serveur, lu en direct (voir site.js, point 4) -->
-      <div class="live rise" id="status" style="--d:1" data-lobby="https://lobby.anquri.net" data-state="wait" aria-live="polite">
-        <div class="live-head">
-          <span class="live-state"><span class="dot"></span><span>Checking…</span></span>
-          <span>Game server</span>
-          <span class="where">lobby.anquri.net</span>
-        </div>
-        <div class="stats">
-          <div><b data-k="games">–</b><span>Games right now</span></div>
-          <div><b data-k="players">–</b><span>Players connected</span></div>
-          <div><b data-k="inMatch">–</b><span>Matches being played</span></div>
-          <div><b data-k="inLobby">–</b><span>Lobbies waiting</span></div>
-        </div>
-        <div class="live-foot">
-          <span class="live-when">Waiting for the server</span> · <span data-k="latency">–</span> from your browser
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ presse ════════════════════════════════════════════════════════════ -->
-  <section id="press">
-    <p class="tick rise"><b>×12</b> <span>Overdrive · press &amp; contact</span></p>
-    <div class="split">
-      <div class="stack rise">
-        <h2>Still being<br>built. Come and<br>play it.</h2>
-        <p class="muted">SURVOLT has no store page yet. It is tested online, in
-        the open, one playtest at a time. If you want a build — to play it, or to
-        write about it — the address below reaches the person who writes it.</p>
-        <div class="doors">
-          <a class="door primary" href="mailto:contact@anquri.net?subject=SURVOLT%20playtest">Ask for a playtest build<small>contact@anquri.net</small></a>
-          <a class="door" href="index.html#games">Other games<small>ANQURI</small></a>
-        </div>
-      </div>
-      <dl class="lines rise" style="--d:1">
-        <div><dt>Email</dt><dd><a href="mailto:contact@anquri.net">contact@anquri.net</a></dd></div>
-        <div><dt>Game server</dt><dd>
-          <span class="live-mini" data-lobby="https://lobby.anquri.net" data-state="wait"><span class="dot"></span><b class="live-state"><span>Checking…</span></b> · <span data-k="games">–</span> games · <span data-k="players">–</span> players</span>
-        </dd></div>
-        <div><dt>Status</dt><dd><span class="state">In development</span></dd></div>
-        <div><dt>Engine</dt><dd class="muted">Godot 4.7 · Windows</dd></div>
-        <div><dt>Studio</dt><dd><a href="index.html">ANQURI · Belgium</a></dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <footer>
-    <span><a href="index.html">© 2026 ANQURI</a></span>
-    <span>Built in Belgium</span>
-    <span class="sep"><a href="#main">Back to top ↑</a></span>
-  </footer>
-
-</div>
+<section class="sec band" aria-labelledby="more-t">
+  <div class="wrap">
+    <div class="sec-head rise"><div><span class="label">ANQURI</span><h2 id="more-t">More from the studio</h2></div><a class="arrow-link" href="index.html#games">All games</a></div>
+    <div class="more-games rise"><a class="card" href="heatsink.html" data-state="out">
+  <img class="bg" src="img/heatsink-keyart.webp" alt="" loading="lazy" width="1232" height="706">
+  <div class="top"><span class="chip out">Out now</span><span class="chip ">Steam · Version 1.1</span></div>
+  <div class="body"><img class="wm" src="img/heatsink-wordmark.webp" alt="HEATSINK" loading="lazy">
+    <div class="genre">Fast FPS roguelite</div><p class="hook">A fast first-person roguelite with one gauge and no health bar. Firing heats your core, and the only heat sink in the game is <em>the air moving over your body</em>.</p>
+    <div class="plat"><span>Windows · Linux</span></div></div>
+</a><a class="card" href="saint-marc.html" data-state="dev">
+  <img class="bg" src="img/saint-marc-keyart.webp" alt="" loading="lazy" width="1232" height="706">
+  <div class="top"><span class="chip dev">In development</span><span class="chip ">Survival horror</span></div>
+  <div class="body"><img class="wm" src="img/saint-marc-wordmark.webp" alt="SAINT-MARC" loading="lazy">
+    <div class="genre">First-person survival horror</div><p class="hook">A first-person survival horror game in an abandoned hospital, without a weapon. The nurse still doing her rounds cannot bear to see <em>her own face</em>.</p>
+    <div class="plat"><span>Windows</span></div></div>
+</a><a class="card" href="ludus-master.html" data-state="dev">
+  <img class="bg" src="img/ludus-keyart.webp" alt="" loading="lazy" width="1232" height="706">
+  <div class="top"><span class="chip dev">In development</span><span class="chip ">Gladiator roguelite</span></div>
+  <div class="body"><img class="wm" src="img/ludus-wordmark.webp" alt="LUDUS MASTER" loading="lazy">
+    <div class="genre">Gladiator management roguelite</div><p class="hook">Run a gladiator school in Capua, 71 BC. Buy men, train them, fight their battles in real time — and remember that <em>every wound is permanent</em>.</p>
+    <div class="plat"><span>Windows</span></div></div>
+</a></div>
+  </div>
+</section>
 </main>
-
-<script src="site.js?v=4" defer></script>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><a class="logo" href="index.html"><img src="img/anquri-seal.webp" alt="" width="512" height="512"><b>ANQURI</b></a>
+        <p>An independent game studio in Belgium. We make the games we want to play, and we love trying new ideas.</p></div>
+      <div><h4>Games</h4><ul><li><a href="heatsink.html">HEATSINK</a></li><li><a href="survolt.html">SURVOLT</a></li><li><a href="saint-marc.html">SAINT-MARC</a></li><li><a href="ludus-master.html">LUDUS MASTER</a></li></ul></div>
+      <div><h4>Studio</h4><ul><li><a href="index.html#news">News</a></li><li><a href="index.html#studio">About</a></li><li><a href="index.html#press">Press kit</a></li><li><a href="mailto:communityanquri@gmail.com">Contact</a></li></ul></div>
+      <div><h4>Follow</h4><ul><li><a href="https://www.youtube.com/@anquristudio" rel="noopener">YouTube</a></li><li><a href="https://www.tiktok.com/@anquristudio" rel="noopener">TikTok</a></li><li><a href="https://store.steampowered.com/app/5222030/" rel="noopener">Steam</a></li><li><a href="https://anquri.itch.io/heatsink" rel="noopener">itch.io</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 ANQURI · Made in Belgium with Godot</span><a href="mailto:communityanquri@gmail.com">communityanquri@gmail.com</a></div>
+  </div>
+</footer>
+<script src="site.js?v=7" defer></script>
 </body>
 </html>

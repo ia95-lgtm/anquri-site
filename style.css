@@ -1,704 +1,404 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   ANQURI — feuille de style unique.
+   ANQURI — feuille de style du site (refonte 2026)
 
-   Direction : NOCTURNE CINEMATIC DARK.
-   Un noir obsidienne non réfléchissant, du verre dépoli posé dessus, et trois
-   lumières seulement : la braise (#FF5E36) pour tout ce qui s'actionne, le
-   cyan (#00F2FE) pour la technique et la télémétrie, le violet (#7928CA) pour
-   l'air qui entoure. Jamais d'ombre portée : la hiérarchie se fait par la
-   lumière et la translucidité, pas par l'axe Z.
-
-   Les couleurs se changent ici (section 1) et nulle part ailleurs. SURVOLT
-   reprend la même mise en page en redéfinissant ce seul bloc (section 17).
-
-   Plan du fichier
-     1. jetons        2. base        3. atmosphère        4. en-tête
-     5. jauge         6. titraille   7. héros             8. catalogue
-     9. règles       10. chiffres   11. boutons          12. contact
-    13. pied de page 14. révélations 15. adaptatif       16. confort
-    17. SURVOLT, le même site sous tension               18. serveur en ligne
-    19. SAINT-MARC, le même site après l'extinction des feux
-    20. LUDUS MASTER, le même site à la lueur des torches
+   Repères :
+     §1  jetons (couleurs, typo, rythme)         §8  carrousel « à la une »
+     §2  base                                    §9  grille des jeux + filtres
+     §3  boutons, puces, liens                   §10 bande-annonce (façade vidéo)
+     §4  en-tête, méga-menu, menu mobile         §11 actualités
+     §5  héros vidéo de l'accueil                §12 studio, presse, réseaux
+     §6  sections, titres de section             §13 pages de jeu
+     §7  révélations au défilement               §14 pied de page
+                                                 §15 thèmes par jeu
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* ── 1. jetons ─────────────────────────────────────────────────────────── */
+/* §1 ── jetons ───────────────────────────────────────────────────────────── */
 :root{
-  /* le vide et ses trois étages de verre */
-  --void:#060608;                 /* le plus profond : barre du haut */
-  --forge:#0A0A0C;                /* le sol de la page */
-  --slag:#111116;                 /* surface 1 — tuiles de verre */
-  --slag-2:#181820;               /* surface 2 — panneaux flottants */
-  --glass:rgba(17,17,22,.70);
-  --glass-2:rgba(24,24,32,.85);
+  --night:#0B0907;            /* fond : noir chaud de cendre */
+  --char:#14100D;             /* surfaces */
+  --char-2:#1C1612;
+  --line:rgba(244,236,226,.10);
+  --line-2:rgba(244,236,226,.18);
 
-  /* filets : toujours en alpha, pour tenir sur n'importe quelle surface */
-  --line:rgba(255,255,255,.08);
-  --line-2:rgba(255,255,255,.15);
-  --line-3:rgba(255,255,255,.26);
-  /* le filet directionnel des conteneurs de verre : clair en haut à gauche */
-  --edge:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.02));
+  --bone:#F4ECE2;             /* texte principal */
+  --ash:#A69C92;              /* texte secondaire */
+  --ash-2:#7D746C;
 
-  /* encres */
-  --ink:#F3F4F6;                  /* principal */
-  --ash:#9CA3AF;                  /* secondaire — acier sourd */
-  --ash-2:#7E8793;                /* tertiaire, 4,8:1 : micro-étiquettes */
+  --ember:#FF6A2B;            /* ce qui s'actionne */
+  --ember-2:#E2521A;
+  --gold:#E8B45E;             /* l'or du phénix : la marque */
+  --gold-2:#FFD99A;
+  --on-accent:#140A04;
 
-  /* les trois lumières */
-  --ember:#FF5E36;                /* primaire — tout ce qui s'actionne */
-  --ember-dim:#E04822;
-  --brass:#00F2FE;                /* secondaire — technique, liens */
-  --gold:#8FFBFF;                 /* le cyan allumé, au survol */
-  --violet:#B574FF;               /* tertiaire — lueurs d'ambiance */
-  --white-hot:#FFFFFF;
+  --ok:#4BE39A; --bad:#FF5A5F;
 
-  /* les mêmes en composantes, pour les lueurs : une variante de page
-     (voir « 17. SURVOLT ») n'a qu'à redéfinir ce bloc */
-  --ember-rgb:255,94,54;
-  --brass-rgb:0,242,254;
-  --violet-rgb:121,40,202;
-  --void-rgb:10,10,12;
-  --on-accent:#0A0A0C;            /* texte posé sur la couleur vive */
-  --on-accent-rgb:10,10,12;
-  --flame-bg:#1B0A05;
-  --gauge-fill:linear-gradient(to top,#3A1206 0%,#B23A10 26%,#FF5E36 56%,#FFA24C 78%,var(--white-hot) 100%);
+  --f-brand:"Cinzel", Georgia, serif;
+  --f-head:"Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --f-body:"Barlow", "Segoe UI", Arial, sans-serif;
 
-  /* état d'un service en ligne : les seules couleurs « feu tricolore » */
-  --ok:#3DF2A0;
-  --bad:#FF5468;
-
-  /* mesures */
-  --measure:66ch;
-  --gutter:clamp(20px,4vw,64px);
   --page:1440px;
-  --r:4px;                        /* rayon standard : bouton, puce, champ */
-  --r-lg:8px;                     /* rayon des cadres média et des panneaux */
-
-  /* échelle typographique fluide, une seule source */
-  --t-label:clamp(10px,.62vw,12px);
-  --t-body:clamp(15px,1vw,16px);
-  --t-lede:clamp(17px,1.3vw,19px);
-  --t-h3:clamp(18px,1.4vw,20px);
-  --t-h2:clamp(30px,3.6vw,48px);
-  --t-h1:clamp(40px,5.6vw,72px);
-
+  --gutter:clamp(18px,4vw,64px);
+  --r:6px; --r-lg:12px;
   --ease:cubic-bezier(.22,.61,.36,1);
-  color-scheme:dark;
+  --head-h:72px;
 }
 
-/* ── 2. base ───────────────────────────────────────────────────────────── */
+/* §2 ── base ─────────────────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--forge);
-  color:var(--ink);
-  font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
-  font-size:var(--t-body);
-  line-height:1.6;
-  letter-spacing:-.005em;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  overflow-x:hidden;
-}
-img,svg{max-width:100%;display:block;height:auto}
-a{color:var(--brass);text-decoration:none;text-underline-offset:4px;
-  text-decoration-thickness:1px;transition:color .18s var(--ease)}
-a:hover{color:var(--gold)}
-:focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:var(--r)}
-::selection{background:var(--ember);color:var(--on-accent)}
-strong,b{font-weight:600}
-hr{border:0;border-top:1px solid var(--line);margin:0}
-
-/* la fonte des étiquettes : géométrique, capitales, approche large */
-.mono,.tick,.state,.more,.door,.facts dt,.stats span,.lines dt,footer,
-.gauge .label,.gauge .read,.scroll-hint,.strip,.live-head,.live-foot,.live-mini{
-  font-family:"Space Grotesk",ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-feature-settings:"tnum" 1;
-}
-.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
-  clip-path:inset(50%);white-space:nowrap;border:0}
-.skip{position:fixed;top:-100px;left:16px;z-index:200;background:var(--ember);
-  color:var(--on-accent);padding:12px 18px;border-radius:var(--r);
-  font-family:"Space Grotesk",ui-monospace,monospace;font-weight:600;
-  font-size:12px;letter-spacing:.08em;text-transform:uppercase;transition:top .2s var(--ease)}
-.skip:focus{top:16px;color:var(--on-accent)}
-
-/* ── 3. atmosphère ─────────────────────────────────────────────────────────
-   Deux couches fixes, sous tout le reste et jamais cliquables :
-   · le grain — une turbulence SVG à 3 %, qui empêche les dégradés de faire
-     des bandes sur un écran 8 bits ;
-   · les lueurs — une braise au bas de la page et un violet en haut à droite,
-     très diffus : c'est tout ce qui éclaire le vide.
-   ──────────────────────────────────────────────────────────────────────── */
-body::before{
-  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
-  mix-blend-mode:overlay;
-}
-body::after{
-  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(60% 46% at 50% 112%,rgba(var(--ember-rgb),.15) 0%,transparent 70%),
-    radial-gradient(44% 38% at 92% 2%,rgba(var(--violet-rgb),.12) 0%,transparent 75%);
-}
-
-/* ── 4. l'en-tête ──────────────────────────────────────────────────────────
-   Un bandeau d'état fin, puis la barre de navigation. Elle est transparente
-   en haut de page et devient du verre dès qu'on descend (classe .scrolled
-   posée par le script) : le héros reste plein cadre, la navigation reste là.
-   ──────────────────────────────────────────────────────────────────────── */
-.strip{
-  position:relative;z-index:61;background:var(--void);
-  border-bottom:1px solid var(--line);
-  font-size:var(--t-label);font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ash);
-}
-.strip-in{max-width:var(--page);margin-inline:auto;padding:9px var(--gutter);
-  display:flex;align-items:center;gap:10px 24px;flex-wrap:wrap}
-.strip b{color:var(--ember);font-weight:600;letter-spacing:.1em}
-.strip .right{margin-left:auto;color:var(--ash-2)}
-.strip a{color:var(--ash)}
-.strip a:hover{color:var(--brass)}
-
-.top{
-  position:sticky;top:0;z-index:60;
-  border-bottom:1px solid transparent;
-  transition:background .3s var(--ease),border-color .3s var(--ease),backdrop-filter .3s var(--ease);
-}
-.top.scrolled{
-  background:var(--glass);
-  backdrop-filter:blur(20px) saturate(130%);
-  -webkit-backdrop-filter:blur(20px) saturate(130%);
-  border-bottom-color:var(--line);
-}
-.top-in{
-  max-width:var(--page);margin-inline:auto;
-  padding:14px var(--gutter);
-  display:flex;align-items:center;gap:clamp(16px,3vw,40px);
-}
-.brand{display:flex;align-items:center;gap:14px;color:inherit;flex:none}
-.brand img{width:36px;height:36px;flex:none;
-  filter:drop-shadow(0 0 14px rgba(var(--ember-rgb),.28));
-  transition:filter .3s var(--ease)}
-.brand:hover img{filter:drop-shadow(0 0 20px rgba(var(--ember-rgb),.55))}
-.brand > span{display:block}
-.brand .name{display:block;font-family:"Syne",sans-serif;font-weight:800;
-  font-size:18px;letter-spacing:.2em;color:var(--ink);line-height:1;
-  transition:color .18s var(--ease)}
-.brand:hover .name{color:var(--white-hot)}
-.brand .role{display:block;font-family:"Space Grotesk",ui-monospace,monospace;
-  font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ash-2);margin-top:6px}
-
-.nav{margin-left:auto;display:flex;align-items:center;gap:clamp(14px,2vw,28px);
-  font-family:"Space Grotesk",ui-monospace,monospace;font-size:13px;font-weight:500;
-  letter-spacing:.06em;text-transform:uppercase}
-.nav a{color:var(--ash);position:relative;padding-block:6px}
-.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;
-  background:var(--brass);transition:right .3s var(--ease)}
-.nav a:hover{color:var(--ink)}
-.nav a:hover::after{right:0}
-.nav a.cta{
-  color:var(--on-accent);font-weight:600;border-radius:var(--r);padding:10px 18px;
-  background:linear-gradient(180deg,var(--ember),var(--ember-dim));
-  transition:box-shadow .22s var(--ease),filter .22s var(--ease)}
-.nav a.cta::after{display:none}
-.nav a.cta:hover{filter:brightness(1.08);box-shadow:0 0 24px rgba(var(--ember-rgb),.45)}
-
-/* ── 5. la jauge ───────────────────────────────────────────────────────────
-   Le rail de gauche n'est pas un ornement : c'est la jauge du jeu. Elle se
-   remplit avec le défilement (le script pose --heat de 0 à 1) et affiche une
-   température qui monte. C'est la seule animation continue du site.
-   ──────────────────────────────────────────────────────────────────────── */
-.gauge{
-  position:fixed;left:clamp(10px,1.4vw,26px);top:50%;transform:translateY(-50%);
-  z-index:40;pointer-events:none;
-  display:flex;flex-direction:column;align-items:center;gap:12px;
-  opacity:0;transition:opacity .5s var(--ease);
-}
-.gauge.on{opacity:1}
-.gauge .label{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--ash-2);writing-mode:vertical-rl;text-orientation:mixed}
-.gauge .track{position:relative;width:3px;height:min(40vh,300px);border-radius:999px;
-  background:rgba(255,255,255,.07);overflow:hidden}
-.gauge .fill{position:absolute;left:0;right:0;bottom:0;
-  height:calc(var(--heat,0) * 100%);
-  background:var(--gauge-fill);
-  box-shadow:0 0 14px rgba(var(--ember-rgb),.55);
-  transition:height .12s linear}
-.gauge .ticks{position:absolute;inset:0}
-.gauge .ticks i{position:absolute;left:0;width:100%;height:1px;background:rgba(255,255,255,.22)}
-.gauge .read{font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--brass);
-  font-variant-numeric:tabular-nums;min-width:5ch;text-align:center}
-
-/* ── 6. la titraille ───────────────────────────────────────────────────── */
-.page{max-width:var(--page);margin-inline:auto;padding-inline:var(--gutter);
-  position:relative;z-index:2}
-.page.wide{max-width:none;padding-inline:0}
-
-section{padding-block:clamp(64px,8vw,128px);position:relative}
-section + section{border-top:1px solid var(--line)}
-
-/* le bandeau de section : un numéro, un mot, un filet qui va jusqu'au bord */
-.tick{font-size:var(--t-label);font-weight:600;letter-spacing:.12em;
-  color:var(--ash-2);text-transform:uppercase;
-  display:flex;align-items:center;gap:16px;margin:0 0 clamp(26px,3.2vw,44px)}
-.tick b{color:var(--ember);font-weight:700;font-variant-numeric:tabular-nums;
-  letter-spacing:.08em;white-space:nowrap;flex:none}
-.tick span{color:var(--ash)}
-.tick::after{content:"";flex:1;height:1px;background:linear-gradient(to right,var(--line-2),transparent)}
-
-h1,h2,h3,.h{font-family:"Syne",Impact,sans-serif;font-weight:800;
-  text-wrap:balance;margin:0;text-transform:uppercase}
-h1{font-size:var(--t-h1);line-height:1.08;letter-spacing:-.03em}
-h2{font-size:var(--t-h2);line-height:1.12;letter-spacing:-.02em;font-weight:700}
-h3{font-size:var(--t-h3);line-height:1.3;letter-spacing:0;font-weight:600;
-  color:var(--ink);text-transform:none}
-p{margin:0 0 1.1em;max-width:var(--measure)}
-p:last-child{margin-bottom:0}
-.lede{font-size:var(--t-lede);line-height:1.56;color:var(--ink);max-width:58ch;
-  letter-spacing:-.01em}
-.lede em,p em{color:var(--brass);font-style:italic}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--night);color:var(--bone);font:400 17px/1.6 var(--f-body);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+p{margin:0 0 1em}
+h1,h2,h3{margin:0;font-family:var(--f-head);font-weight:700;text-transform:uppercase;
+  letter-spacing:.01em;line-height:.95;text-wrap:balance}
+em{font-style:normal;color:var(--gold-2)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
+.skip{position:absolute;left:-999px;top:8px;z-index:200;background:var(--gold);color:var(--on-accent);padding:8px 14px;border-radius:var(--r)}
+.skip:focus{left:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:var(--page);margin:0 auto;padding:0 var(--gutter)}
 .muted{color:var(--ash)}
-.stack > * + *{margin-top:clamp(18px,2vw,28px)}
+.label{font:600 12px/1 var(--f-head);letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
 
-/* un mot qui chauffe : réservé aux 3 ou 4 mots les plus importants du site */
-.hot{color:var(--ember)}
-.glow{text-shadow:0 0 36px rgba(var(--ember-rgb),.5)}
+/* §3 ── boutons, puces ───────────────────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 26px;border-radius:var(--r);
+  font:700 15px/1 var(--f-head);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;
+  border:1px solid transparent;transition:background .25s var(--ease),color .25s,border-color .25s,transform .25s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--ember);color:var(--on-accent)}
+.btn.primary:hover{background:#FF8247}
+.btn.ghost{border-color:var(--line-2);color:var(--bone);background:rgba(11,9,7,.35);backdrop-filter:blur(6px)}
+.btn.ghost:hover{border-color:var(--gold);color:var(--gold-2)}
+.btn svg{width:18px;height:18px;flex:none}
+.chip{display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 11px;border-radius:999px;
+  font:600 12px/1 var(--f-head);letter-spacing:.14em;text-transform:uppercase;
+  background:rgba(244,236,226,.08);color:var(--bone);border:1px solid var(--line)}
+.chip.out{background:var(--ember);color:var(--on-accent);border-color:transparent}
+.chip.out::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;animation:pulse 1.6s infinite}
+.chip.dev{color:var(--gold-2);border-color:rgba(232,180,94,.35)}
+@keyframes pulse{50%{opacity:.25}}
+.arrow-link{display:inline-flex;align-items:center;gap:8px;font:700 14px/1 var(--f-head);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold)}
+.arrow-link::after{content:"→";transition:transform .25s var(--ease)}
+.arrow-link:hover::after{transform:translateX(5px)}
 
-/* ── 7. le héros ───────────────────────────────────────────────────────────
-   Plein cadre, image en fond, texte posé dessus. Le voile est un dégradé en
-   trois arrêts : sans celui du milieu, le texte du bas se détache mal sur une
-   image déjà sombre au centre. Une lueur de braise monte du sol.
-   ──────────────────────────────────────────────────────────────────────── */
-.hero{position:relative;min-height:clamp(520px,78svh,880px);display:flex;
-  align-items:flex-end;overflow:hidden;isolation:isolate}
-.hero-bg{position:absolute;inset:0;z-index:-2}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 58%;
-  opacity:.88;transform:scale(1.06);will-change:transform}
-.hero-bg::after{content:"";position:absolute;inset:0;
-  background:
-    linear-gradient(to bottom,rgba(var(--void-rgb),.88) 0%,rgba(var(--void-rgb),.30) 26%,rgba(var(--void-rgb),.66) 62%,var(--forge) 99%),
-    radial-gradient(80% 60% at 50% 104%,rgba(var(--ember-rgb),.22),transparent 64%),
-    radial-gradient(50% 44% at 86% 8%,rgba(var(--violet-rgb),.16),transparent 72%)}
-.hero-in{position:relative;z-index:1;width:100%;max-width:var(--page);
-  margin-inline:auto;padding:0 var(--gutter) clamp(40px,4.4vw,72px)}
-.hero .wordmark{width:min(620px,72%);margin-bottom:clamp(20px,2.6vw,32px);
-  filter:drop-shadow(0 18px 50px rgba(0,0,0,.7))}
-.hero h1{max-width:18ch}
-.hero .lede{margin-top:clamp(18px,2.2vw,28px)}
+/* §4 ── en-tête ──────────────────────────────────────────────────────────── */
+.head{position:fixed;inset:0 0 auto;z-index:100;height:var(--head-h);
+  transition:background .35s var(--ease),border-color .35s,height .35s var(--ease);
+  border-bottom:1px solid transparent}
+.head::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(11,9,7,.75),rgba(11,9,7,0));pointer-events:none;transition:opacity .35s}
+.head.solid{background:rgba(11,9,7,.92);backdrop-filter:blur(12px);border-bottom-color:var(--line)}
+.head.solid::before{opacity:0}
+.head-in{position:relative;height:100%;max-width:var(--page);margin:0 auto;padding:0 var(--gutter);
+  display:flex;align-items:center;gap:28px}
+.logo{display:flex;align-items:center;gap:12px;flex:none}
+.logo img{width:40px;height:40px}
+.logo b{font:700 22px/1 var(--f-brand);letter-spacing:.14em;color:var(--gold-2)}
+.menu{display:flex;align-items:center;gap:4px;margin-right:auto}
+.menu > a,.menu > .has-mega > button{height:var(--head-h);display:flex;align-items:center;gap:6px;padding:0 14px;
+  background:none;border:0;color:var(--bone);cursor:pointer;
+  font:600 15px/1 var(--f-head);letter-spacing:.14em;text-transform:uppercase;position:relative}
+.menu > a::after,.menu > .has-mega > button::after{content:"";position:absolute;left:14px;right:14px;bottom:18px;height:2px;
+  background:var(--ember);transform:scaleX(0);transition:transform .25s var(--ease)}
+.menu > a:hover::after,.menu > .has-mega:hover > button::after,.menu > .has-mega.open > button::after,
+.menu > a[aria-current="page"]::after{transform:scaleX(1)}
+.has-mega button svg{width:12px;height:12px;transition:transform .25s}
+.has-mega.open button svg{transform:rotate(180deg)}
+.mega{position:absolute;left:0;right:0;top:var(--head-h);background:rgba(14,11,9,.97);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .25s,transform .25s var(--ease),visibility .25s}
+.has-mega.open .mega{opacity:1;visibility:visible;transform:none}
+.mega-in{max-width:var(--page);margin:0 auto;padding:28px var(--gutter) 34px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.mega-card{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/10;background:var(--char)}
+.mega-card img.bg{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease),filter .4s}
+.mega-card:hover img.bg{transform:scale(1.06);filter:brightness(1.1)}
+.mega-card .cap{position:absolute;inset:auto 0 0;padding:14px 16px;background:linear-gradient(transparent,rgba(0,0,0,.85));
+  display:flex;justify-content:space-between;align-items:end;gap:8px}
+.mega-card .cap b{font:700 20px/1 var(--f-head);letter-spacing:.06em;text-transform:uppercase}
+.mega-card .cap span{font:600 11px/1 var(--f-head);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2)}
+.head-right{display:flex;align-items:center;gap:14px}
+.socials{display:flex;gap:4px}
+.socials a{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;color:var(--ash);transition:color .2s,background .2s}
+.socials a:hover{color:var(--bone);background:rgba(244,236,226,.08)}
+.socials svg{width:18px;height:18px}
+.head .btn{min-height:40px;padding:0 18px;font-size:14px}
+.burger{display:none;width:44px;height:44px;border:0;background:none;color:var(--bone);cursor:pointer}
+.burger span{display:block;width:24px;height:2px;margin:5px auto;background:currentColor;transition:transform .3s,opacity .3s}
+.nav-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-open .burger span:nth-child(2){opacity:0}
+.nav-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.drawer{display:none}
+@media (max-width:1080px){
+  .menu,.head-right .socials,.head-right .btn{display:none}
+  .burger{display:block;margin-left:auto}
+  .drawer{display:block;position:fixed;inset:var(--head-h) 0 0;z-index:99;background:var(--night);
+    padding:24px var(--gutter) 40px;overflow-y:auto;transform:translateX(100%);transition:transform .35s var(--ease)}
+  .nav-open .drawer{transform:none}
+  .drawer a{display:block;padding:16px 0;border-bottom:1px solid var(--line);font:700 26px/1 var(--f-head);text-transform:uppercase;letter-spacing:.06em}
+  .drawer .sub a{font-size:18px;color:var(--ash);padding:12px 0 12px 16px}
+  .drawer .btn{margin-top:26px;width:100%;justify-content:center}
+  .drawer .socials{margin-top:20px}
+}
 
-/* la ligne d'état, sous le héros : quatre faits sur une rangée de verre */
-.facts{display:flex;flex-wrap:wrap;gap:0;margin-top:clamp(26px,3.2vw,40px);
-  border:1px solid var(--line);border-radius:var(--r-lg);background:var(--glass);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow:hidden}
-.facts div{padding:16px clamp(16px,2vw,28px);border-right:1px solid var(--line);flex:1 1 auto}
-.facts div:last-child{border-right:0}
-.facts dt{font-size:var(--t-label);font-weight:500;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--ash-2)}
-.facts dd{margin:8px 0 0;font-family:"Syne",sans-serif;font-weight:700;
-  font-size:clamp(16px,1.4vw,20px);letter-spacing:-.01em;color:var(--ink)}
-.facts dd.hot{color:var(--ember)}   /* sinon .facts dd l'emporte sur .hot */
+/* §5 ── héros vidéo ──────────────────────────────────────────────────────── */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:#000}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .poster{z-index:0}
+.hero video{z-index:1}
+.hero::after{content:"";position:absolute;inset:0;z-index:2;
+  background:linear-gradient(180deg,rgba(11,9,7,.15) 0%,rgba(11,9,7,0) 40%,rgba(11,9,7,.6) 78%,var(--night) 100%),
+             radial-gradient(ellipse at 20% 80%,rgba(11,9,7,.55),transparent 60%)}
+.hero-in{position:relative;z-index:3;width:100%;max-width:var(--page);margin:0 auto;padding:0 var(--gutter) clamp(56px,9vh,110px)}
+.hero h1{font-size:clamp(54px,9vw,148px);max-width:12ch}
+.hero h1 .brand{font-family:var(--f-brand);font-weight:700;letter-spacing:.06em;color:var(--gold-2);text-transform:none}
+.hero .lede{max-width:52ch;margin:22px 0 32px;font-size:clamp(17px,1.35vw,21px);color:#E8DED3}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero .sound{position:absolute;z-index:4;right:var(--gutter);bottom:clamp(56px,9vh,110px);
+  width:48px;height:48px;border-radius:50%;border:1px solid var(--line-2);background:rgba(11,9,7,.45);color:var(--bone);cursor:pointer;display:grid;place-items:center}
+.hero .sound svg{width:20px;height:20px}
+.hero .sound:hover{border-color:var(--gold)}
+.scroll-cue{position:absolute;z-index:4;left:50%;bottom:18px;width:1px;height:46px;background:linear-gradient(var(--gold),transparent);animation:cue 2.2s infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* le repère de défilement */
-.scroll-hint{position:absolute;right:var(--gutter);bottom:clamp(40px,4.4vw,72px);
-  z-index:2;font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ash-2);writing-mode:vertical-rl;display:flex;align-items:center;gap:14px}
-.scroll-hint::after{content:"";width:1px;height:56px;
-  background:linear-gradient(to bottom,var(--line-3),transparent);
-  animation:drip 2.6s var(--ease) infinite}
-@keyframes drip{0%{transform:scaleY(.2);transform-origin:top}
-  55%{transform:scaleY(1);transform-origin:top}
-  56%{transform:scaleY(1);transform-origin:bottom}
-  100%{transform:scaleY(0);transform-origin:bottom}}
+/* §6 ── sections ─────────────────────────────────────────────────────────── */
+section{position:relative}
+.sec{padding:clamp(72px,10vw,140px) 0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px;margin-bottom:clamp(30px,4vw,52px)}
+.sec-head h2{font-size:clamp(40px,5.4vw,84px)}
+.sec-head .label{display:block;margin-bottom:14px}
+.sec-head p{max-width:46ch;margin:0;color:var(--ash)}
+.divider{height:1px;background:var(--line)}
 
-/* ── 8. le catalogue ───────────────────────────────────────────────────────
-   Chaque jeu est une RANGÉE, pas une carte dans une grille : une seule carte
-   au milieu d'une grille de trois se lit comme deux cases vides. Une rangée
-   est juste, qu'il y en ait une ou huit.
-   ──────────────────────────────────────────────────────────────────────── */
-.games{display:grid;gap:clamp(48px,6vw,88px)}
-.game{display:grid;grid-template-columns:minmax(0,1.14fr) minmax(0,1fr);
-  gap:clamp(26px,3.4vw,56px);align-items:center}
-.game:nth-child(even) .art{order:2}
-
-/* le cadre média : du verre, un filet directionnel, un voile qui monte du bas.
-   Au survol la bordure s'allume et une lueur d'ambiance se pose derrière —
-   jamais de saut vers le haut : la profondeur se fait par la lumière. */
-.art{position:relative;display:block;overflow:hidden;background:#000;
-  border:1px solid var(--line);border-radius:var(--r-lg);isolation:isolate;
-  transition:border-color .35s var(--ease),box-shadow .35s var(--ease)}
-.art img{transition:transform .8s var(--ease),opacity .5s var(--ease);opacity:.92}
-.art::before{content:"";position:absolute;inset:auto 0 0 0;height:58%;z-index:1;
-  pointer-events:none;
-  background:linear-gradient(to top,rgba(var(--void-rgb),.55),transparent 62%)}
-.art::after{content:"";position:absolute;inset:auto 0 0 0;height:52%;z-index:1;
-  pointer-events:none;opacity:0;transition:opacity .4s var(--ease);
-  background:linear-gradient(to top,rgba(var(--ember-rgb),.28),transparent)}
-.art:hover img,.art:focus-visible img{transform:scale(1.04);opacity:1}
-.art:hover,.art:focus-visible{border-color:rgba(var(--ember-rgb),.40);
-  box-shadow:0 0 35px -5px rgba(var(--ember-rgb),.25)}
-.art:hover::after,.art:focus-visible::after{opacity:1}
-
-.game .title{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
-/* Les pastilles d'état ont leur propre rangée : collées au titre elles
-   passaient à la ligne l'une sans l'autre selon la largeur du nom du jeu. */
-.states{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.game h2{font-size:clamp(30px,4vw,52px)}
-.game .hook{font-size:clamp(16px,1.15vw,18px);margin:clamp(14px,1.6vw,20px) 0 0;
-  color:var(--ash);max-width:48ch}
-.game .hook em{color:var(--ink);font-style:normal;font-weight:500}
-
-/* l'état d'un jeu se lit à la couleur autant qu'au mot :
-   sorti, ça brûle ; annoncé, c'est du cyan ; en chantier, c'est éteint. */
-.state{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-  height:26px;padding:0 10px;border-radius:var(--r);
-  border:1px solid var(--line-2);background:rgba(255,255,255,.03);
-  color:var(--ash);white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
-.state::before{content:"";width:5px;height:5px;background:currentColor;flex:none;
-  border-radius:50%}
-.state.out{border-color:rgba(var(--ember-rgb),.45);color:var(--ember);
-  background:rgba(var(--ember-rgb),.07);
-  box-shadow:0 0 22px -6px rgba(var(--ember-rgb),.55)}
-.state.out::before{animation:pulse 2.4s var(--ease) infinite}
-.state.soon{border-color:rgba(var(--brass-rgb),.40);color:var(--brass);
-  background:rgba(var(--brass-rgb),.06)}
-@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(var(--ember-rgb),.6)}
-  60%{opacity:.5;box-shadow:0 0 0 6px rgba(var(--ember-rgb),0)}}
-
-/* le lien « lire la suite », avec sa flèche qui avance */
-.more{margin-top:clamp(20px,2.4vw,30px);display:inline-flex;align-items:center;gap:12px;
-  font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
-.more::after{content:"";width:34px;height:1px;background:currentColor;
-  transition:width .3s var(--ease)}
-.more:hover{color:var(--brass)}
-.more:hover::after{width:54px}
-
-/* ── 9. les règles ─────────────────────────────────────────────────────── */
-.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,2.6vw,36px);
-  counter-reset:r}
-.rule{counter-increment:r;position:relative}
-.rule .art{margin-bottom:18px}
-.rule .art::before{display:none}
-/* Le numéro est une plaque posée sur l'image, pas un préfixe du titre : collé
-   au titre, il s'alignait sur la dernière ligne des titres à deux lignes. */
-.rule::before{content:counter(r,decimal-leading-zero);position:absolute;z-index:2;
-  top:12px;left:12px;padding:5px 9px;border-radius:var(--r);
-  background:var(--ember);color:var(--on-accent);
-  font-family:"Space Grotesk",ui-monospace,monospace;font-size:10px;
-  font-weight:700;letter-spacing:.1em}
-/* min-height sur deux lignes : sans elle, « THE GROUND IS WHERE YOU BURN »
-   pousse son paragraphe plus bas que ceux de ses voisins. */
-.rule h3{display:block;margin:0 0 10px;min-height:2.6em}
-.rule p{font-size:15px;line-height:1.6;color:var(--ash);max-width:40ch;margin:0}
-
-/* ── 10. les chiffres ──────────────────────────────────────────────────────
-   Les chiffres sont l'argument de ce jeu : « 0 fichier audio » convainc mieux
-   qu'un paragraphe. Des tuiles de verre jointives, et le zéro qui compte en
-   braise.
-   ──────────────────────────────────────────────────────────────────────── */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
-  gap:1px;background:var(--line);border:1px solid var(--line);
-  border-radius:var(--r-lg);overflow:hidden}
-.stats div{background:var(--slag);padding:clamp(20px,2.2vw,28px) clamp(14px,1.4vw,20px);
-  transition:background .3s var(--ease)}
-.stats div:hover{background:var(--slag-2)}
-.stats b{display:block;font-family:"Syne",sans-serif;font-weight:800;
-  font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-.03em;
-  color:var(--ink);font-variant-numeric:tabular-nums}
-.stats span{display:block;margin-top:10px;font-size:var(--t-label);font-weight:500;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--ash-2)}
-.stats .flame{background:linear-gradient(160deg,var(--flame-bg),var(--slag) 64%)}
-.stats .flame b{color:var(--ember);text-shadow:0 0 34px rgba(var(--ember-rgb),.5)}
-.stats .flame span{color:var(--ember-dim)}
-
-/* la variante compacte, dans une rangée du catalogue */
-.stats.inline{grid-template-columns:repeat(auto-fit,minmax(88px,1fr));
-  margin-top:clamp(20px,2.2vw,28px)}
-.stats.inline b{font-size:clamp(24px,2.2vw,30px)}
-.stats.inline div{padding:14px 12px}
-
-/* ── 11. les boutons ───────────────────────────────────────────────────────
-   Deux seulement. L'action principale est pleine braise, texte noir dessus ;
-   l'action secondaire est du verre dont le filet s'allume en cyan.
-   ──────────────────────────────────────────────────────────────────────── */
-.doors{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(28px,3vw,40px)}
-.door{position:relative;border-radius:var(--r);
-  font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  padding:15px 26px;border:1px solid var(--line-2);color:var(--ink);
-  background:rgba(255,255,255,.04);
-  transition:border-color .22s var(--ease),color .22s var(--ease),
-             background .22s var(--ease),box-shadow .22s var(--ease),filter .22s var(--ease)}
-.door small{display:block;font-size:10px;font-weight:500;letter-spacing:.08em;
-  color:var(--ash-2);margin-top:6px;transition:color .22s var(--ease)}
-.door:hover{border-color:var(--brass);color:var(--brass);
-  box-shadow:0 0 28px -8px rgba(var(--brass-rgb),.45)}
-.door:hover small{color:var(--brass)}
-.door.primary{border-color:transparent;color:var(--on-accent);
-  background:linear-gradient(180deg,var(--ember),var(--ember-dim))}
-.door.primary small{color:rgba(var(--on-accent-rgb),.70)}
-.door.primary:hover{color:var(--on-accent);border-color:transparent;
-  filter:brightness(1.08);box-shadow:0 0 24px rgba(var(--ember-rgb),.45)}
-.door.primary:hover small{color:rgba(var(--on-accent-rgb),.78)}
-
-/* ── 12. contact ───────────────────────────────────────────────────────── */
-.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
-  gap:clamp(28px,4vw,72px);align-items:start}
-.lines{display:grid;gap:0;margin:0;padding:0;border-top:1px solid var(--line)}
-.lines > div{display:flex;flex-wrap:wrap;gap:4px 24px;align-items:baseline;
-  padding-block:15px;border-bottom:1px solid var(--line)}
-.lines dt{font-size:var(--t-label);font-weight:500;letter-spacing:.11em;
-  text-transform:uppercase;color:var(--ash-2);min-width:9em;flex:none}
-.lines dd{margin:0;word-break:break-word}
-
-/* ── 13. pied de page ──────────────────────────────────────────────────── */
-footer{border-top:1px solid var(--line);
-  padding-block:clamp(30px,3.6vw,44px) clamp(40px,5vw,64px);
-  font-size:var(--t-label);font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ash-2);display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center}
-footer a{color:var(--ash-2)}
-footer a:hover{color:var(--brass)}
-footer .sep{margin-left:auto}
-
-/* ── 14. les révélations ───────────────────────────────────────────────────
-   Un seul effet, posé par IntersectionObserver : l'élément monte de 16 px en
-   apparaissant. Le décalage entre voisins vient d'une variable --d, pour ne
-   pas écrire une règle par enfant.
-   ──────────────────────────────────────────────────────────────────────── */
-.rise{opacity:0;transform:translateY(16px);
-  transition:opacity .7s var(--ease),transform .7s var(--ease);
-  transition-delay:calc(var(--d,0) * 90ms)}
+/* §7 ── révélations ──────────────────────────────────────────────────────── */
+.rise{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
 .rise.in{opacity:1;transform:none}
-
-/* ── 15. adaptatif ─────────────────────────────────────────────────────── */
-@media (max-width:1100px){
-  .gauge{display:none}
-}
-@media (max-width:880px){
-  .game,.split{grid-template-columns:1fr}
-  .game:nth-child(even) .art{order:0}
-  .rules{grid-template-columns:1fr;gap:clamp(34px,6vw,48px)}
-  .rule p{max-width:var(--measure)}
-  .brand .role{display:none}
-  .scroll-hint{display:none}
-}
-@media (max-width:620px){
-  :root{--t-h1:clamp(34px,9vw,44px)}
-  .hero{min-height:74svh}
-  .hero .wordmark{width:86%}
-  /* Deux colonnes, mais le dernier fait prend toute la largeur quand il est
-     seul sur sa rangée : une case vide à côté se lit comme un oubli. */
-  .facts{display:grid;grid-template-columns:1fr 1fr}
-  .facts div{border-right:0;border-bottom:1px solid var(--line)}
-  .facts div:nth-child(even){border-right:0}
-  .facts div:last-child:nth-child(odd){grid-column:1 / -1}
-  .facts div:last-child{border-bottom:0}
-  .doors .door{flex:1 1 100%;text-align:center}
-  .lines dt{min-width:100%}
-  .strip .right{display:none}
-}
-
-/* En dessous de 560 px la barre du haut déborde : le nom du studio et quatre
-   liens ne tiennent pas. On garde ce qui sert — la marque et l'appel à
-   l'action — et on resserre le reste. */
-@media (max-width:560px){
-  .top-in{padding:10px 18px;gap:12px}
-  .brand img{width:30px;height:30px}
-  .brand .name{font-size:15px;letter-spacing:.14em}
-  .nav{gap:14px;font-size:12px}
-  .nav .hide-s,.nav a:not(.cta):not(:first-of-type){display:none}
-  .nav a.cta{padding:9px 14px;letter-spacing:.06em}
-}
-@media (max-width:400px){
-  .nav a:not(.cta){display:none}
-}
-
-/* ── 17. SURVOLT, le même site sous tension ──────────────────────────────
-   La page de SURVOLT (et sa rangée dans le catalogue) reprend exactement la
-   mise en page du studio ; seuls les jetons changent. La braise cède la place
-   au cyan de la charge, le cyan secondaire à l'or de la charge ×3, et le noir
-   obsidienne tire sur le bleu nuit.
-   ──────────────────────────────────────────────────────────────────────── */
-.t-volt{
-  --void:#04050C;
-  --forge:#070910;
-  --slag:#0E1222;
-  --slag-2:#141A2E;
-  --glass:rgba(14,18,34,.70);
-  --glass-2:rgba(20,26,46,.85);
-
-  --ink:#EEF3FF;
-  --ash:#9AA3C2;
-  --ash-2:#7F88A6;
-
-  --ember:#4DE6FF;          /* la charge : c'est elle qui s'actionne ici */
-  --ember-dim:#2FBEDD;
-  --brass:#FFCC40;          /* l'or de la charge ×3 : la couleur technique */
-  --gold:#FFE08A;
-  --violet:#FF59A6;         /* l'ombre rose du logo : la lueur d'ambiance */
-  --white-hot:#F2FDFF;
-
-  --ember-rgb:77,230,255;
-  --brass-rgb:255,204,64;
-  --violet-rgb:255,89,166;
-  --void-rgb:4,5,12;
-  --on-accent:#03121A;
-  --on-accent-rgb:3,18,26;
-  --flame-bg:#06202C;
-  --gauge-fill:linear-gradient(to top,#F4F7FF 0%,#F4F7FF 19%,#4DE6FF 21%,#4DE6FF 39%,
-    #FFCC40 41%,#FFCC40 59%,#FFE08A 61%,#FFE08A 79%,#FF59A6 81%,#FF8CC4 100%);
-}
-body.t-volt{background:var(--forge)}
-/* le logo de SURVOLT est une image claire : un peu moins large que celui de HEATSINK */
-.t-volt .hero .wordmark{width:min(600px,78%)}
-.t-volt .hero-bg img{object-position:center 42%}
-/* le mot qui chauffe devient le mot qui charge : une pointe de rose dans la lueur */
-.t-volt .glow{text-shadow:0 0 30px rgba(77,230,255,.55),0 0 64px rgba(255,89,166,.25)}
-
-/* ── 18. état du serveur en ligne ──────────────────────────────────────────
-   Un panneau posé sur la page du jeu (et une ligne dans le catalogue) qui lit
-   https://lobby.anquri.net/api/stats depuis le navigateur. Tant que la
-   réponse n'est pas arrivée, les chiffres restent en tirets : la mise en page
-   ne bouge pas quand ils se remplissent.
-   ──────────────────────────────────────────────────────────────────────── */
-.live{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
-  background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.live-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;
-  padding:16px clamp(16px,2vw,24px);border-bottom:1px solid var(--line);
-  font-size:var(--t-label);font-weight:500;letter-spacing:.11em;text-transform:uppercase;
-  color:var(--ash)}
-.live-head .where{color:var(--ash-2);margin-left:auto;letter-spacing:.06em;text-transform:none}
-.live-state{display:inline-flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--ash-2);flex:none;display:inline-block}
-[data-state="up"] .dot{background:var(--ok);box-shadow:0 0 0 0 rgba(61,242,160,.6);animation:beat 2.4s var(--ease) infinite}
-[data-state="down"] .dot{background:var(--bad)}
-[data-state="up"] .live-state{color:var(--ok)}
-[data-state="down"] .live-state{color:var(--bad)}
-@keyframes beat{0%,100%{box-shadow:0 0 0 0 rgba(61,242,160,.55)}60%{box-shadow:0 0 0 7px rgba(61,242,160,0)}}
-.live .stats{border:0;border-radius:0;background:var(--line);grid-template-columns:repeat(2,minmax(0,1fr))}
-.live .stats div{background:transparent}
-.live .stats b{font-size:clamp(28px,3.2vw,42px)}
-.live-foot{padding:12px clamp(16px,2vw,24px);border-top:1px solid var(--line);
-  font-size:10px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--ash-2)}
-
-/* la version d'une ligne, dans le catalogue et dans la liste de contact */
-.live-mini{display:inline-flex;align-items:center;gap:10px;margin:14px 0 0;max-width:none;
-  font-size:11px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--ash)}
-.live-mini[data-state="up"] b{color:var(--ok);font-weight:700}
-.live-mini[data-state="down"] b{color:var(--bad);font-weight:700}
-.lines .live-mini{margin:0}
-.game .live-mini{display:flex;flex-wrap:wrap}
-
-/* ── 19. SAINT-MARC, le même site après l'extinction des feux ────────────
-   La page de SAINT-MARC (et sa rangée dans le catalogue) reprend la mise en
-   page du studio ; seuls les jetons changent. Le noir tire sur le vert d'un
-   couloir d'hôpital la nuit, la braise devient le rouge du sang (tout ce qui
-   s'actionne), le cyan devient le blanc d'un néon (la technique, les liens).
-   La jauge est un pouls : elle se remplit du calme (64) à la panique (172).
-   ──────────────────────────────────────────────────────────────────────── */
-.t-marc{
-  --void:#040606;
-  --forge:#070909;
-  --slag:#0F1413;
-  --slag-2:#151C1B;
-  --glass:rgba(15,20,19,.72);
-  --glass-2:rgba(21,28,27,.86);
-
-  --ink:#ECF1EF;
-  --ash:#9BA7A4;
-  --ash-2:#7F8C89;
-
-  --ember:#E5484D;          /* le sang : c'est lui qui s'actionne ici */
-  --ember-dim:#C2363B;
-  --brass:#CDEFE6;          /* le blanc d'un néon : la couleur technique */
-  --gold:#FFFFFF;
-  --violet:#3F7A6C;         /* le vert malade des murs : la lueur d'ambiance */
-  --white-hot:#FFF4F2;
-
-  --ember-rgb:229,72,77;
-  --brass-rgb:205,239,230;
-  --violet-rgb:63,122,108;
-  --void-rgb:4,6,6;
-  --on-accent:#140405;
-  --on-accent-rgb:20,4,5;
-  --flame-bg:#1E0708;
-  --gauge-fill:linear-gradient(to top,#20302D 0%,#3F7A6C 30%,#9A3236 62%,#E5484D 86%,#FFF4F2 100%);
-}
-body.t-marc{background:var(--forge)}
-.t-marc .hero .wordmark{width:min(620px,82%)}
-.t-marc .hero-bg img{object-position:center 50%}
-/* le mot qui chauffe devient le mot qui saigne, sous un halo de néon */
-.t-marc .glow{text-shadow:0 0 28px rgba(229,72,77,.5),0 0 70px rgba(205,239,230,.12)}
-/* la voix intérieure : ce que le personnage se dit, cité tel quel */
-.voice{margin:0;padding:0;list-style:none;display:grid;gap:clamp(14px,1.8vw,22px)}
-.voice li{margin:0;padding:0 0 0 18px;border-left:2px solid rgba(var(--ember-rgb),.55);
-  font-family:"Space Grotesk",system-ui,sans-serif;font-size:var(--t-lede);line-height:1.45;color:var(--ink)}
-.voice li small{display:block;margin-top:6px;font-family:inherit;font-size:var(--t-label);
-  letter-spacing:.11em;text-transform:uppercase;color:var(--ash-2)}
-
-/* ── 20. LUDUS MASTER, le même site à la lueur des torches ──────────────
-   La page de LUDUS MASTER (et sa rangée dans le catalogue) reprend la mise en
-   page du studio ; seuls les jetons changent. Le noir tire sur la pierre
-   d'un couloir de ludus, la braise devient l'or des torches et du bronze
-   (tout ce qui s'actionne), le cyan devient l'os du sable (la technique, les
-   liens), et la lueur d'ambiance est le sang séché sur les murs. La jauge est
-   la faveur de la foule : elle monte du silence (0 %) à la clameur (100 %).
-   ──────────────────────────────────────────────────────────────────────── */
-.t-ludus{
-  --void:#070504;
-  --forge:#0C0907;
-  --slag:#16110D;
-  --slag-2:#1E1712;
-  --glass:rgba(22,17,13,.72);
-  --glass-2:rgba(30,23,18,.86);
-
-  --ink:#F2EADB;
-  --ash:#AA9D88;
-  --ash-2:#8C806C;
-
-  --ember:#E0A44A;          /* l'or des torches : c'est lui qui s'actionne ici */
-  --ember-dim:#BF8530;
-  --brass:#EAD9B6;          /* l'os du sable : la couleur technique */
-  --gold:#FFF1D2;
-  --violet:#8E2A1C;         /* le sang séché des murs : la lueur d'ambiance */
-  --white-hot:#FFF6E6;
-
-  --ember-rgb:224,164,74;
-  --brass-rgb:234,217,182;
-  --violet-rgb:142,42,28;
-  --void-rgb:7,5,4;
-  --on-accent:#1A1006;
-  --on-accent-rgb:26,16,6;
-  --flame-bg:#241306;
-  --gauge-fill:linear-gradient(to top,#2A1A10 0%,#6B2418 28%,#B5401F 52%,#E0A44A 80%,#FFF1D2 100%);
-}
-body.t-ludus{background:var(--forge)}
-.t-ludus .hero .wordmark{width:min(640px,84%)}
-.t-ludus .hero-bg img{object-position:center 40%}
-/* le mot qui chauffe devient le mot qui saigne, sous la lueur d'une torche */
-.t-ludus .glow{text-shadow:0 0 28px rgba(224,164,74,.5),0 0 70px rgba(142,42,28,.35)}
-/* les combos : une ligne par école, la préparation puis ce qu'elle ouvre */
-.combos{margin:0;padding:0;list-style:none;display:grid;gap:clamp(10px,1.4vw,14px)}
-.combos li{display:grid;grid-template-columns:minmax(110px,.8fr) 2fr;gap:6px 18px;
-  padding:14px 0;border-top:1px solid var(--line);align-items:baseline}
-.combos li b{font-family:"Space Grotesk",system-ui,sans-serif;font-size:var(--t-label);
-  letter-spacing:.11em;text-transform:uppercase;color:var(--ash-2);font-weight:600}
-.combos li span{color:var(--ink)}
-.combos li em{color:var(--ember);font-style:normal;font-weight:600}
-@media (max-width:640px){.combos li{grid-template-columns:1fr}}
-
-/* ── 16. confort et impression ─────────────────────────────────────────── */
 @media (prefers-reduced-motion:reduce){
+  .rise{opacity:1;transform:none;transition:none}
+  .scroll-cue,.chip.out::before{animation:none}
   html{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
-    transition-duration:.001ms!important}
-  .rise{opacity:1;transform:none}
-  .hero-bg img{transform:none}
-  [data-state] .dot{animation:none}
 }
-@media print{
-  body{background:#fff;color:#000}
-  body::before,body::after,.gauge,.scroll-hint,.top,.strip{display:none}
-  .art img,.hero-bg{filter:grayscale(1)}
-  a{color:#000;text-decoration:underline}
+
+/* §8 ── carrousel « à la une » ───────────────────────────────────────────── */
+.feature{position:relative;height:min(78vh,760px);min-height:520px;overflow:hidden;border-radius:var(--r-lg);background:var(--char)}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .9s var(--ease),visibility .9s}
+.slide.on{opacity:1;visibility:visible}
+.slide .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 7s linear}
+.slide.on .bg{transform:scale(1)}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,9,7,.92) 0%,rgba(11,9,7,.65) 38%,rgba(11,9,7,0) 72%),
+  linear-gradient(0deg,rgba(11,9,7,.85),transparent 45%)}
+.slide-in{position:absolute;z-index:2;left:clamp(24px,5vw,72px);bottom:clamp(96px,14vh,140px);max-width:min(540px,82%)}
+.slide .wm{max-height:120px;width:auto;max-width:100%;margin-bottom:18px;filter:drop-shadow(0 6px 24px rgba(0,0,0,.6))}
+.slide .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.slide p{font-size:clamp(16px,1.2vw,19px);color:#E6DCD0;margin-bottom:24px}
+.slide .actions{display:flex;flex-wrap:wrap;gap:10px}
+.tabs{position:absolute;z-index:3;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.tab{position:relative;padding:18px clamp(12px,2vw,26px) 20px;background:rgba(11,9,7,.55);backdrop-filter:blur(8px);border:0;border-right:1px solid var(--line);
+  color:var(--ash);text-align:left;cursor:pointer;font:700 16px/1 var(--f-head);letter-spacing:.1em;text-transform:uppercase;transition:color .25s,background .25s}
+.tab:last-child{border-right:0}
+.tab small{display:block;margin-top:6px;font:500 12px/1.2 var(--f-body);letter-spacing:.04em;text-transform:none;color:var(--ash-2)}
+.tab:hover,.tab[aria-selected="true"]{color:var(--bone);background:rgba(20,16,13,.8)}
+.tab .bar{position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--ember)}
+.tab[aria-selected="true"] .bar{animation:fill var(--slide-ms,7000ms) linear forwards}
+.feature.paused .tab[aria-selected="true"] .bar{animation-play-state:paused}
+@keyframes fill{to{width:100%}}
+@media (max-width:760px){
+  .tab small{display:none}
+  .tab{font-size:13px;padding:14px 10px}
+  .slide-in{bottom:84px}
+  .slide::after{background:linear-gradient(0deg,rgba(11,9,7,.95) 10%,rgba(11,9,7,.35) 70%,rgba(11,9,7,.2))}
 }
+
+/* §9 ── grille des jeux ──────────────────────────────────────────────────── */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{height:40px;padding:0 18px;border-radius:999px;border:1px solid var(--line-2);background:none;color:var(--ash);cursor:pointer;
+  font:600 13px/1 var(--f-head);letter-spacing:.16em;text-transform:uppercase;transition:all .2s}
+.filters button:hover{color:var(--bone);border-color:var(--bone)}
+.filters button[aria-pressed="true"]{background:var(--bone);color:var(--night);border-color:var(--bone)}
+.games{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.6vw,24px)}
+@media (max-width:1100px){.games{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.games{grid-template-columns:1fr}}
+.card{position:relative;display:block;border-radius:var(--r-lg);overflow:hidden;background:var(--char);aspect-ratio:3/4;isolation:isolate;
+  transition:transform .45s var(--ease),box-shadow .45s}
+.card[hidden]{display:none}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 60px -20px rgba(0,0,0,.8),0 0 0 1px var(--line-2)}
+.card .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .8s var(--ease)}
+.card:hover .bg{transform:scale(1.07)}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,9,7,.1) 30%,rgba(11,9,7,.92) 85%)}
+.card .top{position:absolute;top:16px;left:16px;right:16px;display:flex;flex-wrap:wrap;gap:6px}
+.card .body{position:absolute;inset:auto 0 0;padding:22px}
+.card .wm{height:58px;width:auto;max-width:100%;object-fit:contain;object-position:left bottom;margin-bottom:12px}
+.card .genre{font:600 12px/1.3 var(--f-head);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2);margin-bottom:10px}
+.card .hook{font-size:15px;line-height:1.5;color:#DDD2C6;margin:0;max-height:0;opacity:0;overflow:hidden;transition:max-height .5s var(--ease),opacity .4s,margin .4s}
+.card:hover .hook,.card:focus-visible .hook{max-height:140px;opacity:1;margin-top:4px}
+.card .plat{display:flex;gap:10px;margin-top:14px;color:var(--ash);font:600 12px/1 var(--f-head);letter-spacing:.14em;text-transform:uppercase}
+@media (hover:none){.card .hook{max-height:none;opacity:1}}
+
+/* §10 ── bande-annonce ───────────────────────────────────────────────────── */
+.trailer{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(24px,4vw,64px);align-items:center}
+@media (max-width:900px){.trailer{grid-template-columns:1fr}}
+.yt{position:relative;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;background:#000;cursor:pointer;border:0;padding:0;width:100%}
+.yt img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),filter .4s}
+.yt:hover img{transform:scale(1.04);filter:brightness(1.08)}
+.yt .play{position:absolute;inset:0;margin:auto;width:86px;height:86px;border-radius:50%;background:var(--ember);color:var(--on-accent);
+  display:grid;place-items:center;box-shadow:0 0 0 12px rgba(255,106,43,.22);transition:transform .3s var(--ease)}
+.yt:hover .play{transform:scale(1.08)}
+.yt .play svg{width:30px;height:30px;margin-left:4px}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.trailer h2{font-size:clamp(36px,4vw,64px);margin:14px 0 18px}
+
+/* §11 ── actualités ──────────────────────────────────────────────────────── */
+.news{display:grid;grid-template-columns:2fr 1fr 1fr;gap:clamp(14px,1.6vw,24px)}
+@media (max-width:1000px){.news{grid-template-columns:1fr 1fr}.news .post:first-child{grid-column:1/-1}}
+@media (max-width:600px){.news{grid-template-columns:1fr}}
+.post{display:flex;flex-direction:column;border-radius:var(--r-lg);overflow:hidden;background:var(--char);border:1px solid var(--line);transition:border-color .3s,transform .4s var(--ease)}
+.post:hover{border-color:var(--line-2);transform:translateY(-4px)}
+.post .ph{aspect-ratio:16/9;overflow:hidden}
+.post:first-child .ph{aspect-ratio:16/8}
+.post .ph img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.post:hover .ph img{transform:scale(1.05)}
+.post .tx{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.post .meta{display:flex;gap:12px;font:600 12px/1 var(--f-head);letter-spacing:.16em;text-transform:uppercase;color:var(--ash)}
+.post .meta b{color:var(--gold)}
+.post h3{font-size:clamp(22px,1.9vw,30px);line-height:1}
+.post p{margin:0;color:var(--ash);font-size:15px}
+.post .arrow-link{margin-top:auto;padding-top:8px}
+
+/* §12 ── studio, presse, réseaux ─────────────────────────────────────────── */
+.studio{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(30px,6vw,96px);align-items:center}
+@media (max-width:900px){.studio{grid-template-columns:1fr}}
+.studio h2{font-size:clamp(46px,6vw,96px)}
+.studio h2 em{color:var(--ember)}
+.studio .seal{position:relative;aspect-ratio:1;max-width:520px;width:100%;margin:auto}
+.studio .seal img{position:relative;width:100%;filter:drop-shadow(0 30px 80px rgba(255,106,43,.25))}
+.studio .seal::before{content:"";position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(255,106,43,.28),transparent 65%);filter:blur(30px)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;margin-top:36px}
+@media (max-width:640px){.facts{grid-template-columns:repeat(2,1fr)}}
+.facts div{background:var(--night);padding:22px 20px}
+.facts b{display:block;font:700 clamp(30px,3vw,46px)/1 var(--f-head);color:var(--bone)}
+.facts span{display:block;margin-top:8px;font:600 12px/1.2 var(--f-head);letter-spacing:.16em;text-transform:uppercase;color:var(--ash)}
+.band{background:linear-gradient(180deg,var(--char),var(--night));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.press{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px)}
+@media (max-width:900px){.press{grid-template-columns:minmax(0,1fr)}}
+.press h2{font-size:clamp(40px,5vw,78px);margin:12px 0 20px}
+.lines{margin:0;border-top:1px solid var(--line)}
+.lines div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.lines dt{font:600 12px/1.6 var(--f-head);letter-spacing:.16em;text-transform:uppercase;color:var(--ash)}
+.lines dd{margin:0;min-width:0;overflow-wrap:anywhere}
+@media (max-width:520px){.lines div{grid-template-columns:1fr;gap:4px}.kit{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.lines a{color:var(--gold-2)}
+.lines a:hover{text-decoration:underline}
+.kit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px}
+.kit a{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:var(--r);border:1px solid var(--line);background:var(--char);font:600 13px/1.2 var(--f-head);letter-spacing:.1em;text-transform:uppercase;transition:border-color .2s}
+.kit a:hover{border-color:var(--gold)}
+.kit img{aspect-ratio:16/9;object-fit:cover;border-radius:4px;width:100%;background:#000}
+.kit a.logo-tile img{object-fit:contain;padding:10px;background:radial-gradient(circle,#2A1F18,#0B0907)}
+.live{display:inline-flex;align-items:center;gap:8px;font-size:15px}
+.live .dot{width:9px;height:9px;border-radius:50%;background:var(--ash-2)}
+[data-state="up"] .dot{background:var(--ok);box-shadow:0 0 10px var(--ok)}
+[data-state="down"] .dot{background:var(--bad)}
+.follow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.follow{grid-template-columns:1fr}}
+.follow a{display:flex;align-items:center;gap:18px;padding:24px;border-radius:var(--r-lg);border:1px solid var(--line);background:var(--char);transition:border-color .3s,transform .3s var(--ease)}
+.follow a:hover{border-color:var(--gold);transform:translateY(-3px)}
+.follow svg{width:34px;height:34px;flex:none;color:var(--gold)}
+.follow b{display:block;font:700 22px/1 var(--f-head);letter-spacing:.06em;text-transform:uppercase}
+.follow span{display:block;margin-top:6px;color:var(--ash);font-size:14px}
+
+/* §13 ── pages de jeu ────────────────────────────────────────────────────── */
+.ghero{position:relative;min-height:92svh;display:flex;align-items:flex-end;overflow:hidden}
+.ghero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04);animation:drift 22s var(--ease) infinite alternate}
+@keyframes drift{to{transform:scale(1.12) translate(-1.5%,1%)}}
+.ghero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--g-night) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.1) 75%),
+  linear-gradient(0deg,var(--g-night) 2%,transparent 45%)}
+.ghero .ghin{position:relative;z-index:2;width:100%;max-width:var(--page);margin:0 auto;padding:calc(var(--head-h) + 40px) var(--gutter) clamp(60px,10vh,120px)}
+.ghero .wm{max-height:150px;width:auto;max-width:min(620px,90%);margin-bottom:22px;filter:drop-shadow(0 8px 30px rgba(0,0,0,.7))}
+.ghero h1{font-size:clamp(40px,5.2vw,82px);max-width:16ch;margin:18px 0 18px}
+.ghero .lede{max-width:54ch;font-size:clamp(17px,1.3vw,20px);color:#E6DCD0;margin-bottom:30px}
+.ghero .actions{display:flex;flex-wrap:wrap;gap:12px}
+.gfacts{display:flex;flex-wrap:wrap;gap:0;margin-top:40px;border-top:1px solid rgba(255,255,255,.14)}
+.gfacts div{padding:16px 28px 0 0;margin-right:28px}
+.gfacts dt{font:600 11px/1 var(--f-head);letter-spacing:.2em;text-transform:uppercase;color:var(--ash)}
+.gfacts dd{margin:8px 0 0;font:700 18px/1 var(--f-head);letter-spacing:.06em;text-transform:uppercase}
+.subnav{position:sticky;top:var(--head-h);z-index:50;background:rgba(11,9,7,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.subnav .wrap{display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none}
+.subnav a{flex:none;padding:16px 14px;font:600 14px/1 var(--f-head);letter-spacing:.16em;text-transform:uppercase;color:var(--ash);border-bottom:2px solid transparent}
+.subnav a:hover,.subnav a.on{color:var(--bone);border-bottom-color:var(--g-accent)}
+.subnav .btn{margin-left:auto;min-height:38px;padding:0 16px;font-size:13px}
+.story{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(30px,6vw,96px)}
+@media (max-width:900px){.story{grid-template-columns:1fr}}
+.story h2{font-size:clamp(40px,5vw,80px)}
+.story p{font-size:18px;color:#DDD2C6;max-width:62ch}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,24px)}
+@media (max-width:900px){.rules{grid-template-columns:1fr}}
+.rule{border-radius:var(--r-lg);overflow:hidden;background:var(--char);border:1px solid var(--line)}
+.rule .ph{aspect-ratio:16/10;overflow:hidden;position:relative}
+.rule .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.rule:hover .ph img{transform:scale(1.05)}
+.rule .n{position:absolute;top:14px;left:14px;font:700 13px/1 var(--f-head);letter-spacing:.2em;color:var(--g-accent);background:rgba(0,0,0,.6);padding:7px 10px;border-radius:4px}
+.rule .tx{padding:22px 24px 26px}
+.rule h3{font-size:clamp(24px,2vw,32px);margin-bottom:12px}
+.rule p{margin:0;color:var(--ash);font-size:16px}
+.list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.list > div{background:var(--night);padding:26px 24px}
+.list b{display:block;font:700 22px/1.05 var(--f-head);letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px;color:var(--g-accent-2)}
+.list p{margin:0;color:var(--ash);font-size:15px}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:900px){.quotes{grid-template-columns:1fr}}
+.quotes figure{margin:0;padding:28px;border-left:2px solid var(--g-accent);background:var(--char);border-radius:0 var(--r-lg) var(--r-lg) 0}
+.quotes blockquote{margin:0 0 14px;font-size:19px;line-height:1.5;color:var(--bone)}
+.quotes figcaption{font:600 12px/1 var(--f-head);letter-spacing:.18em;text-transform:uppercase;color:var(--ash)}
+.numbers{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media (max-width:900px){.numbers{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:520px){.numbers{grid-template-columns:repeat(2,1fr)}}
+.numbers div{background:var(--night);padding:clamp(22px,3vw,40px) 16px;text-align:center}
+.numbers b{display:block;font:700 clamp(38px,4.4vw,70px)/1 var(--f-head);color:var(--bone)}
+.numbers div:last-child b{color:var(--g-accent)}
+.numbers span{display:block;margin-top:10px;font:600 12px/1.2 var(--f-head);letter-spacing:.18em;text-transform:uppercase;color:var(--ash)}
+.note{max-width:70ch;margin:28px auto 0;text-align:center;color:var(--ash)}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.gallery{grid-template-columns:repeat(2,1fr)}}
+.gallery button{padding:0;border:0;background:#000;border-radius:var(--r);overflow:hidden;cursor:zoom-in;aspect-ratio:16/9}
+.gallery button:first-child{grid-column:span 2;grid-row:span 2}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),opacity .3s}
+.gallery button:hover img{transform:scale(1.05)}
+.lightbox{position:fixed;inset:0;z-index:300;background:rgba(5,4,3,.94);display:none;align-items:center;justify-content:center;padding:4vw}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:100%;border-radius:var(--r)}
+.lightbox button{position:absolute;top:18px;right:18px;width:48px;height:48px;border-radius:50%;border:1px solid var(--line-2);background:none;color:var(--bone);font-size:24px;cursor:pointer}
+.cta-band{position:relative;overflow:hidden;border-radius:var(--r-lg);padding:clamp(40px,7vw,96px) clamp(24px,5vw,72px);background:var(--char)}
+.cta-band .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35}
+.cta-band::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--g-night),rgba(0,0,0,.2))}
+.cta-band > div{position:relative;z-index:2;max-width:640px}
+.cta-band h2{font-size:clamp(40px,5vw,80px);margin:12px 0 18px}
+.cta-band p{color:#DDD2C6}
+.cta-band .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.server{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;margin-top:28px}
+@media (max-width:700px){.server{grid-template-columns:repeat(2,1fr)}}
+.server div{background:var(--night);padding:22px}
+.server b{display:block;font:700 40px/1 var(--f-head)}
+.server span{display:block;margin-top:8px;font:600 12px/1.2 var(--f-head);letter-spacing:.16em;text-transform:uppercase;color:var(--ash)}
+.more-games{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,24px)}
+@media (max-width:900px){.more-games{grid-template-columns:1fr}}
+.more-games .card{aspect-ratio:16/10}
+
+/* §14 ── pied de page ────────────────────────────────────────────────────── */
+.foot{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 36px;background:#080605}
+.foot-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px}
+@media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}}
+.foot .logo b{font-size:26px}
+.foot p{color:var(--ash);font-size:15px;max-width:36ch;margin-top:16px}
+.foot h4{margin:0 0 16px;font:700 13px/1 var(--f-head);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.foot ul a{color:var(--ash);font-size:15px}
+.foot ul a:hover{color:var(--bone)}
+.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);color:var(--ash-2);font-size:14px}
+
+/* §15 ── thèmes par jeu ──────────────────────────────────────────────────── */
+body{--g-night:var(--night);--g-accent:var(--ember);--g-accent-2:var(--gold-2)}
+.t-heat{--g-accent:#FF5E36;--g-accent-2:#FFB27A}
+.t-volt{--night:#070910;--char:#0E1222;--g-night:#070910;--g-accent:#4DE6FF;--g-accent-2:#FFD36A;--ember:#4DE6FF;--on-accent:#03121A;--gold:#FFCC40;--gold-2:#FFE08A}
+.t-marc{--night:#070909;--char:#0F1413;--g-night:#070909;--g-accent:#E5484D;--g-accent-2:#CDEFE6;--ember:#E5484D;--on-accent:#140405;--gold:#CDEFE6;--gold-2:#F0FFFB}
+.t-ludus{--night:#0C0907;--char:#16110D;--g-night:#0C0907;--g-accent:#E0A44A;--g-accent-2:#F2DEB0;--ember:#E0A44A;--on-accent:#1A1006;--gold:#E0A44A;--gold-2:#F7E3BB}
+body.t-volt,body.t-marc,body.t-ludus{background:var(--night)}
